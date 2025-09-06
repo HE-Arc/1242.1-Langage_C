@@ -6,8 +6,7 @@ weight: 1
 # CHAPITRE 0 : Organisation du Cours
 
 ## Slides
-{{<pdf src="/pdf/1242.1.00_OrganisationDuCours.pdf" >}}
-**[1242.1.00_OrganisationDuCours.pdf](/pdf/1242.1.00_OrganisationDuCours.pdf)**
+{{<pdf src="/pdfs/1242.1.00_OrganisationDuCours.pdf" >}}
 
 <!-- {{< embed-pdf url="/pdf/1242.1.00_OrganisationDuCours.pdf" >}}-->
 
