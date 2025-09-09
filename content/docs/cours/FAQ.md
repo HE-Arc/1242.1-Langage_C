@@ -9,9 +9,20 @@ Durant le cours 1242.1 Langage C, nous utilisons le C99.
 
 En particulier, le compilateur installé par défaut est GCC (version 10.3 minimum). Comme indiqué dans le manuel utilisateur de GCC 10.3, la version par défaut du C utilisée est gnu11 c'est-à-dire le C11 avec les extensions GNU. Cette version ainsi que les extensions ne sont pas nécessaires pour le contenu du cours. Ainsi, la version C99 est suffisante.
 
-## Comment déclarer la fonction main() ?
+## Où puis-je trouver la norme C99 ?
+Vous pouvez la consulter ci-dessous :
+{{< pdf src="/pdfs/Draft_norme_ISO_C11.pdf" >}}
 
-Les prototypes standards définis par la **[norme C99](/pdf/Draft_norme_ISO_C11.pdf)** sont :
+## Où puis-je trouver la documentation GCC ?
+Vous pouvez la consulter [ici](https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/) ou ci-dessous :
+{{< pdf src="/pdfs/gcc_15.2_UserManual.pdf" >}}
+
+## Quelles sont les conventions de codage en C et C++ ?
+Vous pouvez les consulter ci-dessous :
+{{< pdf src="/pdfs/Conventions_Codage_C_et_CPP.pdf" >}}
+
+## Comment déclarer la fonction main() ?
+Les prototypes standards définis par la **norme C99** sont :
 
 ```c
 int main(void)
@@ -25,7 +36,7 @@ int main(int argc, char *argv[])
 
 ou équivalent.
 
-En effet, la **[norme C99](/pdf/Draft_norme_ISO_C11.pdf)** précise :
+En effet, la **norme C99** précise :
 
 {{< figure src="/images/norme_5.1.2.2.1.png#center" >}}
 

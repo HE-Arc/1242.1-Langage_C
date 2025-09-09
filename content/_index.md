@@ -7,19 +7,19 @@ type: docs
 
 ## Informations générales
 
+Équipe **[TEAMS](https://teams.microsoft.com/l/team/19%3A4S-4gER-_2vUFcciX6P6yPjbR9vjWSa4HNhrncPamrI1%40thread.tacv2/conversations?groupId=1f2889b0-315a-4f91-98b0-09103f2c55c3&tenantId=5b3b7d7d-e119-4d05-9022-f775f2e48e96)**
+
+{{< a_faire >}}
+Installer TEAMS directement depuis le **portail entreprise** accessible via le menu **Windows**.
+{{< /a_faire >}}
+
 ### Groupes ISC1a et ISC1b
 
 **Professeur :** Benoit Le Callennec
 
 **Assistant :** Jules Perrelet
 
-**Horaires et salles :** les jeudis, de 8h15 à 11h35 en salle NE120.
-
-Équipe **[TEAMS](https://teams.microsoft.com/l/channel/19%3Afd607bb291ef4af592a701b2fde33475%40thread.tacv2/ISC1ab?groupId=dc766ce6-e91f-49a4-b8a6-2f275f82652b&tenantId=5b3b7d7d-e119-4d05-9022-f775f2e48e96)**
-
-{{< hint info >}}
-Il faut installer TEAMS directement depuis le **portail entreprise** accessible via le menu **Windows**.
-{{< /hint >}}
+**Horaires et salles :** les mardis, de 15h05 à 18h10 en salle NE104.
 
 ### Groupes ISC1c et ISC1d
 
@@ -27,26 +27,12 @@ Il faut installer TEAMS directement depuis le **portail entreprise** accessible 
 
 **Assistant :** Antoine Lestrade
 
-**Horaires et salles :** les mercredis, de 13h15 à 16h40 en salle NE122.
+**Horaires et salles :** les jeudis, de 15h05 à 18h10 en salle NE126.
 
-Équipe **[TEAMS](https://teams.microsoft.com/l/channel/19%3A54ad1ac0cb614cc9995d1f86f3e665ec%40thread.tacv2/ISC1cd?groupId=dc766ce6-e91f-49a4-b8a6-2f275f82652b&tenantId=5b3b7d7d-e119-4d05-9022-f775f2e48e96)**
+### Groupe ISC1j
+**Professeur :** Matthieu Saner
 
-{{< hint info >}}
-Il faut installer TEAMS directement depuis le **portail entreprise** accessible via le menu **Windows**.
-{{< /hint >}}
-
-## Ressources importantes
-
-### C et CPP
-- **[La norme C](/pdfs/Draft_norme_ISO_C11.pdf)**
-- **[La documentation GCC](/pdf/gcc_10.3_User_Manual.pdf)**
-- **[Les conventions de programmation C et C++](/pdf/Conventions_Codage_C_et_CPP.pdf)**
-- **[La FAQ C en Anglais](https://c-faq.com/)**
-
-### TEAMS
-
-- **[Microsoft Teams : Premiers pas avec l'application](https://youtu.be/GKjN_e5diLU)**
-- **[Formation vidéo Microsoft Teams](https://support.microsoft.com/fr-fr/office/formation-vid%C3%A9o-microsoft-teams-4f108e54-240b-4351-8084-b1089f0d21d7)**
+**Horaires et salles :** les mardis, de 08h30 à 11h45 en salle DE135.
 
 ## Contenu
 Durant ce cours, vous verrez les notions suivantes :
@@ -65,16 +51,16 @@ Calendrier à titre informatif et sujet à modifications.
 
 | SEMAINE | À VOIR / À FAIRE |
 |---------|------------------|
-| #1  | CHAPITRE 1 : INTRODUCTION / Série 1|
+| #1  | CHAPITRE 1 : INTRODUCTION / Série 1 |
 | #2  | CHAPITRE 2 : TYPES ET VARIABLES / Séries 2.1 et 2.2 |
 | #3  | CHAPITRE 3 : OPÉRATEURS / Série 3.1 |
 | #4  | CHAPITRE 4 : ENTRÉES - SORTIES / Série 4.1 |
-| #4' | **Semaine thématique**  |
+| #4' | **Semaine de travail autonome / thématique**  |
 | #5  | CHAPITRE 5 : STRUCTURES DE CONTRÔLE / Séries 5.1, 5.2, 5.3 et 5.4 |
 | #6  | CHAPITRE 6 : FONCTIONS I / Séries 6.1 |
 | #7  | CHAPITRE 7: COMPILATION ET MODULARISATION |
 | #8  | CHAPITRE 8 : TABLEAUX ET STRUCTURES / Séries 8.1, 8.2, 8.3 et 8.4 |
-| #8' | **Semaine de travail autonome / portes ouvertes** |
+| #8' | **Semaine de travail autonome / thématique / portes ouvertes** |
 | #9  | CHAPITRE 9 : POINTEURS / Séries 9.1 |
 | #10 | CHAPITRE 10 : ALLOCATION DYNAMIQUE / Séries 10.1 |
 | #11 | CHAPITRE 11 : FONCTIONS II / Séries 11.1 |
