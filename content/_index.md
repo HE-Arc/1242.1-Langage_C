@@ -21,14 +21,6 @@ Installer TEAMS directement depuis le **portail entreprise** accessible via le m
 
 **Horaires et salles :** les mardis, de 15h05 à 18h10 en salle NE104.
 
-### Groupes ISC1c et ISC1d
-
-**Professeur :** Stéphane Gobron
-
-**Assistant :** Antoine Lestrade
-
-**Horaires et salles :** les jeudis, de 15h05 à 18h10 en salle NE126.
-
 ### Groupe ISC1j
 **Professeur :** Matthieu Saner
 
