@@ -6,7 +6,7 @@ weight: 1
 # CHAPITRE 1 : INTRODUCTION
 
 ## Slides
-[1242.1.01_Introduction.pdf](/pdf/1242.1.01_Introduction.pdf)
+{{<pdf src="/pdfs/1242.1.01_Introduction.pdf" >}}
 
 ## Squelette à remplir
 ```c
@@ -68,9 +68,9 @@ Cette instruction met fin à la fonction **`main`** et retourne 0 au programme a
 ## Exercice 1
 Modifier le programme **`Hello_World`** pour obtenir le même résultat sur l'écran en utilisant plusieurs fois la fonction **`printf`**.
 
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 ## Exercice 2
 À partir des exemples du cours, écrire un programme qui affiche :
@@ -78,9 +78,9 @@ Modifier le programme **`Hello_World`** pour obtenir le même résultat sur l'é
 The result of 37 * 12 = 444
 ```
 
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 ## Exercice 3
 Modifier le programme suivant de façon à ce qu'il affiche :
@@ -172,7 +172,8 @@ Les arguments et les résultats des fonctions arithmétiques sont de type **`dou
 
 **Remarque :** la liste des fonctions ne cite que les fonctions les plus courantes. Pour la liste complète et les constantes prédéfinies, voir les **[fonctions arithmétiques standard](https://en.cppreference.com/w/c/numeric/math)**.
 
-## [AVANCÉ] Exercice 4
+{{< notion_avancee >}}
+## Exercice 4
 1. Écrire un programme qui affiche la table de multiplication de 37 selon le format suivant :
 ```
 37 * 0 = 0
@@ -181,3 +182,4 @@ Les arguments et les résultats des fonctions arithmétiques sont de type **`dou
 . . .
 37 * 12 = 444
 ```
+{{< /notion_avancee >}}
