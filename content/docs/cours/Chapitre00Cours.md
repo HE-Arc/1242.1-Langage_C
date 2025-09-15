@@ -1,5 +1,5 @@
 ---
-title: "0  - Organisation du cours"
+title: "0 - Organisation du cours"
 weight: 1
 ---
 
@@ -7,8 +7,6 @@ weight: 1
 
 ## Slides
 {{<pdf src="/pdfs/1242.1.00_OrganisationDuCours.pdf" >}}
-
-<!-- {{< embed-pdf url="/pdf/1242.1.00_OrganisationDuCours.pdf" >}}-->
 
 ## Installation de l'environnement de développement
 
