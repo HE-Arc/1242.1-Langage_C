@@ -15,7 +15,7 @@ Ce qui suit est extrait du tutoriel accessible **[ici](https://code.visualstudio
 {{< /a_noter>}}
 
 1. Installer **[Visual Studio Code](https://code.visualstudio.com/)**
-2. Installer les **[extensions Visual Studio Code recommandées pour le C](/docs/cours/faq/#quelles-sont-les-extensions-vs-code-recommandées-pour-le-c-)**
+2. Installer les **[extensions Visual Studio Code recommandées pour le C]({{< relref "/docs/cours/faq/#quelles-sont-les-extensions-vs-code-recommandées-pour-le-c-" >}})**
 3. Installer **[MSYS2 ](https://www.msys2.org/)**.
 
 Les étapes 1 et 2 sont évidentes à suivre.
