@@ -6,7 +6,8 @@ weight: 1
 # CHAPITRE 2 : types et variables
 
 ## Cours
-[1242.1.02_TypesEtVariables.pdf](/pdf/1242.1.02_TypesEtVariables.pdf)
+
+{{< pdf src="/pdfs/1242.1.02_TypesEtVariables.pdf" >}}
 
 ## Squelette à remplir
 ```c
@@ -184,15 +185,22 @@ int main(void)
 }
 ```
 
-## [AVANCÉ] Exercice 12
-Écrire le code permettant d’échanger les valeurs contenues dans les deux variables a et b sans utiliser d’autre variable.
 
-## [AVANCÉ] Exercice 13
+
+{{< notion_avancee >}}
+## Exercice 12
+Écrire le code permettant d’échanger les valeurs contenues dans les deux variables a et b sans utiliser d’autre variable.
+{{< /notion_avancee >}}
+
+
+{{< notion_avancee >}}
+## Exercice 13
 Quelle est la valeur du nombre de type **`float`** dans la variable **`chouia`** dont le contenu mémoire est représenté ci-dessous ?
 
 ```c
 float chouia    /* = ??? */    ;
 ```
+{{< /notion_avancee >}}
 
 {{< figure src="/images/chouia.png#center" >}}
 
@@ -225,13 +233,17 @@ Duration in years? 30
 After 30 years, your assets (with interest) will be     2097.57 SFr
 ```
 
-## Exercice 23 (Avancé)
+{{< notion_avancee >}}
+## Exercice 23
 Améliorer l'affichage pour avoir des séparateurs après les milliers, et millions, et 
 arrondir le montant à 5 centimes. La valeur 1876435.264901 affichera par exemple **1'876'435.30 SFr**
+{{< /notion_avancee >}}
 
-## Exercice 24 (Avancé)
+{{< notion_avancee >}}
+## Exercice 24
 Implémenter le codage d’un nombre réel donné par l’utilisateur, en virgule flottante selon IEEE754
 - Calcul du bit signe (facile)
 - Calcul de l’exposant (moyen)
 - Calcul de la mantisse (difficile?)
 - Vérification avec les bits du nombre mémorisé dans une variable float (difficile)
+{{< /notion_avancee >}}
