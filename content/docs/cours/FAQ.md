@@ -17,6 +17,29 @@ Vous pouvez la consulter ci-dessous :
 Vous pouvez la consulter [ici](https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/) ou ci-dessous :
 {{< pdf src="/pdfs/gcc_15.2_UserManual.pdf" >}}
 
+## Quelles sont les extensions VS Code recommandées pour le C ?
+
+[C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) (`ms-vscode.cpptools`)
+{{< figure src="/images/ext_cpp.png#center" >}}
+
+[C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) (`ms-vscode.cpptools-extension-pack`)
+{{< figure src="/images/ext_cpp_ep.png#center" >}}
+
+[GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) (`eamodio.gitlens`)
+{{< figure src="/images/ext_gitlens.png#center" >}}
+
+[vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons) (`vscode-icons-team.vscode-icons`)
+{{< figure src="/images/ext_icons.png#center" >}}
+
+[TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) (`wayou.vscode-todo-highlight`)
+{{< figure src="/images/ext_todos.png#center" >}}
+
+[Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) (`aaron-bond.better-comments`)
+{{< figure src="/images/ext_better_comments.png#center" >}}
+
+[Comment Anchors](https://marketplace.visualstudio.com/items?itemName=ExodiusStudios.comment-anchors) (`exodiusstudios.comment-anchors`)
+{{< figure src="/images/ext_comment_anchors.png#center" >}}
+
 ## Quelles sont les conventions de codage en C et C++ ?
 Vous pouvez les consulter ci-dessous :
 {{< pdf src="/pdfs/Conventions_Codage_C_et_CPP.pdf" >}}
@@ -101,48 +124,6 @@ Ce concept est important (bien qu'un peu avancé) car si une expression contient
 
 En particulier, si on modifie 2 fois la même variable entre 2 points de séquence, alors le comportement est indéfini, comme détaillé dans la FAQ [Pourquoi l’expression i = i++ est un comportement indéfini ?](#pourquoi-lexpression-i--i-est-un-comportement-ind%c3%a9fini-).
 
-## Pourquoi l'expression **`i = i++`** est un comportement indéfini ?
-
-Pour le comprendre, il faut savoir ce qu'est un point de séquence en C (voir la FAQ [Qu’est-ce qu’un point de séquence en C ?](#quest-ce-quun-point-de-s%c3%a9quence-en-c-)).
-
-En particulier, entre 2 points de séquence, il n'y a aucune garantie sur l'ordre dans lequel les effets de bord (modifications de variables) seront effectués.
-Par conséquent, toute expression qui modifie 2 fois la même variable entre 2 points de séquence est un comportement indéfini (UB) en C.
-
-Les expressions suivantes sont donc des UB :
-
-```c
-i = ++i;
-i = i++;
-j = ++i + i++;
-i = (++i, i++);
-```
-Et elles produiront les warnings suivants (si l'option **`-Wall`**  est activée avec **GCC**) :
-
-```BashSession
-.\main.c: In function 'main':
-.\main.c:10:11: warning: operation on 'i' may be undefined [-Wsequence-point]
-   10 |         i = ++i;
-      |         ~~^~~~~
-.\main.c:11:11: warning: operation on 'i' may be undefined [-Wsequence-point]
-   11 |         i = i++;
-      |         ~~^~~~~
-.\main.c:12:13: warning: operation on 'i' may be undefined [-Wsequence-point]
-   12 |         j = ++i + i++;
-      |             ^~~
-.\main.c:22:5: warning: operation on 'i' may be undefined [-Wsequence-point]
-   22 |   i = (++i, i++);
-```
-
-{{<hint info>}}
-**À NOTER :** l'opérateur **`,`** (virgule, ou comma en anglais) introduit un point de séquence entre chaque **`,`**.
-Donc le code suivant n'est pas un UB :
-  
-  ```c
-  j = (++i, i++);
-  ```
-{{</hint>}}
-
-
 ## Comment afficher plus de messages (warnings) avec GCC dans VS Code ?
 
 Avec `GCC`, il s'agit de rajouter l'option `-Wall` lors de la compilation. **[Le manuel de GCC](/pdf/gcc_10.3_User_Manual.pdf)** détaille tous les paramètres (et bien plus).
@@ -223,13 +204,11 @@ Voici les raccourcis les plus utiles quand on programme en C dans VS Code.
 
 Les MACROS doivent être évitées car elles conduisent souvent à des bugs très difficiles à détecter :
 
-- il n'y a pas de vérification de type avec les MACROS
+- il n'y a pas de vérification de type avec les MACROS;
 
-- l'expansion de MACROS peut conduire à des effets de bord difficiles à prévoir. En particulier, la MACRO suivante est buggée (comme vu en cours) :
+- l'expansion de MACROS peut conduire à des effets de bord difficiles à prévoir;
 
-      #define MAX_WRONG(x,y) x>y?x:y
-
-- elles rendent l'exécutable plus volumineux car le code est copié-collé contrairement aux fonctions
+- elles rendent l'exécutable plus volumineux car le code est copié-collé contrairement aux fonctions;
 
 - le code au final est moins lisible.
 
@@ -335,28 +314,6 @@ En utilisant le preprocessor, on peut définir une MACRO `VLAS_SUPPORTED` de la 
 #endif
 ```
 
-## Quelles sont les extensions VS Code recommandées pour le C ?
-
-[C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) (`ms-vscode.cpptools`)
-{{< figure src="/images/ext_cpp.png#center" >}}
-
-[C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack) (`ms-vscode.cpptools-extension-pack`)
-{{< figure src="/images/ext_cpp_ep.png#center" >}}
-
-[GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) (`eamodio.gitlens`)
-{{< figure src="/images/ext_gitlens.png#center" >}}
-
-[vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons) (`vscode-icons-team.vscode-icons`)
-{{< figure src="/images/ext_icons.png#center" >}}
-
-[TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) (`wayou.vscode-todo-highlight`)
-{{< figure src="/images/ext_todos.png#center" >}}
-
-[Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) (`aaron-bond.better-comments`)
-{{< figure src="/images/ext_better_comments.png#center" >}}
-
-[Comment Anchors](https://marketplace.visualstudio.com/items?itemName=ExodiusStudios.comment-anchors) (`exodiusstudios.comment-anchors`)
-{{< figure src="/images/ext_comment_anchors.png#center" >}}
 
 ## Quel type faut-il utiliser par défaut en C pour représenter des réels ?
 
