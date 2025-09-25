@@ -185,13 +185,10 @@ int main(void)
 }
 ```
 
-
-
 {{< notion_avancee >}}
 ## Exercice 12
 Écrire le code permettant d’échanger les valeurs contenues dans les deux variables a et b sans utiliser d’autre variable.
 {{< /notion_avancee >}}
-
 
 {{< notion_avancee >}}
 ## Exercice 13
@@ -247,3 +244,140 @@ Implémenter le codage d’un nombre réel donné par l’utilisateur, en virgul
 - Calcul de la mantisse (difficile?)
 - Vérification avec les bits du nombre mémorisé dans une variable float (difficile)
 {{< /notion_avancee >}}
+
+# Défis
+
+## Comparaison de flottants
+Qu'affiche le programme suivant ? Pourquoi ? Quelle est la bonne manière de comparer des **`double`** ?
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+  double d1 = 0.3;
+  double d2 = 0.1 + 0.1 + 0.1;
+  if (d1 == d2)
+  {
+    printf("d1 is equal to d2\n");
+  }
+  else
+  {
+    printf("d1 is NOT equal to d2\n");
+  }
+  
+
+  return 0;
+}
+```
+
+<!--
+{{<details "Explications" >}}
+Le programme affiche **`d1 is NOT equal to d2`**.
+En effet, en représentation binaire, 0.1 est une valeur périodique (comme 1/3 en décimal).
+Donc, 0.1 ne peut pas être représentée exactement en binaire.
+Par conséquent, la somme de 3 fois 0.1 n'est pas exactement égale à 0.3.
+La bonne manière de comparer des **`double`** est de vérifier que la différence entre les deux valeurs est inférieure à une petite valeur epsilon (typiquement la plus petite valeur représentable par un **`double`** : **`DBL_EPSILON`**).
+
+```c
+#include <stdio.h>
+#include <math.h>
+#include <float.h>
+
+int main(void)
+{
+  double d1 = 0.3;
+  double d2 = 0.1 + 0.1 + 0.1;
+  if (d1 == d2)
+  {
+    printf("d1 is equal to d2\n");
+  }
+  else
+  {
+    printf("d1 is NOT equal to d2\n");
+  }
+
+  if (fabs(d1 - d2) < DBL_EPSILON)
+  {
+    printf("d1 is approximately equal to d2\n");
+  }
+  else
+  {
+    printf("d1 is NOT approximately equal to d2\n");
+  }
+
+  return 0;
+}
+```
+{{</details>}}
+-->
+
+## Cast de **`double`** en **`char`**
+
+Qu'affiche le programme suivant ? Pourquoi ?
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	// Cast 128 into a char (8 bits) => overflow
+	printf("c1 = %d\n", (char)128);
+	char c1 = 128;
+	printf("c1 = %d\n", c1);
+
+	// 1)
+	double d2 = 128.99;
+	char c2 = (char) d2;
+	printf("d2 = %lf\n", d2);
+	printf("c2 = %d\n", (char) c2);
+
+	// 2)
+	double d3 = (char) 128.99;
+	char c3 = (char) d3;
+	printf("d3 = %lf\n", d3);
+	printf("c3 = %d\n", (char) c3);
+	printf("c3 = %d\n", (char) 128.99);
+
+	return 0;
+}
+```
+
+<!--
+{{< details "Explications" >}}
+Le code cast un **`double`** (128.99) en **`char`**.
+Comme la valeur maximale représentable par un **`char`** est 127, il devrait y avoir débordement (overflow).
+On s'attend donc à avoir -128 au final.
+
+Cependant, le programme affiche :
+
+```
+c1 = -128
+c1 = -128
+d2 = 128.990000
+c2 = -128
+d3 = 127.000000
+c3 = 127
+c3 = 127
+```
+
+La norme dit :
+
+> **6.3.1.4 Real floating and integer**
+> 
+> When a finite value of real floating type is converted to an integer type other than _Bool, the fractional part is discarded (i.e., the value is truncated toward zero).
+> **If the value of the integral part cannot be represented by the integer type, the behavior is undefined.**
+
+Donc, quand un **`double`** est casté en **`char`**, seule la partie entière est conservée.
+Si elle ne peut pas être représentée dans le type entier demandé (ici **`char`**), alors c'est une **comportement indéfini**.
+
+Dans l'exemple de code donné, les parties 1) et 2) sont donc des comportements indéfinis.
+Et le compilateur (ici GCC) va faire les choses différemment.
+
+Dans le cas 1), comme la valeur est stockée dans une variable, le cast se fera à l'exécution.
+Il prend donc la valeur stockée dans la variable (128.99), ne garde que la partie entière (128), et la cast en **`char`**, ce qui donne un débordement et retourne -128.
+
+Dans le cas 2), le compilateur voit directement que la partie entière de la constante 128.99 ne pourra pas être représentée sur un **`char`** et prend des mesures, donc directement durant la compilation.
+En particulier, il décide d'utiliser la valeur maximale représentable par un **`char`**, et donc on récupère 127.
+{{< /details >}}
+-->
