@@ -1,5 +1,5 @@
 ---
-title: "ORAUX ISC1ab"
+title: "ISC1ab"
 weight: 20
 ---
 
@@ -28,3 +28,34 @@ Avant de passer, il faut absolument :
 3) **[Normal]** 1 exercice sur les pointeurs + allocation dynamique de mémoire ⇒ max. 5 minutes.
 4) **[Normal]** 1 exercice sur les structures + divers ⇒ max. 2 minutes
 5) **[Difficile]** 1 exercice sur les pointeurs de fonctions.
+
+## Déroulement du cours (par semaine)
+## Semaine 1
+### Cours
+- Chapitre 0 et chapitre 1
+
+### Exercices
+{{<a_faire>}}
+- Installation de l'environnement de développement
+- Série 1
+{{</a_faire>}}
+
+## Semaine 2
+### Cours
+- Chapitre 2
+
+### Exercices
+{{<a_faire>}}
+- Série 2
+{{</a_faire>}}
+
+## Semaine 3
+### Cours
+- Chapitre 3
+
+### Exercices & Défis
+{{<a_faire>}}
+- Série 3
+- Comparaison de flottants
+- Cast de **`double`** en **`char`**
+{{</a_faire>}}
