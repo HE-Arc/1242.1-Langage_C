@@ -248,3 +248,77 @@ printf("q/q       : %f  \n", q/q);
 
 printf("sqrt(-1)  : %f  \n", sqrt(-1));
 ```
+
+# Défis
+
+## **`i = i++`**
+
+Les expressions suivantes sont-elles correctes en C ? Pourquoi ?
+
+```c
+i = ++i;
+i = i++;
+j = ++i + i++;
+i = (++i, i++);
+```
+
+<!--
+{{<details "Explications" >}}
+Pour le comprendre, il faut savoir ce qu'est un point de séquence en C (voir la FAQ [Qu’est-ce qu’un point de séquence en C ?]({{< relref "/docs/cours/faq/#quest-ce-quun-point-de-s%c3%a9quence-en-c-" >}})).
+
+En particulier, entre 2 points de séquence, il n'y a aucune garantie sur l'ordre dans lequel les effets de bord (modifications de variables) seront effectués.
+Par conséquent, toute expression qui modifie 2 fois la même variable entre 2 points de séquence est un comportement indéfini (UB) en C.
+
+Et elles produiront les warnings suivants (si l'option **`-Wall`**  est activée avec **GCC**) :
+
+```BashSession
+.\main.c: In function 'main':
+.\main.c:10:11: warning: operation on 'i' may be undefined [-Wsequence-point]
+   10 |         i = ++i;
+      |         ~~^~~~~
+.\main.c:11:11: warning: operation on 'i' may be undefined [-Wsequence-point]
+   11 |         i = i++;
+      |         ~~^~~~~
+.\main.c:12:13: warning: operation on 'i' may be undefined [-Wsequence-point]
+   12 |         j = ++i + i++;
+      |             ^~~
+.\main.c:22:5: warning: operation on 'i' may be undefined [-Wsequence-point]
+   22 |   i = (++i, i++);
+```
+
+{{<a_noter>}}
+L'opérateur **`,`** (virgule, ou comma en anglais) introduit un point de séquence entre chaque **`,`**.
+Donc le code suivant n'est pas un UB :
+  
+  ```c
+  j = (++i, i++);
+  ```
+{{</a_noter>}}
+
+{{</details>}}
+-->
+
+## Opérateur ternaire et blocs
+
+Que fait le code suivant ? Pourquoi ?
+
+```c
+int i = 1;
+
+(i++ == 1) ? {printf("Hello\n"); } : {printf("World\n"); };
+```
+
+<!--
+{{<details "Explications" >}}
+Les blocs ne retournent pas de valeur, donc ne sont pas des expressions.
+Ainsi, ils ne conviennent pas pour l'opérateur ternaire.
+
+Il faut noter cependant que les fonctions retournent des valeurs (même si c'est `void`).
+L'exemple suivant fonctionne donc parfaitement :
+
+```c
+int i = 1;
+(i++ == 1) ? printf("Hello\n") : printf("World\n");
+```
+{{</details>}}
+-->
