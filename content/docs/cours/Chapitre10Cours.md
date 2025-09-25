@@ -3,7 +3,7 @@ title: "10 - Allocation dynamique"
 weight: 11
 ---
 
-# CHAPITRE 10 : ALLOCATION DYNAMIQUE
+# CHAPITRE 10 : ALLOCATION DYNAMIQUE DE MÉMOIRE
 
 ## Cours
 [1242.1.10_AllocationDynamique](/pdf/1242.1.10_AllocationDynamique.pdf)

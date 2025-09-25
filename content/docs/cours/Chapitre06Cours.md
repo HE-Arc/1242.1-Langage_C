@@ -3,7 +3,7 @@ title: "6 - Fonctions I"
 weight: 1
 ---
 
-# CHAPITRE 6 : fonctions I
+# CHAPITRE 6 : fonctions
 ## Cours
 [1242.1.06_Fonctions_I](/pdf/1242.1.06_Fonctions_I.pdf)
 
