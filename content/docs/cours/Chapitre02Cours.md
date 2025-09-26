@@ -382,5 +382,6 @@ Dans ce cas particulier, le programme retourne -128, mais il pourrait aussi plan
 Dans le cas 2), le compilateur voit directement que la partie entière de la constante 128.99 ne pourra pas être représentée sur un **`char`** et prend des mesures, donc directement durant la compilation.
 En particulier, il décide d'utiliser la valeur maximale représentable par un **`char`**, et donc on récupère 127.
 
-👉 Ne jamais se fier au résultat d’un cast hors bornes. En C, c’est un comportement indéfini.
+**👉 Ne jamais se fier au résultat d’un cast hors bornes. En C, c’est un comportement indéfini.**
+
 {{< /details >}}
