@@ -40,6 +40,10 @@ int main(void)
 }
 ```
 
+{{< a_noter>}}
+ **```%zu```** est le spécificateur de format pour des valeurs de type **```size_t```**.
+{{< /a_noter>}}
+
 ## Quiz
 [QUIZ TYPES ET VARIABLES (~15')](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=761388)
 
@@ -203,19 +207,18 @@ float chouia    /* = ??? */    ;
 
 ## Exercice 21
 Écrire un programme C qui convertit une température saisie par l’utilisateur en 
-degrés Celsius, en degrés Farenheit et l’affiche :
+degrés Celsius, en degrés Fahrenheit et l’affiche :
 
 ```
 Enter a temperature in Celsius: 12
-12 degres Celsius correspond to a 53.6 degres Farenheit
+12 degres Celsius correspond to a 53.6 degres Fahrenheit
 ```
 
 Indication : {{<katex>}} T_F = 32 + 1.8*T_C {{</katex>}}
 
 ## Exercice 22
-Écrire un programme en langage C, le compiler, l'exécuter. Ce programme 
-effectuera un calcul d'intérêts et de capital pour un compte en banque. Il 
-demandera à l'utilisateur d'introduire:
+Écrire un programme C qui effectue un calcul d'intérêts et de capital pour un compte en banque.
+Il demande à l'utilisateur d'introduire:
 - Le capital initial sur le compte (francs et centimes)
 - Le taux d'intérêt (annuel) du compte en pourcent
 - La durée du dépôt (on ne peut retirer l'argent qu'au terme d'une année complète)
@@ -366,7 +369,7 @@ La norme dit :
 > **If the value of the integral part cannot be represented by the integer type, the behavior is undefined.**
 
 Donc, quand un **`double`** est casté en **`char`**, seule la partie entière est conservée.
-Si elle ne peut pas être représentée dans le type entier demandé (ici **`char`**), alors c'est une **comportement indéfini**.
+Si elle ne peut pas être représentée dans le type entier demandé (ici **`char`**), alors c'est un **comportement indéfini**.
 
 Dans l'exemple de code donné, les parties 1) et 2) sont donc des comportements indéfinis.
 Et le compilateur (ici GCC) va faire les choses différemment.
