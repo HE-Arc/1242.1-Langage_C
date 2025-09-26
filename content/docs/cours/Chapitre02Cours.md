@@ -271,7 +271,6 @@ int main(void)
 }
 ```
 
-<!--
 {{<details "Explications" >}}
 Le programme affiche **`d1 is NOT equal to d2`**.
 En effet, en représentation binaire, 0.1 est une valeur périodique (comme 1/3 en décimal).
@@ -310,7 +309,6 @@ int main(void)
 }
 ```
 {{</details>}}
--->
 
 ## Cast de **`double`** en **`char`**
 
@@ -343,7 +341,6 @@ int main(void)
 }
 ```
 
-<!--
 {{< details "Explications" >}}
 Le code cast un **`double`** (128.99) en **`char`**.
 Comme la valeur maximale représentable par un **`char`** est 127, il devrait y avoir débordement (overflow).
@@ -380,4 +377,4 @@ Il prend donc la valeur stockée dans la variable (128.99), ne garde que la part
 Dans le cas 2), le compilateur voit directement que la partie entière de la constante 128.99 ne pourra pas être représentée sur un **`char`** et prend des mesures, donc directement durant la compilation.
 En particulier, il décide d'utiliser la valeur maximale représentable par un **`char`**, et donc on récupère 127.
 {{< /details >}}
--->
+

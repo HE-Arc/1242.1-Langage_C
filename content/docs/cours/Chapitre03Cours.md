@@ -4,8 +4,9 @@ weight: 1
 ---
 
 # CHAPITRE 3 : opérateurs
+
 ## Cours
-[1242.1.03_Operateurs.pdf](/pdf/1242.1.03_Operateurs.pdf)
+{{< pdf src="/pdfs/1242.1.03_Operateurs.pdf" >}}
 
 ## Squelette à remplir
 
@@ -230,7 +231,7 @@ unsigned int x=0x03020100;
 
 Écrire un programme qui décompose la variable **`x`** en 4 variables **`b0`**, **`b1`**, **`b2`**, **`b3`** contenant les 4 bytes de **`x`**.
 
-## [AVANCÉ] Exercice 7 : débordement
+## Exercice 7 : débordement
 
 A) Décrire ce qui se passe lorsque la valeur d'une variable dépasse sa valeur maximale admise dans le programme suivant :
 
@@ -253,7 +254,8 @@ printf("sqrt(-1)  : %f  \n", sqrt(-1));
 
 ## **`i = i++`**
 
-Les expressions suivantes sont-elles correctes en C ? Pourquoi ?
+Les expressions suivantes sont-elles correctes en C ?
+Pourquoi ?
 
 ```c
 i = ++i;
@@ -300,7 +302,8 @@ Donc le code suivant n'est pas un UB :
 
 ## Opérateur ternaire et blocs
 
-Que fait le code suivant ? Pourquoi ?
+Que fait le code suivant ?
+Pourquoi ?
 
 ```c
 int i = 1;
