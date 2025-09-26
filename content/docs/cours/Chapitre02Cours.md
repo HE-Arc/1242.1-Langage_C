@@ -375,8 +375,10 @@ Dans l'exemple de code donné, les parties 1) et 2) sont donc des comportements 
 Et le compilateur (ici GCC) va faire les choses différemment.
 
 Dans le cas 1), comme la valeur est stockée dans une variable, le cast se fera à l'exécution.
-Il prend donc la valeur stockée dans la variable (128.99), ne garde que la partie entière (128), et la cast en **`char`**, ce qui donne un débordement.
-Dans ce cas particulier, le programme retourne -128, mais il pourrait aussi planter, afficher 0, 127, 42, ou tout autre valeur.
+Il prend donc la valeur stockée dans la variable (128.99), ne garde que la partie entière (128), et la cast en **`char`**.
+Si **`char`** est signé (plage [-128,127]), 128 n’est pas représentable : la conversion a un comportement indéfini.
+Dans ce cas particulier, l’exécution affiche -128, mais elle pourrait tout aussi bien afficher 0, 127, 42, ou provoquer un crash.
+Si **`char`** est non signé (plage [0,255]), la conversion est bien définie et donne 128.
 
 Dans le cas 2), le compilateur voit directement que la partie entière de la constante 128.99 ne pourra pas être représentée sur un **`char`** et prend des mesures, donc directement durant la compilation.
 En particulier, il décide d'utiliser la valeur maximale représentable par un **`char`**, et donc on récupère 127.
