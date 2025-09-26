@@ -59,7 +59,7 @@ a = a % b;
 part = part / nb_persons;	
 ```
 
-B) Quelle sont les valeurs des variables **`x`**, **`y`** et **`z`** ?
+B) Quelles sont les valeurs des variables **`x`**, **`y`** et **`z`** ?
 
 ```c
 int x = 10;
@@ -101,7 +101,7 @@ z += -x++ + ++y;
 ```
 
 ## Exercice 4 : opérateurs de comparaison et logique
-A) Evaluer les expressions suivantes :
+A) Évaluer les expressions suivantes :
 
 **`3 <= 2-1`**
 
@@ -114,6 +114,8 @@ A) Evaluer les expressions suivantes :
 **`3 + (n > n - 1)`**
 
 **`!true && false || !false`**
+
+**RAPPEL :** il faut inclure **`<stdbool.h>`** pour utiliser les valeurs **`true`** et **`false`**.
 
 B) Assigner à une variable booléenne b. La valeur est vraie si la variable **`x`** est comprise strictement entre 5 et 10, fausse sinon.
 
