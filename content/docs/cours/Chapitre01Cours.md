@@ -46,7 +46,21 @@ La fonction **`main`** contient 2 instructions détaillées dans ce qui suit.
 
 ### 1) L'appel de la fonction **`printf`** avec l'argument **`"hello, world\n"`**
 
-Ceci a pour effet d'afficher la chaîne de caractères **`"hello, world"`** terminée par **`\n`** (retour à la ligne, ou **`<CR>`**).
+Affiche la chaîne de caractères **`"hello, world"`** terminée par **`\n`** (retour à la ligne).
+
+{{< notion_avancee >}}
+**```\n``` et retour à la ligne**
+
+En C, le caractère spécial **```\n```** sert à aller à la ligne.
+
+Sous Unix/Linux/macOS, **```\n```** correspond à un seul caractère ASCII : LF (Line Feed, code 10).
+
+Sous Windows, **```\n```** est traduit automatiquement en 2 caractères : CR + LF (Carriage Return + Line Feed, codes 13 et 10).
+
+✅ Il faut donc utiliser **```\n```** pour «aller à la ligne» de façon portable. Le compilateur se chargera de traduire en fonction du système.
+
+{{< /notion_avancee >}}
+
 L'argument de la fonction **`printf`** est une chaîne de caractères indiquée entre les guillemets.
 Une telle suite de caractères est appelée chaîne de caractères constante.
 La suite de symboles **`\n`** à la fin de la chaîne de caractères **`"hello, world\n"`** est la notation C pour le **passage à la ligne** ("new line" en Anglais).
@@ -84,9 +98,9 @@ L'affichage doit se terminer par un retour à la ligne.
 
 ## Exercice 3
 Modifier le programme suivant de façon à ce qu'il affiche :
-1. la valeur du calcul {{<katex>}}A^B{{</katex>}}
-2. l'hypoténuse d'un triangle rectangle de côtés A et B
-3. la tangente de A en n'utilisant que les fonctions **`sin`** et **`cos`**. On considère que A est un angle exprimé en degrées.
+1. la valeur du calcul {{<katex>}}A^B{{</katex>}}. Il faut utiliser la fonction **`pow`**.
+2. l'hypoténuse d'un triangle rectangle de côtés A et B.
+3. la tangente de A en n'utilisant que les fonctions **`sin`** et **`cos`** (qui prennent des radians en argument). On considère que A est un angle exprimé en degrés. Il faut donc faire la conversion en radians.
 4. la valeur arrondie (en moins) de {{<katex>}}A/B{{</katex>}}
 5. la valeur arrondie (en moins) à trois positions derrière la virgule de {{<katex>}}A/B{{</katex>}}.
 
