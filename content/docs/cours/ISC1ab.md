@@ -59,4 +59,6 @@ Avant de passer, il faut absolument :
 - Série 3
 - Comparaison de flottants
 - Cast de **`double`** en **`char`**
+- i = i++
+- Opérateur ternaire et blocs
 {{</a_faire>}}
