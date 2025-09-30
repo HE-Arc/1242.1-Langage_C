@@ -56,6 +56,18 @@ Il faut noter ceci !!!
 Il faut noter ceci !!!
 {{</a_noter>}}
 
+### Pour aller plus loin
+**Code**
+```
+{{</* aller_plus_loin */>}}
+Approndissement optionel de la notion.
+{{</* /aller_plus_loin */>}}
+```
+**Affichage**
+{{<aller_plus_loin>}}
+Si vous souhaitez approfondir cette notion...
+{{</aller_plus_loin>}}
+
 ### Notion avancée
 **Code**
 ```
