@@ -51,6 +51,7 @@ Avant de passer, il faut absolument :
 
 ## Semaine 3
 ### Cours
+- Précision sur le signe des ```char``` par défaut
 - Chapitre 3
 
 ### Exercices & Défis

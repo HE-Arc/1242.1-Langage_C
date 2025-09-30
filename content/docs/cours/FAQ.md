@@ -731,3 +731,28 @@ Le code suivant montre comment faire :
 		}
 	} while (status != nbExpectedValues);
 ```
+
+## Qu'est-ce que ILP32, LP64 et LLP64 ?
+ILP32, LP64 et LLP64 sont des modèles de données qui définissent la taille des types de données sur différentes architectures.
+Le I signifie **`int`**, le L signifie **`long`** et le P signifie **`pointer`** (pointeur).
+- **ILP32** : les **`int`**, **`long`** et les **pointeurs** sont codés sur 32 bits (4 bytes).
+- **LP64** : les **`long`** et les **pointeurs** sont codés sur 64 bits (8 bytes), mais les **`int`** restent codés sur 32 bits (4 bytes).
+- **LLP64** : les **`long long`** et les **pointeurs** sont codés sur 64 bits (8 bytes), mais les **`int`** et les **`long`** restent codés sur 32 bits (4 bytes).
+
+**ILP32** est utilisé par les systèmes 32 bits.
+**LP64** est le modèle de données le plus courant sur les systèmes Unix/Linux (et macOS) 64 bits.
+**LLP64** est le modèle de données utilisé par Windows 64 bits.
+
+## Quel est le signe d'un ```char``` en C ?
+Nous avons vu en cours que les types entiers en C sont signés par défaut.
+Cependant, le type **`char`** est un peu particulier.
+La norme C ne précise pas si le type **`char`** est signé ou non.
+Ce point est défini par l'implémentation.
+En effet, la norme C précise :
+
+> **6.2.5.15**
+> The three types ```char```, ```signed char```, and ```unsigned char``` are collectively called the character types.
+> The implementation shall define char to have the same range, representation, and behavior as either ```signed char``` or ```unsigned char```
+
+👉 Donc il faut explicitement utiliser ```signed char``` ou ```unsigned char``` quand on souhaite stocker un entier sur 8 bits.
+
