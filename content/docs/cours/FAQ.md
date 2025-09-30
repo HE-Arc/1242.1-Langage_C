@@ -743,7 +743,7 @@ Le I signifie **`int`**, le L signifie **`long`** et le P signifie **`pointer`**
 **LP64** est le modèle de données le plus courant sur les systèmes Unix/Linux (et macOS) 64 bits.
 **LLP64** est le modèle de données utilisé par Windows 64 bits.
 
-## Quel est le signe d'un ```char``` en C ?
+## Un ```char``` est-il signé par défaut en C ?
 Nous avons vu en cours que les types entiers en C sont signés par défaut.
 Cependant, le type **`char`** est un peu particulier.
 La norme C ne précise pas si le type **`char`** est signé ou non.
@@ -755,4 +755,3 @@ En effet, la norme C précise :
 > The implementation shall define char to have the same range, representation, and behavior as either ```signed char``` or ```unsigned char```
 
 👉 Donc il faut explicitement utiliser ```signed char``` ou ```unsigned char``` quand on souhaite stocker un entier sur 8 bits.
-
