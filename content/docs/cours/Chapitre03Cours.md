@@ -266,7 +266,6 @@ j = ++i + i++;
 i = (++i, i++);
 ```
 
-<!--
 {{<details "Explications" >}}
 Pour le comprendre, il faut savoir ce qu'est un point de séquence en C (voir la FAQ [Qu’est-ce qu’un point de séquence en C ?]({{< relref "/docs/cours/faq/#quest-ce-quun-point-de-s%c3%a9quence-en-c-" >}})).
 
@@ -299,8 +298,54 @@ Donc le code suivant n'est pas un UB :
   ```
 {{</a_noter>}}
 
+Voici un exemple complet :
+
+```c
+#include <stdio.h>
+
+int sum(int a, int b)
+{
+  return a + b;
+}
+
+int main(void)
+{
+  int i = 0;
+  int j = ++i; // OK
+
+  // Undefined Behavior (UB)
+  // Same variable (i) is modified multiple times (or modified and read) without a sequence point.
+  // GCC warns: operation on 'i' may be undefined [-Wsequence-point]
+  i = ++i;          // UB: modify i and assign to i without sequence point
+  i = i++;          // UB: idem
+  j = ++i + i++;    // UB: no sequence point between operands of +
+
+  // OK
+  // Comma operator: there IS a sequence point between its two operands.
+  // We end up modifying i only once after the last sequence point.
+  j = ++i;          // OK: single modification, trivial
+  j = (++i, i++);   // OK: comma sequences ++i before i++; assign to j (not to i)
+
+  // Undefined Behavior (UB)
+  i = (++i, i++);   // UB: after the comma, i is modified twice without a sequence point
+  
+  // Undefined Behavior (UB)
+  // There is NO sequence point after closing parenthesis and + has none between its operands.
+  j = (++i, i++) + ++i;  // UB: read/modify i again on the right operand with no sequencing
+
+  // Undefined Behavior (UB)
+  // There is NO sequence point between the evaluations of function-call arguments.
+  j = sum(i, ++i);  // UB: read i and modify i without sequencing
+  j = sum(i, i++);  // UB: idem
+
+  // With the UBs above, the output is meaningless.
+  printf("i = %d, j = %d\n", i, j);
+
+  return 0;
+}
+```
+
 {{</details>}}
--->
 
 ## Opérateur ternaire et blocs
 
