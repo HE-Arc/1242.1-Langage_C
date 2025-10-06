@@ -67,8 +67,6 @@ L'utilisateur doit pouvoir entrer les lettres soit l'une à la suite de l'autre,
 **L'affichage doit se présenter ainsi :**
 
 ```
-
-
 Please enter 3 letters:
 a b c
 
