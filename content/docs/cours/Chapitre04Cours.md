@@ -4,8 +4,9 @@ weight: 1
 ---
 
 # CHAPITRE 4 : entrées-sorties
+
 ## Cours
-[1242.1.04_Entrees-Sorties](/pdf/1242.1.04_Entrees-Sorties.pdf)
+{{< pdf src="/pdfs/1242.1.04_Entrees-Sorties.pdf" >}}
 
 ## Squelette à remplir
 
@@ -54,9 +55,9 @@ Number: __\__
 Text: "____"
 ```
 
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 ## Exercice 2
 Créer un programme C demandant à l'utilisateur d'entrer 3 lettres.
@@ -77,9 +78,9 @@ b--------->98
 c--------->99
 ```
 
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit commencer par 2 retours à la ligne et se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+L'affichage doit commencer par 2 retours à la ligne et se terminer par un retour à la ligne.
+{{< /attention >}}
 
 ## Exercice 3
 Écrire un programme qui calcule la surface d'un cercle lorsqu'on introduit la valeur du rayon.
@@ -93,11 +94,15 @@ pi = 3.141593
 Circle surface = 3.14
 ```
 
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
-## [TRÈS AVANCÉ] Exercice 4
+<br>
+
+{{< notion_avancee >}}
+## Exercice 4
 Faire un programme qui récupère en continu les caractères saisis au clavier (sans **`<enter>`**) pour déplacer un symbole **`*`** à travers l’écran.
 Si le symbole dépasse un des bords, il réapparait de l’autre coté.
 Pour effacer l’écran, on peut utiliser une commande système **`cls`** par exemple.
+{{< /notion_avancee >}}
