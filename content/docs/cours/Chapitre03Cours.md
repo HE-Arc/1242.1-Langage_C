@@ -349,8 +349,7 @@ int main(void)
 
 ## Opérateur ternaire et blocs
 
-Que fait le code suivant ?
-Pourquoi ?
+Le code suivant est-il correct en C ?
 
 ```c
 int i = 1;
@@ -358,7 +357,6 @@ int i = 1;
 (i++ == 1) ? {printf("Hello\n"); } : {printf("World\n"); };
 ```
 
-<!--
 {{<details "Explications" >}}
 Les blocs ne retournent pas de valeur, donc ne sont pas des expressions.
 Ainsi, ils ne conviennent pas pour l'opérateur ternaire.
@@ -371,4 +369,3 @@ int i = 1;
 (i++ == 1) ? printf("Hello\n") : printf("World\n");
 ```
 {{</details>}}
--->
