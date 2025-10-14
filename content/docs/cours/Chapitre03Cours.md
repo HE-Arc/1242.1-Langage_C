@@ -344,28 +344,4 @@ int main(void)
   return 0;
 }
 ```
-
-{{</details>}}
-
-## Opérateur ternaire et blocs
-
-Le code suivant est-il correct en C ?
-
-```c
-int i = 1;
-
-(i++ == 1) ? {printf("Hello\n"); } : {printf("World\n"); };
-```
-
-{{<details "Explications" >}}
-Les blocs ne retournent pas de valeur, donc ne sont pas des expressions.
-Ainsi, ils ne conviennent pas pour l'opérateur ternaire.
-
-Il faut noter cependant que les fonctions retournent des valeurs (même si c'est `void`).
-L'exemple suivant fonctionne donc parfaitement :
-
-```c
-int i = 1;
-(i++ == 1) ? printf("Hello\n") : printf("World\n");
-```
 {{</details>}}

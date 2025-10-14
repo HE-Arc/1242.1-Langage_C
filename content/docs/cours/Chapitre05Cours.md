@@ -5,7 +5,8 @@ weight: 1
 
 # CHAPITRE 5 : structures de contrôle
 ## Cours
-[1242.1.05_StructuresDeControle](/pdf/1242.1.05_StructuresDeControle.pdf)
+
+{{< pdf src="/pdfs/1242.1.05_StructuresDeControle.pdf" >}}
 
 ## Squelette à remplir
 
@@ -184,7 +185,7 @@ Please enter 3 integers separated by commas: 0,0,0
 The 3 integers sorted in decreasing order: 0, 0, 0
 ```
 
-## [AVANCÉ] Exercice 5
+## Exercice 5
 Écrire un programme qui lit deux valeurs entières (a et b) au clavier et qui affiche le signe (positif, négatif ou zéro) de la somme de a et b sans faire l'addition. Au besoin, vous pouvez utiliser la fonction abs de la bibliothèque <math.h>.
 
 ## Exercice 6
@@ -548,7 +549,8 @@ Please enter a positive integer N: 6
 6! = 720
 ```
 
-## [AVANCÉ] Exercice 34
+{{< notion_avancee >}}
+## Exercice 34
 a) Calculer la racine carrée x d'un nombre réel positif A par approximations successives en utilisant la relation de récurrence suivante :
 
 <center>
@@ -573,6 +575,7 @@ c) Affichez lors du calcul toutes les approximations calculées :
  The third square root approximation of ... is ...
  ...
  ```
+{{< /notion_avancee >}}
 
 ## Exercice 35
 Afficher un triangle isocèle formé d'étoiles de N lignes (N est fourni au clavier) :
@@ -687,3 +690,67 @@ int main(void)
 }
 ```
 
+# Défis
+
+## Opérateur ternaire et blocs
+
+Le code suivant est-il correct en C ?
+
+```c
+int i = 1;
+
+(i++ == 1) ? {printf("Hello\n"); } : {printf("World\n"); };
+```
+
+{{<details "Explications" >}}
+Les blocs ne retournent pas de valeur, donc ne sont pas des expressions.
+Ainsi, ils ne conviennent pas pour l'opérateur ternaire.
+
+Il faut noter cependant que les fonctions retournent des valeurs (même si c'est `void`).
+L'exemple suivant fonctionne donc parfaitement :
+
+```c
+int i = 1;
+(i++ == 1) ? printf("Hello\n") : printf("World\n");
+```
+{{</details>}}
+
+## Label de `case` dynamique (avec un appel de fonction)
+
+Dans un `switch`, puis-je écrire un `case` dont la valeur provient d’un appel à une fonction qui retourne un `int` ?
+
+Par exemple :
+
+```c
+int f(void) { return 2; }
+
+int main(void)
+{
+    int x = 1;
+
+    switch (x) {
+        case f(): // ?
+        printf("ok\n");
+        break;
+    }
+
+    return 0;
+}
+```
+
+{{<details "Explications" >}}
+Non.
+En effet, la norme dit :
+
+> **6.8.4.2 The `switch` statement**
+>
+> The expression of each `case` label shall be an integer constant expression [...]
+
+Donc les étiquettes `case` doivent être **des expressions constantes entières**, donc connues à la compilation.
+Un appel de fonction est évalué **à l’exécution**, et est donc interdit dans une étiquette de `case`.
+
+En particulier, GCC affichera l'erreur suivante :
+```
+error: case label does not reduce to an integer constant
+```
+{{</details>}}
