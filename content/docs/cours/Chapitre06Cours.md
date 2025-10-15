@@ -123,17 +123,12 @@ Cette valeur entère doit être comprise entre 1 et 1000.
 En cas de saisie incorrecte, la fonction retourne **`false`**.
 Dans le cas contraire, la fonction affiche tous les carrés des nombres inférieurs ou égal à la valeur saisie et retourne **`true`**.
 
-{{< hint danger >}}
-**ATTENTION :** il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** il faut respecter strictement les noms de fonctions donnés.
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** il faut terminer l'affichage de chaque carré par un espace.
-{{< /hint >}}
+{{< attention >}}
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut respecter strictement les noms de fonctions donnés.
+- Il faut terminer l'affichage de chaque carré par un espace.
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple :** un appel à la fonction **`ch06_ex04_Squares()`** avec la valeur 5 doit afficher :
 ```code
@@ -184,23 +179,18 @@ MULTIPLICATION TABLE FOR 5
 
 ## Exercice 6
 Écrire un programme qui effectue des opérations mathématiques simples : +,-,*,/.
-Ce programme sera constitué de 2 fonctions :
-1. La fonction **`ch06_ex06_Calculator()`** qui ne prend pas de paramètre et ne retourne rien.
-Elle demande à l’utilisateur de saisir une expression mathématique simple (2 opérandes et un opérateur), effectue les calculs associés en appelant la fonction **`ch06_ex06_Compute()`** (voir ci-dessous) et affiche le résultat.
-2. La fonction **`ch06_ex06_Compute()`** qui reçoit 3 paramètres : 2 nombres à virgule flottante (**`double`**) et un caractère.
+Ce programme sera constitué d'une seule fonction (en plus de `main()`), à savoir :
+1. la fonction **`ch06_ex06_Compute()`** qui reçoit 3 paramètres (dans cet ordre) : 2 nombres à virgule flottante (**`double`**) et un caractère.
 Les deux nombres flottants sont les opérandes de l’opération.
 Le caractère indique l’opérateur soit **`+`**, **`-`**, **`*`**, **`/`**.
 La fonction retourne un résultat correspondant à l'une des 4 opérations appliquées à ses deux opérandes.
 On tiendra compte des risques de division par zéro.
 Dans ce cas, la fonction retourne zéro.
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** le résultat sera affiché avec 4 décimales.
-{{< /hint >}}
+{{< a_noter >}}
+Dans les exemples suivantes, les entrées-sorties sont données à titre indicatif.
+Il n'est pas nécessaire de reproduire exactement le même formatage.
+{{< /a_noter >}}
 
 **Exemple 1 :**
 ```code

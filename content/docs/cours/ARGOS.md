@@ -12,9 +12,13 @@ draft: false
 2. Cliquer sur le bouton **`Fork`** :
 {{< figure src="images/AE_Fork.png#center" >}}
 3. Dans le champ **`Project name`**, remplacer **`Argos Exercices`** par votre prénom suivi de votre nom (voir Figure ci-dessous).
-4. Dans le champ **`Select a namespace`**, chercher le nom de votre groupe. La première suggestion devrait être de la forme **`isc/argos/argos-etudiants/2024-2025/<groupe>)`** (voir Figure ci-dessous).
+4. Dans le champ **`Select a namespace`**, chercher le nom de votre groupe. La première suggestion devrait être de la forme **`isc/argos/argos-etudiants/2025-2026/<groupe>)`** (voir Figure ci-dessous).
 {{< figure src="images/AE_ForkedProject.png#center" >}}
-**ATTENTION :** bien laisser la visibilité du projet sur **`Internal`**.
+
+{{< attention >}}
+Bien laisser la visibilité du projet sur **`Internal`**.
+{{< /attention >}}
+
 5. Cliquer sur le bouton **`Fork project`**.
 6. Cloner son repository.
 7. Entrer ses informations en éditant le fichier **`Options/student_profile.json`**, comme par exemple :
@@ -23,7 +27,7 @@ draft: false
     "firstname": "Benoit",
     "lastname": "Le Callennec",
     "pseudo": "BLC",
-    "year": 2024,
+    "year": 2025,
     "email": "benoit.lecallennec@he-arc.ch",
     "image": "BLC.png",
     "opt-out": false
@@ -31,9 +35,9 @@ draft: false
 ```
 8. Faire un commit et un push pour mettre à jour son repository.
 
-{{< hint danger >}}
-**ATTENTION :** il faut toujours travailler sur la branche **`main`**.
-{{< /hint >}}
+{{< attention >}}
+Il faut toujours travailler sur la branche **`main`**.
+{{< /attention >}}
 
 ## Consulter son dashboard
 Un dashboard est disponible pour chaque étudiant sur le gitlab de la HE-Arc.
@@ -42,6 +46,10 @@ Il est accessible en cliquant sur Pages, dans l'onglet Deploy :
 
 Il ressemble à ça :
 {{< figure src="images/AE_DashboardEtudiants.png#center" >}}
+
+{{< a_noter>}}
+Le dashboard peut prendre plusieurs minutes à générer les pages en fonction de la charge.
+{{< /a_noter >}}
 
 ## Faire un exercice
 1. Localiser les balises **`// TODO`** dans le code source.
@@ -59,9 +67,11 @@ Il est important de bien nommer le commit avec un message clair et concis.
 4. Si le pipeline échoue, il faut choisir l'étape qui a échoué pour avoir les détails du pipeline.
 {{< figure src="images/AE_PipelineFailed.png#center" >}}
 5. Les logs complets ressemblent à ce qui suit.
-{{<hint info>}}
-**NOTE :** les tests qui ont échoués sont indiqués en surbrillance.
-{{</hint>}}
+
+{{< a_noter>}}
+Les tests qui ont échoué sont indiqués en surbrillance.
+{{</a_noter>}}
+
 {{< figure src="images/AE_PipelineTestFailedDetails.png#center" >}}
 
 ## Mettre à jour la liste des exercices
@@ -73,6 +83,6 @@ Pour mettre à jour votre repository local, il faut :
 {{< figure src="images/AE_UpdateAvailable.png#center" >}}
 2. Mettre à jour son repository local en exécutant, depuis un Terminal dans Visual Studio Code, la commande **`git pull --rebase`**.
 
-{{< hint danger >}}
-**ATTENTION :** il ne faut modifier aucun autre fichier dans le répertoire **`UnitTests`**.
-{{< /hint >}}
+{{< attention >}}
+Il ne faut modifier aucun autre fichier dans le répertoire **`UnitTests`**.
+{{< /attention >}}
