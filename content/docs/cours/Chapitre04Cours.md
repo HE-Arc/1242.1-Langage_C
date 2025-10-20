@@ -62,7 +62,7 @@ L'affichage doit se terminer par un retour à la ligne.
 ## Exercice 2
 Créer un programme C demandant à l'utilisateur d'entrer 3 lettres.
 Le programme doit fournir en résultat les codes ASCII des 3 lettres saisies.
-L'utilisateur doit pouvoir entrer les lettres soit l'une à la suite de l'autre, soit en les séparant par un retour de chariot **`<CR>`**.
+L'utilisateur doit pouvoir entrer les lettres soit l'une à la suite de l'autre, soit en les séparant par un retour à la ligne.
 
 **L'affichage doit se présenter ainsi :**
 
@@ -82,7 +82,7 @@ L'affichage doit commencer par 2 retours à la ligne et se terminer par un retou
 
 ## Exercice 3
 Écrire un programme qui calcule la surface d'un cercle lorsqu'on introduit la valeur du rayon.
-Le résultat sera affiché avec 2 chiffres significatifs (après le point).
+Le résultat sera affiché avec 2 chiffres après le point.
 
 **L'affichage doit se présenter ainsi :**
 
