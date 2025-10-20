@@ -30,7 +30,8 @@ Bien laisser la visibilité du projet sur **`Internal`**.
     "year": 2025,
     "email": "benoit.lecallennec@he-arc.ch",
     "image": "BLC.png",
-    "opt-out": false
+    "opt-out": false,
+    "group": "group"
 }
 ```
 8. Faire un commit et un push pour mettre à jour son repository.
@@ -64,7 +65,7 @@ Il est important de bien nommer le commit avec un message clair et concis.
 2. Faire un push sur votre repository.
 3. Se rendre sur votre repository sur le gitlab de la HE-Arc et attendre que le pipeline se termine :
 {{< figure src="images/AE_WaitingForPipeline.png#center" >}}
-4. Si le pipeline échoue, il faut choisir l'étape qui a échoué pour avoir les détails du pipeline.
+4. Si les tests des exercices ne passent pas, il faut choisir l'étape qui a échoué pour avoir plus de détails.
 {{< figure src="images/AE_PipelineFailed.png#center" >}}
 5. Les logs complets ressemblent à ce qui suit.
 
