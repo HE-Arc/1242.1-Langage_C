@@ -50,9 +50,9 @@ int main(void)
 
 # EXERCICES
 
-{{< hint info >}}
-**NOTE :** pour des raisons historiques, la numérotation des exercices n'est pas continue.
-{{< /hint >}}
+{{< a_noter >}}
+Pour des raisons historiques, la numérotation des exercices n'est pas continue.
+{{< /a_noter >}}
 
 ## Exercice 1
 
@@ -87,13 +87,10 @@ if (color = red)
 ## Exercice 2
 Écrire un programme qui détermine si le caractère qu'on tape est une minuscule (code ASCII compris entre 97 et 122) ou une majuscule (code compris entre 65 et 90).
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple 1**
 ```code
@@ -119,13 +116,10 @@ The character you entered is not a letter.
 ## Exercice 3
 Écrire un programme qui lit deux valeurs entières (a et b) au clavier et qui affiche le signe du produit (positif, négatif ou zéro) de a et b **sans faire la multiplication**.
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple 1**
 ```code
@@ -154,13 +148,10 @@ Please enter 2 integers: -1 3
 Écrire un programme qui affiche dans l'ordre décroissant trois nombres introduits au clavier par l'utilisateur.
 Il s’agit d’échanger le contenu des variables de manière à mettre la plus grande valeur dans la première variable, la médiane dans la seconde et la plus petite dans la troisième.
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple 1**
 ```code
@@ -215,17 +206,11 @@ Considérer aussi les cas où l'utilisateur entre :
  
 Afficher les résultats et les messages nécessaires sur l'écran.
 
-{{< hint danger >}}
-**ATTENTION :** il faut afficher les réels avec 4 chiffres significatifs après la virgule.
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut afficher les réels avec 4 chiffres après la virgule.
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple 1**
 ```code
@@ -297,17 +282,11 @@ const double YEN2CHF = 0.0067;
 const double POUND2CHF = 1.13;
 ```
 
-{{< hint danger >}}
-**ATTENTION :** il faut afficher les réels avec 3 chiffres significatifs après la virgule.
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut afficher les réels avec 3 chiffres significatifs après la virgule.
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple 1**
 ```code
@@ -369,13 +348,10 @@ Swiss francs: 0.085
 ## Exercice 23
 Écrire un programme qui demande à l'utilisateur le numéro d'un mois (1 pour janvier, 2 pour février, ...) et lui affiche le nombre de jours correspondant (31 jours en janvier, 28 en février, ...).
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple 1**
 ```code
@@ -480,17 +456,11 @@ Choisissez un type approprié pour les valeurs à afficher.
 Le nombre N est à entrer au clavier.
 Il faut utiliser la boucle la plus appropriée.
 
-{{< hint danger >}}
-**ATTENTION :** il faut afficher les réels avec 4 chiffres significatifs après la virgule.
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut afficher les réels avec 4 chiffres significatifs après la virgule.
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 b) Répéter l'introduction du nombre N jusqu'à ce que N ait une valeur entre 1 et 15.
 
@@ -525,13 +495,10 @@ et
 {{<katex>}}0! = 1{{</katex>}}
 </center>
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
-{{< /hint >}}
-
-{{< hint danger >}}
-**ATTENTION :** l'affichage doit se terminer par un retour à la ligne.
-{{< /hint >}}
+{{< attention >}}
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- L'affichage doit se terminer par un retour à la ligne.
+{{< /attention >}}
 
 **Exemple 1**
 ```code
