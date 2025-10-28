@@ -112,7 +112,7 @@ On s'arrête quand l'utilisateur entre une valeur négative.
 La fonction **`ch08_ex21_3_FillArray()`** retourne le nombre de valeurs correctes saisies.
 
 {{< hint danger >}}
-**ATTENTION :** il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+**ATTENTION :** il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 {{< /hint >}}
 
 **Exemples**
@@ -176,7 +176,7 @@ En vous aidant des exercices précédents, écrire une fonction **`ch08_ex21_Arr
 5. affiche la somme des valeurs saisies se trouvant dans le tableau
 
 {{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 {{< /hint >}}
 
 **Exemple 1**
@@ -222,7 +222,7 @@ Total sum: -2
 4. affiche la somme de tous ses éléments
 
 {{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 {{< /hint >}}
 
 **Exemple 1 :**
@@ -374,7 +374,7 @@ En particulier :
 {{< /hint >}}
 
 {{< hint danger >}}
-**ATTENTION :** il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+**ATTENTION :** il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 {{< /hint >}}
 
 **Exemple :**
@@ -391,7 +391,7 @@ Diff = -1.00 + -2.00i
 ```
 
 {{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 {{< /hint >}}
 
 ## Exercice 43

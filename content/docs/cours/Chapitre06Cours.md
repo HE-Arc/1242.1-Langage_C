@@ -125,7 +125,7 @@ En cas de saisie incorrecte, la fonction retourne **`false`**.
 Dans le cas contraire, la fonction affiche tous les carrés des nombres inférieurs ou égal à la valeur saisie et retourne **`true`**.
 
 {{< attention >}}
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - Il faut respecter strictement les noms de fonctions donnés.
 - Il faut terminer l'affichage de chaque carré par un espace.
 - L'affichage doit se terminer par un retour à la ligne.

@@ -88,7 +88,7 @@ if (color = red)
 Écrire un programme qui détermine si le caractère qu'on tape est une minuscule (code ASCII compris entre 97 et 122) ou une majuscule (code compris entre 65 et 90).
 
 {{< attention >}}
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
@@ -117,7 +117,7 @@ The character you entered is not a letter.
 Écrire un programme qui lit deux valeurs entières (a et b) au clavier et qui affiche le signe du produit (positif, négatif ou zéro) de a et b **sans faire la multiplication**.
 
 {{< attention >}}
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
@@ -149,7 +149,7 @@ Please enter 2 integers: -1 3
 Il s’agit d’échanger le contenu des variables de manière à mettre la plus grande valeur dans la première variable, la médiane dans la seconde et la plus petite dans la troisième.
 
 {{< attention >}}
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
@@ -208,7 +208,7 @@ Afficher les résultats et les messages nécessaires sur l'écran.
 
 {{< attention >}}
 - Il faut afficher les réels avec 4 chiffres après la virgule.
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
@@ -284,7 +284,7 @@ const double POUND2CHF = 1.13;
 
 {{< attention >}}
 - Il faut afficher les réels avec 3 chiffres significatifs après la virgule.
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
@@ -349,7 +349,7 @@ Swiss francs: 0.085
 Écrire un programme qui demande à l'utilisateur le numéro d'un mois (1 pour janvier, 2 pour février, ...) et lui affiche le nombre de jours correspondant (31 jours en janvier, 28 en février, ...).
 
 {{< attention >}}
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
@@ -458,7 +458,7 @@ Il faut utiliser la boucle la plus appropriée.
 
 {{< attention >}}
 - Il faut afficher les réels avec 4 chiffres significatifs après la virgule.
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
@@ -496,7 +496,7 @@ et
 </center>
 
 {{< attention >}}
-- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?](/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-)).
+- Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
 - L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
