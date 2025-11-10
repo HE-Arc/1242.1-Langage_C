@@ -117,7 +117,7 @@ A) Évaluer les expressions suivantes :
 
 **RAPPEL :** il faut inclure **`<stdbool.h>`** pour utiliser les valeurs **`true`** et **`false`**.
 
-B) Assigner à une variable booléenne b. La valeur est vraie si la variable **`x`** est comprise strictement entre 5 et 10, fausse sinon.
+B) Assigner à une variable booléenne b. La valeur est vraie si la variable **`x`** est comprise entre 5 et 10, fausse sinon.
 
 {{<katex>}}
 b =
@@ -127,7 +127,7 @@ faux  & \quad \text{sinon}
 \end{cases}
 {{</katex>}}
 
-C) Assignez à une variable booléenne b. La valeur est vraie si la variable x n’est pas comprise strictement entre 5 et 10, fausse sinon.
+C) Assignez à une variable booléenne b. La valeur est vraie si la variable x n’est pas comprise entre 5 et 10, fausse sinon.
 
 {{<katex>}}
 b =
