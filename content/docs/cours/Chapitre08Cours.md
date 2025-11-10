@@ -6,19 +6,19 @@ weight: 1
 # CHAPITRE 8 : Tableaux et structures
 
 ## Cours
-[1242.1.08_TableauxStructures](/pdf/1242.1.08_TableauxStructures.pdf)
+{{< pdf src="/pdfs/1242.1.08_TableauxStructures.pdf" >}}
 
 ## Quiz
 [QUIZ SUR LES TABLEAUX, CHAÎNE DE CARACTÈRES ET STRUCTURES](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=761763)
 
 # EXERCICES
 
-{{< hint info >}}
-**NOTE :** pour des raisons historiques, la numérotation des exercices n'est pas continue.
-{{< /hint >}}
+{{< a_noter >}}
+Pour des raisons historiques, la numérotation des exercices n'est pas continue.
+{{< /a_noter >}}
 
 ## Exercice 1
-Parmi les définitions de tableaux suivantes, indiquer celles qui sont erronées et expliquer pourquoi :
+Parmi les définitions suivantes, indiquer celles qui sont erronées et expliquer pourquoi :
 ```c
 unsigned int matrice[3, 3];
 int vecteur[6];
@@ -67,9 +67,9 @@ donne :
 | ---- | ---- | ---- | ---- | ---- | 
 | `'a'`| `'t'`| `0`  | `0`  | `0`  |
 
-{{< hint info >}}
-**REMARQUE :** chaque élément représente 1 byte.
-{{< /hint >}}
+{{< a_noter >}}
+Chaque élément représente 1 byte.
+{{< /a_noter >}}
 
 ## Exercice 21_1
 Écrire une fonction **`ch08_ex21_1_CompareArray()`** qui compare deux tableaux d'entiers de même taille et renvoie **`true`** si les tableaux sont identiques, et **`false`** sinon.
@@ -102,18 +102,18 @@ int array[] = {1, 2, 3, 4, 5};
 **`ch08_ex21_2_PrintArray(array, 4)`** affiche **`1 2 3 4`**.
 **`ch08_ex21_2_PrintArray(array, 5)`** affiche **`1 2 3 4 5`**.
 
-{{<hint danger>}}
-**ATTENTION :** chaque élément du tableau est suivi d'un espace, **sauf le dernier**. De plus, **il ne faut pas** terminer l'affichage par un **`\n`**.
-{{</hint>}}
+{{<attention>}}
+Chaque élément du tableau est suivi d'un espace, **sauf le dernier**. De plus, **il ne faut pas** terminer l'affichage par un **`\n`**.
+{{</attention>}}
 
 ## Exercice 21_3
 Écrire une fonction **`ch08_ex21_3_FillArray()`** qui remplit un tableau d'entiers passé en paramètre avec des valeurs saisies au clavier par l'utilisateur.
 On s'arrête quand l'utilisateur entre une valeur négative.
 La fonction **`ch08_ex21_3_FillArray()`** retourne le nombre de valeurs correctes saisies.
 
-{{< hint danger >}}
-**ATTENTION :** il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
-{{< /hint >}}
+{{< attention >}}
+Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
+{{< /attention >}}
 
 **Exemples**
 
@@ -175,9 +175,9 @@ En vous aidant des exercices précédents, écrire une fonction **`ch08_ex21_Arr
 4. affiche les n premiers éléments du tableau
 5. affiche la somme des valeurs saisies se trouvant dans le tableau
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
-{{< /hint >}}
+{{< attention >}}
+Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
+{{< /attention >}}
 
 **Exemple 1**
 ```c
@@ -221,9 +221,9 @@ Total sum: -2
 3. remplit le tableau avec des valeurs entrées au clavier
 4. affiche la somme de tous ses éléments
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
-{{< /hint >}}
+{{< attention >}}
+Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
+{{< /attention >}}
 
 **Exemple 1 :**
 ```c
@@ -269,8 +269,7 @@ Total sum: 0
 Écrire une fonction **`ch08_ex24_DotProduct()`** qui calcule le produit vectoriel de 2 vecteurs d'entiers {{<katex>}}\vec{u}{{</katex>}} et {{<katex>}}\vec{v}{{</katex>}}.
 Les vecteurs sont passés en paramètres sous forme de tableaux d'entiers, avec leur taille, dans cet ordre.
 
-{{< hint info >}}
-**Rappel :** 
+{{< a_noter >}}
 
 {{<katex>}}\vec{u} = (3, 2, -4){{</katex>}} et {{<katex>}}\vec{v} = (2, -3, 5){{</katex>}} alors 
 
@@ -280,7 +279,7 @@ Les vecteurs sont passés en paramètres sous forme de tableaux d'entiers, avec 
 \vec{u}\cdot\vec{v} = 3 * 2 + 2 * (-3) + (-4) * 5 = -20
 {{</katex>}}
 
-{{< /hint >}}
+{{< /a_noter >}}
 
 **Exemple :**
 Avec les tableaux suivants :
@@ -296,9 +295,10 @@ Afficher ensuite la valeur et la position du maximum et du minimum.
 
 **Note :** si le tableau contient plusieurs maxima ou minima, le programme retiendra la position du premier maximum ou minimum rencontré.
 
-## [AVANCÉ] Exercice 26
+{{< notion_avancee >}}
+## Exercice 26
 Écrire une fonction qui calcule le produit matriciel de 2 matrices d'entiers {{<katex>}}A{{</katex>}} et {{<katex>}}B{{</katex>}} passées en paramètres.
-
+{{< /notion_avancee >}}
 ## Exercice 31
 Écrire une fonction qui lit 5 mots, séparés par des espaces et qui les affiche ensuite dans une ligne, mais dans l'ordre inverse.
 Les mots sont mémorisés dans 5 variables **`M1`**, …, **`M5`**.
@@ -308,9 +308,9 @@ Les mots sont mémorisés dans 5 variables **`M1`**, …, **`M5`**.
 Elle doit indiquer si le caractère se trouve dans le texte.
 Si oui, elle doit afficher à quelle position il se trouve (indice de la première occurrence).
 
-{{< hint danger >}}
-**Contrainte :** ne pas utiliser des fonctions de **`<string.h>`**.
-{{< /hint >}}
+{{< attention >}}
+IL ne faut pas utiliser des fonctions de **`<string.h>`**.
+{{< /attention >}}
 
 ## Exercice 33
 Écrire une fonction qui lit une ligne de texte (taille maximale : 200 caractères), la mémorise dans une variable **`texte`** et affiche ensuite :
@@ -319,23 +319,28 @@ b) le nombre de **'e'** contenus dans le texte.
 c) toute la phrase à rebours, sans changer le contenu de la variable **`texte`**.
 d) toute la phrase à rebours, après avoir inversé l'ordre des caractères dans **`texte`**.
 
-{{< hint info >}}
-**Information :** il faut utiliser la fonction **`fgets()`** pour lire une ligne de texte comportant des espaces.
-{{< /hint >}}
+{{< a_noter >}}
+Il faut utiliser la fonction **`fgets()`** pour lire une ligne de texte comportant des espaces.
+{{< /a_noter >}}
 
-## [AVANCÉ] Exercice 34
+{{< notion_avancee >}}
+## Exercice 34
 Écrire une fonction qui lit une ligne de texte (taille maximale : 128 caractères), puis qui supprime tous les espaces dans la chaine et tasse les éléments restants.
 
-{{< hint info >}}
-**Indication :** commencer par faire l’exercice sur papier en raisonnant d’abord avec 2 chaines de caractères, puis avec une seule.
-{{< /hint >}}
+{{< a_noter >}}
+Commencer par faire l’exercice sur papier en raisonnant d’abord avec 2 chaines de caractères, puis avec une seule.
+{{< /a_noter >}}
 
-## [AVANCÉ] Exercice 35
+{{< /notion_avancee >}}
+
+{{< notion_avancee >}}
+## Exercice 35
 Écrire une fonction qui lit une ligne de texte (taille maximale : 128 caractères), y récupère un chiffre (positif ou négatif), le mémorise dans une variable de type long et l’affiche.
 
-{{< hint info >}}
-**NOTE :** on supportera les formats simples comme "1748", "+1748" et "-1748".
-{{< /hint >}}
+{{< a_noter >}}
+On supportera les formats simples comme "1748", "+1748" et "-1748".
+{{< /a_noter >}}
+{{< /notion_avancee >}}
 
 ## Exercice 41
 Définir une structure **`Time`** capable de mémoriser le temps d’un marathon (hh:mm:ss).
@@ -352,9 +357,9 @@ Définir une structure **`Time`** capable de mémoriser le temps d’un marathon
 
 affichera **`05:03:17`** si on a stocké 5 heures 03 minutes et 17 secondes dans **`t1`**.
 
-{{< hint info >}}
-NOTE : utiliser un **`typedef`** en définissant la structure.
-{{< /hint >}}
+{{< a_noter >}}
+Il faut utiliser un **`typedef`** en définissant la structure.
+{{< /a_noter >}}
 
 ## Exercice 42
 Écrire un programme pour gérer des nombres complexes.
@@ -369,13 +374,14 @@ En particulier :
 
 4. implémenter une fonction **`ch08_ex42_PrintComplex()`** qui affiche un nombre complexe sous la forme suivante : **`5.00 + -3.00i`**.
 5. écrire une fonction **`ch08_ex42_Complex()`** qui lit deux nombres complexes, calcule leur somme et leur différence et affiche les résultats.
-{{< hint info >}}
-**NOTE :** utiliser les fonctions écrites dans les points précédents.
-{{< /hint >}}
 
-{{< hint danger >}}
-**ATTENTION :** il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
-{{< /hint >}}
+{{< a_noter >}}
+Il faut utiliser les fonctions écrites dans les points précédents.
+{{< /a_noter >}}
+
+{{< attention >}}
+Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
+{{< /attention >}}
 
 **Exemple :**
 ```c
@@ -390,9 +396,9 @@ Sum = 3.00 + 4.00i
 Diff = -1.00 + -2.00i
 ```
 
-{{< hint danger >}}
-**ATTENTION :** Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
-{{< /hint >}}
+{{< attention >}}
+Il faut gérer les erreurs de saisie (cf [Comment faut-il vider le buffer stdin ?]({{< relref "/docs/cours/faq/#comment-faut-il-vider-le-buffer-stdin-" >}})).
+{{< /attention >}}
 
 ## Exercice 43
 1. Créer un type **`Person`** pour une personne, caractérisée par son nom (20 caractères maximum), son prénom (20 caractères maximum) et son année de naissance.
@@ -407,14 +413,16 @@ Diff = -1.00 + -2.00i
 "Stroustrup", "Bjarne", 1950
 ```
 3. Dans la fonction **`ch08_ex43_Person()`**, afficher toutes les personnes âgées de moins de 80 ans.
-{{< hint danger >}}
-**ATTENTION :** on considère que nous sommes en 2020.
-{{< /hint >}}
+
+{{< attention >}}
+Il faut considérer que nous sommes en 2020.
+{{< /attention >}}
+
 4. Trouver les personnes dont le nom est en tête/en fin de classement selon l’ordre alphanumérique (le plus proche de « AAA » / le proche de « ZZZ » ).
 
-{{< hint danger >}}
-**NOTE :** utiliser la fonction **`strcmp()`** pour comparer les noms.
-{{< /hint >}}
+{{< attention >}}
+Il faut utiliser la fonction **`strcmp()`** pour comparer les noms.
+{{< /attention >}}
 
 5. Qui sont ces personnes et qu’ont-elles fait ?
 
