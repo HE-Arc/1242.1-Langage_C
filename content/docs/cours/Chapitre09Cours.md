@@ -6,7 +6,7 @@ weight: 1
 # CHAPITRE 9 : POINTEURS
 
 ## Cours
-[1242.1.09_Pointeurs](/pdf/1242.1.09_Pointeurs.pdf)
+{{< pdf src="/pdfs/1242.1.09_Pointeurs.pdf" >}}
 
 ## Quiz
 [QUIZ SUR LES POINTEURS](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=761910)
@@ -118,13 +118,13 @@ Quelle sera la sortie de ce programme ?
 ## Exercice 6
 Écrire une fonction **`ch09_ex06_CopyArrays()`** qui prend 2 tableaux d'entiers (et leur taille) en paramètre et qui ajoute les éléments de **`B`** à la fin de **`A`**.
 
-{{< hint danger >}}
-**ATTENTION :** attention, il faut utiliser le formalisme pointeur quand c'est possible.
-{{< /hint >}}
+{{< attention >}}
+Il faut utiliser le formalisme pointeur quand c'est possible.
+{{< /attention >}}
 
-{{< hint info>}}
-**NOTE :** pour tester la fonction, on peut par exemple créer un tableau **`A`** de 10 entiers, un tableau **`B`** de 4 entiers, puis appeler **`ch09_ex06_CopyArrays()`** en considérant que **`A`** n'a que 4 éléments.
-{{< /hint >}}
+{{< a_noter>}}
+Pour tester la fonction, on peut par exemple créer un tableau **`A`** de 10 entiers, un tableau **`B`** de 4 entiers, puis appeler **`ch09_ex06_CopyArrays()`** en considérant que **`A`** n'a que 4 éléments.
+{{< /a_noter>}}
 
 **Exemple**
 
@@ -192,9 +192,9 @@ Quelle sera sa sortie ?
 ## Exercice 10
 Écrire une fonction **`ch09_ex10_Swap()`** qui échange le contenu de 2 variables entières définies dans le programme principal.
 
-{{< hint danger >}}
-**ATTENTION :** il faut bien choisir le type des arguments de la fonction **`ch09_ex10_Swap()`**.
-{{< /hint >}}
+{{< attention >}}
+Il faut bien choisir le type des arguments de la fonction **`ch09_ex10_Swap()`**.
+{{< /attention >}}
 
 **Exemple :**
 Avec les définitions suivantes :
