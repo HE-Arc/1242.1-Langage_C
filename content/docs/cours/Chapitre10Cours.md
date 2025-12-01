@@ -6,7 +6,7 @@ weight: 11
 # CHAPITRE 10 : ALLOCATION DYNAMIQUE DE MÉMOIRE
 
 ## Cours
-[1242.1.10_AllocationDynamique](/pdf/1242.1.10_AllocationDynamique.pdf)
+{{< pdf src="/pdfs/1242.1.10_AllocationDynamique.pdf" >}}
 
 ## Quiz
 [QUIZ ALLOCATION DYNAMIQUE](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=761973)
@@ -17,9 +17,9 @@ weight: 11
 Écrire un programme qui alloue dynamiquement des emplacements pour des tableaux d'entiers dont la taille est fournie par l'utilisateur.
 Les allocations se poursuivront jusqu'à ce que l'on aboutisse à un débordement de mémoire.
 
-{{< hint info >}}
-**NOTE :** voir la FAQ [Pourquoi le Task Manager de Windows ne montre pas la mémoire réellement utilisée par mon programme ?](/docs/cours/faq/#pourquoi-le-task-manager-de-windows-ne-montre-pas-la-m%c3%a9moire-r%c3%a9ellement-utilis%c3%a9e-par-mon-programme-).
-{{< /hint >}}
+{{< a_noter >}}
+Voir la FAQ [Pourquoi le Task Manager de Windows ne montre pas la mémoire réellement utilisée par mon programme ?](/docs/cours/faq/#pourquoi-le-task-manager-de-windows-ne-montre-pas-la-m%c3%a9moire-r%c3%a9ellement-utilis%c3%a9e-par-mon-programme-).
+{{< /a_noter >}}
 
 **Exemple :**
 
@@ -183,9 +183,14 @@ Please enter matrix dimensions (M N): 5 3
 36      65      53
 ```
 
-## [AVANCÉ] Exercice 5
+{{< notion_avancee>}}
+## Exercice 5
 Même exercice que le 2) mais avec un tableau à 3 dimensions.
 
-## [AVANCÉ] Exercice 6
+{{< /notion_avancee>}}
+
+{{< notion_avancee>}}
+## Exercice 6
 Écrire un programme qui lit 10 phrases d'une longueur maximale de 200 caractères au clavier et qui les mémorise dans un tableau de pointeurs sur `char` en réservant dynamiquement l'emplacement en mémoire pour les chaînes.
 Ensuite, l'ordre des phrases est inversé en modifiant les pointeurs et le tableau résultant est affiché.
+{{< /notion_avancee>}}
