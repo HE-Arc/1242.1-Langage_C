@@ -99,14 +99,13 @@ Pour cela, suivre la procédure décrite dans la section **Mettre à jour la lis
 
 ### Installation
 **`argos_cli`** nécessite CMake et Ninja pour fonctionner.
- 1. Installer CMake : **[https://cmake.org/download/](https://cmake.org/download/)**.
- 2. Installer Ninja : **[https://ninja-build.org/](https://ninja-build.org/)**.
+ 1. Installer CMake : **[CMake for Windows](https://github.com/Kitware/CMake/releases/download/v4.2.0/cmake-4.2.0-windows-x86_64.msi)**.
+ 2. Installer Ninja : **[https://ninja-build.org/](https://ninja-build.org/)**. Copier le fichier **`ninja.exe`** dans le répertoire **`C:/Ninja`** (par exemple) et ajouter ce répertoire au **`PATH`** de Windows.
 
-### Utilisation
 **`argos_cli`** est disponible dans le répertoire racine du projet ARGOS.
 
-#### Initialiser un projet ARGOS
-Pour initialiser un projet ARGOS, exécuter la commande suivante depuis le répertoire racine de votre projet ARGOS :
+### Initialiser ARGOS
+Pour initialiser ARGOS, exécuter la commande suivante depuis le répertoire racine de votre projet ARGOS :
 ```
 .\argos_cli.exe init
 ```
@@ -115,7 +114,7 @@ Si tout se passe bien, un message de confirmation s'affiche :
 Initializing ARGOS...Done.
 ```
 
-#### Compiler les exercices
+### Compiler les exercices
 Pour compiler les exercices, exécuter la commande suivante depuis le répertoire racine de votre projet ARGOS :
 ```
 .\argos_cli.exe build
@@ -130,7 +129,11 @@ Il est aussi possible de recompiler tous les exercices en utilisant la commande 
 .\argos_cli.exe rebuild
 ```
 
-#### Lancer les tests des exercices
+### Lancer les tests
+{{< attention>}}
+Il faut toujours recompiler les exercices avant de lancer les tests lorsque vous avez modifié le code source des exercices.
+{{< /attention>}}
+
 Pour lancer les tests des exercices, exécuter la commande suivante depuis le répertoire racine de votre projet ARGOS :
 ```
 .\argos_cli.exe test
@@ -247,4 +250,16 @@ Done.
 🔴 ch01.ch01_ex01_printHelloWorld
 🟢 ch01.ch01_ex02_printMathCalc
 🟢 ch01.ch01_ex03_SomeCalculus
+```
+
+### All in-one
+Il est possible de forcer la recompilation et les tests des exercices en une seule commande :
+```
+.\argos_cli.exe retest
+```
+Ce qui équivaut à exécuter les commandes suivantes :
+```
+.\argos_cli.exe clean
+.\argos_cli.exe build
+.\argos_cli.exe test
 ```
