@@ -6,7 +6,7 @@ weight: 11
 # CHAPITRE 11 : POINTEURS ET FONCTIONS II
 
 ## Cours
-[1242.1.11_Fonctions_II](/pdf/1242.1.11_Fonctions_II.pdf)
+{{< pdf src="/pdfs/1242.1.11_Fonctions_II.pdf" >}}
 
 ## Quiz
 [QUIZZ FONCTIONS II](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=762045)
