@@ -6,7 +6,7 @@ weight: 11
 # CHAPITRE 12 : STRUCTURES ET TYPES COMPOSÉS
 
 ## Cours
-[1242.1.12_StructuresEtType](/pdf/1242.1.12_StructuresEtType.pdf)
+{{< pdf src="/pdfs/1242.1.12_StructuresEtType.pdf" >}}
 
 ## Quiz
 [STRUCTURES ET TYPES](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=762168)
@@ -52,7 +52,9 @@ int main(void)
 La transmission de l'argument doit se faire par adresse.
 
 ## Exercice 2
-**IMPORTANT : IL NE FAUT PAS UTILISER DE VARIABLES GLOBALES !**
+{{< attention >}}
+Il ne faut pas utiliser de variables globales !
+{{< /attention >}}
 
 a) Déclarer les structures **`Personne`** et **`Famille`** adéquates pour mémoriser les informations suivantes: 
 - Nom de famille 
@@ -77,7 +79,9 @@ d) Écrire une fonction **`UnAnDePlus`** qui ajoute un an à chacun des membres 
 
 e) Afficher la taille en octets de la variable représentant la famille Dupont.
 
-f) [AVANCÉ] Réaliser un nouveau projet avec une famille composée d'une mère, d'un père et d'un nombre variable d'enfants auxquels on accèdera par un tableau de pointeurs. Écrire et tester deux fonctions : **`AjouterEnfant(...)`** et **`AfficherFamille(...)`**
+{{< notion_avancee >}}
+f) Réaliser un nouveau projet avec une famille composée d'une mère, d'un père et d'un nombre variable d'enfants auxquels on accèdera par un tableau de pointeurs. Écrire et tester deux fonctions : **`AjouterEnfant(...)`** et **`AfficherFamille(...)`**
+{{< /notion_avancee >}}
 
 # Exercice 3
 Compléter le programme donné suivant :
@@ -115,4 +119,6 @@ int main(void)
 - Ajouter les fonctions appelées pour calculer la somme, et la différence de deux nombres complexes.
 - Implémenter une fonction `affiche_complexe(…)` pour afficher un nombre complexe sous la forme `(r, i)`, partie réelle et partie imaginaire.
 
-**Note :** on demande d'écrire les déclarations et les fonctions manquantes.
+{{< a_noter>}}
+On demande d'écrire les déclarations et les fonctions manquantes.
+{{< /a_noter>}}
