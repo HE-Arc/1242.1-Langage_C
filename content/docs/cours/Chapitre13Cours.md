@@ -6,7 +6,7 @@ weight: 11
 # CHAPITRE 13 : Structures de données dynamiques : les listes chaînées
 
 ## Cours
-[1242.1.13_Listes_chainées](/pdf/1242.1.13_Listes_chainées.pdf)
+{{< pdf src="/pdfs/1242.1.13_Listes_chainees.pdf" >}}
 
 ## Quiz
 [LISTES CHAINÉES](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=762228)
