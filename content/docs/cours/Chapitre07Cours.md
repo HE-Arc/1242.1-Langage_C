@@ -7,9 +7,6 @@ weight: 1
 ## Cours
 {{< pdf src="/pdfs/1242.1.07_Compilation.pdf" >}}
 
-## Quiz
-[QUIZ SUR LA COMPILATION](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=761712)
-
 # Défis
 
 ## MACROS
