@@ -1,6 +1,6 @@
 ---
 title: "Chapitre 5 : solutions"
-draft: true
+draft: false
 weight: 21
 ---
 # Chapitre 5 : solutions
