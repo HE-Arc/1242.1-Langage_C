@@ -596,7 +596,7 @@ int main(void)
 ```
 
 ## Solutions série 8.1
-[1242.1.08.01_TableauxStructures_Correction.pdf](/pdf/1242.1.08.01_TableauxStructures_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.08.01_TableauxStructures_Correction.pdf" >}}
 
 ### `1242.1_08.01_ArraysAndStructures`
 ```c

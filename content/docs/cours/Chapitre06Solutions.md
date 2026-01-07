@@ -195,7 +195,7 @@ func5()
 ```
 
 ## Solutions
-[1242.1.06_Fonctions_I_Correction](/pdf/1242.1.06_Fonctions_I_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.06_Fonctions_I_Correction.pdf" >}}
 
 ### `1242.1_06.01_FonctionsI Exercice1`
 ```c

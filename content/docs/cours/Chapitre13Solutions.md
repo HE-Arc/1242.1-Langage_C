@@ -6,8 +6,7 @@ weight: 31
 
 # Chapitre 13 : solutions
 ## Solutions
-
-[1242.1.13_Listes_chainées_Correction.pdf](/pdf/1242.1.13_Listes_chainées_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.13_Listes_chainées_Correction.pdf" >}}
 
 ### `list.h`
 ```c

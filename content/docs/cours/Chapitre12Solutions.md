@@ -200,7 +200,7 @@ int main(void)
 ```
 
 ## Solutions
-[1242.1.12_StructuresEtType_Correction.pdf](/pdf/1242.1.12_StructuresEtType_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.12_StructuresEtType_Correction.pdf" >}}
 
 ### `Exercice1`
 ```c

@@ -6,7 +6,7 @@ weight: 21
 # Chapitre 9 : solutions
 
 ## Solutions
-[1242.1.09_Pointeurs_Corrections.pdf](/pdf/1242.1.09_Pointeurs_Corrections.pdf)
+{{< pdf src="/pdfs/1242.1.09_Pointeurs_Corrections.pdf" >}}
 
 ### `1242.1_09.01_Pointers - Exercice 6`
 ```c

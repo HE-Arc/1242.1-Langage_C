@@ -178,7 +178,7 @@ void f4(void)
 }
 ```
 
-# `06_VoidPointerArithmetic`
+### `06_VoidPointerArithmetic`
 ```c
 #include <stdio.h>
 
@@ -212,7 +212,8 @@ int main(void)
 ```
 
 ## Solutions
-[1242.1.11_Fonctions_II_Corrections.pdf](/pdf/1242.1.11_Fonctions_II_Corrections.pdf)
+{{< pdf src="/pdfs/1242.1.11_Fonctions_II_Corrections.pdf" >}}
+
 ### `Exercice 1`
 ```c
 #include <stdio.h>
