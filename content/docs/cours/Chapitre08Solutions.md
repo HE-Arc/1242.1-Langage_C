@@ -698,7 +698,7 @@ int main(void)
 ```
 
 ## Solutions série 8.2
-[1242.1.08.02_TableauxStructures_Correction.pdf](/pdf/1242.1.08.02_TableauxStructures_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.08.02_TableauxStructures_Correction.pdf" >}}
 
 ### `1242.1_08.02_ArraysAndStructures - Exercice 1`
 ```c
@@ -1119,8 +1119,8 @@ int main(void)
 }
 ```
 
-## Solutions série 8.3
-[1242.1.08.03_TableauxStructures_Correction.pdf](/pdf/1242.1.08.03_TableauxStructures_Correction.pdf)
+## Solutions série 8.3  
+{{< pdf src="/pdfs/1242.1.08.03_TableauxStructures_Correction.pdf" >}}
 
 ### `1242.1_08.03_ArraysAndStructures - Exercice 1`
 ```c
@@ -1360,7 +1360,8 @@ int main(void)
 ```
 
 ## Solutions série 8.4
-[1242.1.08.04_TableauxStructures_Correction.pdf](/pdf/1242.1.08.04_TableauxStructures_Correction.pdf)
+  
+{{< pdf src="/pdfs/1242.1.08.04_TableauxStructures_Correction.pdf" >}}
 
 ### `1242.1_08.04_ArraysAndStructures - Exercice 1`
 ```c
