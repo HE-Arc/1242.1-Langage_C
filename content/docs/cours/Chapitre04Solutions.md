@@ -384,7 +384,8 @@ int main(void)
 ```
 
 ## Solutions exercices
-[1242.1.04_Entrees-Sorties_Correction.pdf](/pdf/1242.1.04_Entrees-Sorties_Correction.pdf)
+
+{{< pdf src="/pdfs/1242.1.04_Entrees-Sorties_Correction.pdf" >}}
 
 ### `1242.1_04.01_InputOutput`
 ```c

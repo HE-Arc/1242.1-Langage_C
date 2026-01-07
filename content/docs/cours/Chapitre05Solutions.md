@@ -434,13 +434,14 @@ int main(void)
 ```
 
 ## Solutions exercices
-[1242.1.05.01_StructuresDeControle_Correction.pdf](/pdf/1242.1.05.01_StructuresDeControle_Correction.pdf)
 
-[1242.1.05.02_StructuresDeControle_Correction.pdf](/pdf/1242.1.05.02_StructuresDeControle_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.05.01_StructuresDeControle_Correction.pdf" >}}
 
-[1242.1.05.03_StructuresDeControle_Correction.pdf](/pdf/1242.1.05.03_StructuresDeControle_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.05.02_StructuresDeControle_Correction.pdf" >}}
 
-[1242.1.05.04_StructuresDeControle_Correction.pdf](/pdf/1242.1.05.04_StructuresDeControle_Correction.pdf)
+{{< pdf src="/pdfs/1242.1.05.03_StructuresDeControle_Correction.pdf" >}}
+
+{{< pdf src="/pdfs/1242.1.05.04_StructuresDeControle_Correction.pdf" >}}
 
 ### `05.01 Exercice1`
 ```c

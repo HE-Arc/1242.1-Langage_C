@@ -379,7 +379,8 @@ int main(void)
 
 
 ## Solution exercices
-[1242.1.03_Operateurs_Correction.pdf](/pdf/1242.1.03_Operateurs_Correction.pdf)
+
+{{< pdf src="/pdfs/1242.1.03_Operateurs_Correction.pdf" >}}
 
 ### `1242.1_03.01_Operators`
 ```c

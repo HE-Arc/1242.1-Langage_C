@@ -236,7 +236,8 @@ int main(void)
 ```
 
 ## Solution série 2.1
-[1242.1.02_TypesEtVariablesCorrigé.pdf](/pdf/1242.1.02_TypesEtVariablesCorrigé.pdf)
+
+{{< pdf src="/pdfs/1242.1.02_TypesEtVariablesCorrigé.pdf" >}}
 ### `1242.1_02.01_Types_and_variables`
 ```c
 // WARNING: this code is tested using visual studio 2019 and GCC 10.3.0
