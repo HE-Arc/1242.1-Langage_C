@@ -116,7 +116,7 @@ Un point de séquence en programmation est défini comme :
 
 En d'autres termes, quand votre programme atteint un point de séquence, vous avez la garantie que toutes les modifications des variables sont effectivement prises en compte.
 
-L'annexe C de la **[norme C99](/pdf/Draft_norme_ISO_C11.pdf)** donne la liste des points de séquence suivante :
+L'annexe C de la **norme C99** donne la liste des points de séquence suivante :
 
 {{< figure src="/images/norme_annexe_C.png#center" >}}
 
@@ -545,7 +545,7 @@ int main(void)
 ```	
 
 Soustraire 2 pointeurs sur **void** est un comportement indéfini (Undefined Behavior ou UB).
-En effet, la **[norme C99](/pdf/Draft_norme_ISO_C11.pdf)** précise :
+En effet, la **norme C99** précise :
 
 {{< figure src="/images/norme_sub_pointers.png#center" >}}
 
