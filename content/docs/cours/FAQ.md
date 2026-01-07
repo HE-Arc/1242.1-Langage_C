@@ -126,7 +126,7 @@ En particulier, si on modifie 2 fois la même variable entre 2 points de séquen
 
 ## Comment afficher plus de messages (warnings) avec GCC dans VS Code ?
 
-Avec `GCC`, il s'agit de rajouter l'option `-Wall` lors de la compilation. **[Le manuel de GCC](/pdf/gcc_10.3_User_Manual.pdf)** détaille tous les paramètres (et bien plus).
+Avec `GCC`, il s'agit de rajouter l'option `-Wall` lors de la compilation. **[Le manuel de GCC](https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/)** détaille tous les paramètres (et bien plus).
 
 VS Code stocke certaines informations dans le répertoire `.vscode` . En particulier,  le fichier `tasks.json` détaille les informations importantes pour compiler vos programmes avec `GCC`.
 
