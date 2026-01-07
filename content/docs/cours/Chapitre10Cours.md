@@ -18,7 +18,7 @@ weight: 11
 Les allocations se poursuivront jusqu'à ce que l'on aboutisse à un débordement de mémoire.
 
 {{< a_noter >}}
-Voir la FAQ [Pourquoi le Task Manager de Windows ne montre pas la mémoire réellement utilisée par mon programme ?](/docs/cours/faq/#pourquoi-le-task-manager-de-windows-ne-montre-pas-la-m%c3%a9moire-r%c3%a9ellement-utilis%c3%a9e-par-mon-programme-).
+Voir la FAQ [Pourquoi le Task Manager de Windows ne montre pas la mémoire réellement utilisée par mon programme ?]({{< relref "/docs/cours/faq/#pourquoi-le-task-manager-de-windows-ne-montre-pas-la-m%c3%a9moire-r%c3%a9ellement-utilis%c3%a9e-par-mon-programme-" >}})
 {{< /a_noter >}}
 
 **Exemple :**
