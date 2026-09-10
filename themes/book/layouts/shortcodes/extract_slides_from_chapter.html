@@ -38,16 +38,12 @@
 {{- end -}}
 
 {{- if not $src -}}
-  {{- errorf
-      "extract_slides_from_chapter: source page not found.\nslides_file: %q\nbase: %q\ndir: %q\nsrcBase: %q\nderived_srcPath: %q\ntried:\n- %s"
+  {{- warnf
+      "extract_slides_from_chapter: source page not found for %q, skipping (draft or missing chapter?). tried: %s"
       .Page.File.Path
-      $base
-      $dir
-      $srcBase
-      $srcPath
-      (delimit $try "\n- ")
+      (delimit $try ", ")
   -}}
-{{- end -}}
+{{- else -}}
 
 {{- $deckID := replace .Page.File.Path "\\" "/" -}}
 {{- $chapterID := replace $src.File.Path "\\" "/" -}}
@@ -88,3 +84,4 @@
 {{- end -}}
 
 {{- .Page.Scratch.Set "reveal_slides" $uniq -}}
+{{- end -}}
