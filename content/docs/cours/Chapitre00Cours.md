@@ -6,7 +6,9 @@ weight: 1
 # CHAPITRE 0 : Organisation du Cours
 
 ## Slides
-{{<pdf src="/pdfs/1242.1.00_OrganisationDuCours.pdf" >}}
+{{<slides "https://he-arc.github.io/1242.1-Langage_C-SLIDES/00_OrganisationDuCours.html">}}
+
+[Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/00_OrganisationDuCours.html?print-pdf)
 
 ## Installation de l'environnement de développement
 

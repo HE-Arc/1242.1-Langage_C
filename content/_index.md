@@ -7,7 +7,7 @@ type: docs
 
 ## Informations générales
 
-Équipe **[TEAMS](https://teams.microsoft.com/l/team/19%3A4S-4gER-_2vUFcciX6P6yPjbR9vjWSa4HNhrncPamrI1%40thread.tacv2/conversations?groupId=1f2889b0-315a-4f91-98b0-09103f2c55c3&tenantId=5b3b7d7d-e119-4d05-9022-f775f2e48e96)**
+Équipe **[TEAMS](https://teams.cloud.microsoft/l/team/19%3A5xwm-uwwtIm0Vfaz222_dZIKQhMSD7pU-0JCpNzY6AE1%40thread.tacv2/conversations?groupId=7cb0530d-903b-43f6-8488-74213cfcc725&tenantId=5b3b7d7d-e119-4d05-9022-f775f2e48e96)**
 
 {{< a_faire >}}
 Installer TEAMS directement depuis le **portail entreprise** accessible via le menu **Windows**.
@@ -17,7 +17,7 @@ Installer TEAMS directement depuis le **portail entreprise** accessible via le m
 
 **Professeur :** Benoit Le Callennec
 
-**Assistant :** Jules Perrelet
+**Assistant :** Firas Dridi
 
 **Horaires et salles :** les mardis, de 15h05 à 18h10 en salle NE104.
 
@@ -57,6 +57,7 @@ Calendrier à titre informatif et sujet à modifications.
 | #10 | CHAPITRE 10 : ALLOCATION DYNAMIQUE / Séries 10.1 |
 | #11 | CHAPITRE 11 : FONCTIONS II / Séries 11.1 |
 | #12 | CHAPITRE 12 : STRUCTURES ET TYPES / Séries 12.1 |
+| Vacances | - |
 | Vacances | - |
 | Vacances | - |
 | #13 | CHAPITRE 13 : LISTES CHAÎNÉES / Séries 13.1 |
