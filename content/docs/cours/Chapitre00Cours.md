@@ -1,14 +1,9 @@
 ---
-title: "0 - Organisation du cours"
+title: "0. Mise en route"
 weight: 1
 ---
 
 # CHAPITRE 0 : Organisation du Cours
-
-## Slides
-{{<slides "https://he-arc.github.io/1242.1-Langage_C-SLIDES/00_OrganisationDuCours.html">}}
-
-[Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/00_OrganisationDuCours.html?print-pdf)
 
 ## Installation de l'environnement de développement
 

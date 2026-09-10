@@ -5,6 +5,11 @@ type: docs
 
 # 1242.1 Langage C
 
+## Slides
+{{<slides "https://he-arc.github.io/1242.1-Langage_C-SLIDES/00_OrganisationDuCours.html">}}
+
+[Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/00_OrganisationDuCours.html?print-pdf)
+
 ## Informations générales
 
 Équipe **[TEAMS](https://teams.cloud.microsoft/l/team/19%3A5xwm-uwwtIm0Vfaz222_dZIKQhMSD7pU-0JCpNzY6AE1%40thread.tacv2/conversations?groupId=7cb0530d-903b-43f6-8488-74213cfcc725&tenantId=5b3b7d7d-e119-4d05-9022-f775f2e48e96)**
