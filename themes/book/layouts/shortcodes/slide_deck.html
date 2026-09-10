@@ -1,0 +1,13 @@
+{{- $slides := .Page.Scratch.Get "reveal_slides" | default (slice) -}}
+
+{{- $body := .Page.RenderString (dict "display" "block" "renderShortcodes" true) .Inner -}}
+
+{{- $class := .Get "class" | default "" -}}
+{{- $attr := "" -}}
+{{- if $class -}}
+  {{- $attr = printf ` class="%s"` $class -}}
+{{- end -}}
+
+{{- $html := printf "<section%s>%s</section>" $attr $body -}}
+{{- $slides = $slides | append $html -}}
+{{- .Page.Scratch.Set "reveal_slides" $slides -}}

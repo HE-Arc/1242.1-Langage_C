@@ -1,0 +1,105 @@
+{{- $label := or (.Get "label") "Export as PDF" -}}
+{{- $id := printf "export-pdf-%s" (substr (.Page.RelPermalink | md5) 0 8) -}}
+
+
+<button
+  id="{{ $id }}"
+  type="button"
+  class="book-btn export-pdf-btn"
+  title="{{ $label }}"
+  aria-label="{{ $label }}"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="16"
+    height="16"
+    fill="currentColor"
+    aria-hidden="true"
+    style="vertical-align:middle;margin-right:0.4em;"
+  >
+    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+  </svg>
+  {{ $label }}
+</button>
+<script>
+  document.getElementById('{{ $id }}').addEventListener('click', function () {
+    var btn = this;
+    btn.disabled = true;
+    //btn.textContent = 'Generating PDF…';
+
+    function doExport() {
+      var article = document.querySelector('article.markdown') || document.body;
+      btn.style.display = 'none';
+
+      var container = document.createElement('div');
+      var articleClone = article.cloneNode(true);
+
+      var tocNav = document.querySelector('#TableOfContents');
+      if (tocNav) {
+        var tocBlock = document.createElement('div');
+        tocBlock.style.cssText = 'padding:1rem 0 1.5rem;font-family:inherit;page-break-after:always;';
+
+        var tocTitle = document.createElement('h2');
+        tocTitle.textContent = 'Table des matières';
+        tocTitle.style.cssText = 'font-size:1.2rem;margin-bottom:0.75rem;';
+        tocBlock.appendChild(tocTitle);
+
+        var tocClone = tocNav.cloneNode(true);
+        tocClone.style.cssText = 'font-size:0.95rem;line-height:1.8;';
+        tocClone.querySelectorAll('a').forEach(function (a) {
+          a.removeAttribute('href');
+          a.style.cssText = 'color:inherit;text-decoration:none;font-weight:inherit;';
+        });
+        tocBlock.appendChild(tocClone);
+
+        // Insert the TOC block right after the first h1 in the cloned article
+        var firstH1 = articleClone.querySelector('h1');
+        if (firstH1 && firstH1.parentNode) {
+          firstH1.parentNode.insertBefore(tocBlock, firstH1.nextSibling);
+        } else {
+          articleClone.insertBefore(tocBlock, articleClone.firstChild);
+        }
+      }
+
+      container.appendChild(articleClone);
+
+      html2pdf()
+        .set({
+          margin:      [10, 10, 10, 10],
+          filename:    (document.title || 'page') + '.pdf',
+          image:       { type: 'jpeg', quality: 0.97 },
+          html2canvas: { scale: 2, useCORS: true, logging: false },
+          jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        })
+        .from(container)
+        .save()
+        .then(function () {
+          btn.style.display = '';
+          btn.disabled = false;
+          btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" style="vertical-align:middle;margin-right:0.4em;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> {{ $label }}';
+        });
+    }
+
+    if (window.html2pdf) {
+      doExport();
+    } else {
+      var script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+      script.onload = doExport;
+      document.head.appendChild(script);
+    }
+  });
+</script>
+
+<style>
+  .markdown button.book-btn {
+    background: none;
+    font-family: inherit;
+  }
+  @media print {
+    .markdown button.book-btn.export-pdf-btn {
+      display: none !important;
+    }
+  }
+</style>

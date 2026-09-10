@@ -1,0 +1,27 @@
+{{- $chapterID := replace .Page.File.Path "\\" "/" -}}
+{{- $mapKey := printf "CHAPTER2DECK::%s" $chapterID -}}
+{{- $deckID := hugo.Store.Get $mapKey -}}
+{{- if not $deckID -}}
+  {{- return -}}
+{{- end -}}
+
+{{- $flagKey := printf "RENDERING_SLIDES::%s" $deckID -}}
+{{- if not (hugo.Store.Get $flagKey) -}}
+  {{- return -}}
+{{- end -}}
+
+{{- $bufKey := printf "REVEAL_SLIDES::%s" $deckID -}}
+{{- $slides := hugo.Store.Get $bufKey | default (slice) -}}
+
+{{- $class := .Get "class" | default "" -}}
+{{- $body := .Page.RenderString (dict "display" "block" "renderShortcodes" true) .Inner -}}
+
+{{- $attr := "" -}}
+{{- if $class -}}
+  {{- $attr = printf ` class="%s"` $class -}}
+{{- end -}}
+
+{{- $html := printf "<section%s>%s</section>" $attr $body -}}
+
+{{- $slides = $slides | append $html -}}
+{{- hugo.Store.Set $bufKey $slides -}}

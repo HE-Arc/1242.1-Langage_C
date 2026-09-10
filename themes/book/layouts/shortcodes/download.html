@@ -1,0 +1,64 @@
+{{- $src := .Get "src" -}}
+{{- $isRemote := or (hasPrefix $src "http://") (hasPrefix $src "https://") -}}
+{{- $url := cond $isRemote $src ($src | relURL) -}}
+{{- $filename := path.Base $src -}}
+{{- $label := .Get "text" | default $filename -}}
+{{- $ext := path.Ext $src | strings.TrimPrefix "." | lower -}}
+
+{{- $textExts := slice "txt" "md" "csv" "log" "c" "h" "hpp" "cpp" "cc" "cs" "py" "js" "ts" "json" "xml" "yml" "yaml" "html" "css" "java" "sh" "bat" "ps1" "ini" "cfg" "sql" -}}
+{{- $imageExts := slice "png" "jpg" "jpeg" "gif" "svg" "webp" "bmp" -}}
+{{- $archiveExts := slice "zip" "rar" "7z" "tar" "gz" "bz2" -}}
+
+{{- $icon := "file" -}}
+{{- if eq $ext "pdf" -}}
+  {{- $icon = "pdf" -}}
+{{- else if in $archiveExts $ext -}}
+  {{- $icon = "archive" -}}
+{{- else if in $imageExts $ext -}}
+  {{- $icon = "image" -}}
+{{- else if in $textExts $ext -}}
+  {{- $icon = "text" -}}
+{{- end -}}
+{{- with .Get "icon" -}}
+  {{- $icon = . -}}
+{{- end -}}
+
+<a
+  href="{{ $url }}"
+  class="book-btn book-download-btn"
+  {{ if not $isRemote }}download="{{ $filename }}"{{ else }}target="_blank" rel="noopener"{{ end }}
+  title="{{ $label }}"
+>
+  {{- if eq $icon "pdf" -}}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:0.4em;">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <text x="6.5" y="18" font-size="7" font-family="Arial, sans-serif" stroke="none" fill="currentColor">PDF</text>
+  </svg>
+  {{- else if eq $icon "archive" -}}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:0.4em;">
+    <polyline points="21 8 21 21 3 21 3 8" />
+    <rect x="1" y="3" width="22" height="5" />
+    <line x1="10" y1="12" x2="14" y2="12" />
+  </svg>
+  {{- else if eq $icon "image" -}}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:0.4em;">
+    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+    <circle cx="8.5" cy="8.5" r="1.5" />
+    <polyline points="21 15 16 10 5 21" />
+  </svg>
+  {{- else if eq $icon "text" -}}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:0.4em;">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="8" y1="13" x2="16" y2="13" />
+    <line x1="8" y1="17" x2="16" y2="17" />
+  </svg>
+  {{- else -}}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:0.4em;">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+    <polyline points="13 2 13 9 20 9" />
+  </svg>
+  {{- end -}}
+  {{ $label }}
+</a>
