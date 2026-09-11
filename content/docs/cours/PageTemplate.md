@@ -540,6 +540,7 @@ python .\tools\hugo_preprocessor.py
   GENERATED FILE — DO NOT EDIT.
   This block is automatically regenerated.
 -->
+**Code source : `hello.c`**
 
 ```c
 int main(void)
@@ -549,7 +550,6 @@ int main(void)
 	return 0;
 }
 ```
-
 <!-- SNIPPET:END -->
 
 <br><br>

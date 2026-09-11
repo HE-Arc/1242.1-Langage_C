@@ -6,9 +6,21 @@ weight: 1
 # CHAPITRE 1 : INTRODUCTION
 
 ## Slides
-{{<pdf src="/pdfs/1242.1.01_Introduction.pdf" >}}
+{{<slides "https://he-arc.github.io/1242.1-Langage_C-SLIDES/01_Introduction.html">}}
 
-## Squelette à remplir
+[Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/01_Introduction.html?print-pdf)
+
+## Squelette
+{{<a_faire>}}
+Remplir le squelette suivant au fur et à mesure du cours.
+{{</a_faire>}}
+<!-- SNIPPET:BEGIN source_file=chap1.c id=1242.1_Skeletons_01_chap1.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `chap1.c`**
+
 ```c
 // CHAPTER 1
 
@@ -18,33 +30,103 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-## Quiz
-**[QUIZ INTRODUCTION (~5')](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=761349)**
 
-# EXERCICES
-## Contexte
-Soit le programme **`Hello_World`** pour  voir les éléments d'un programme écrit en C :
+## Exemples
+
+### 01.01 : comment compiler et exécuter un programme C ?
+<!-- SNIPPET:BEGIN source_file=hello.c id=1242.1_Exemples_01.01_Hello_World_hello.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `hello.c`**
 
 ```c
 #include <stdio.h>
 
 int main(void)
 {
-   printf("hello, world\n");
+	printf("hello, world\n");
 
-   return 0;
+	return 0;
 }
 ```
 
-## Discussion
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -std=c17 -o hello.exe hello.c
+$ ./hello.exe
+hello, world
+```
+<p class="run-info">Compiled and executed on 2026-09-11 12:35 from f65d0e4.</p>
+<!-- SNIPPET:END -->
+
+### 01.01b : comment déclarer des variables et afficher le résultat d'un calcul ?
+<!-- SNIPPET:BEGIN source_file=add.c id=1242.1_Exemples_01.01b_Add_add.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `add.c`**
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int a = 10;
+	int b = 5;
+	printf("%d", a + b);
+	
+	return 0;
+}
+```
+
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -std=c17 -o add.exe add.c
+$ ./add.exe
+15
+```
+<p class="run-info">Compiled and executed on 2026-09-11 12:35 from f65d0e4.</p>
+<!-- SNIPPET:END -->
+
+## Exercices
+
+### Contexte
+Soit le programme **`Hello_World`** pour  voir les éléments d'un programme écrit en C :
+
+<!-- SNIPPET:BEGIN source_file=hello.c id=1242.1_Exemples_01.01_Hello_World_hello.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `hello.c`**
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	printf("hello, world\n");
+
+	return 0;
+}
+```
+<!-- SNIPPET:END -->
+
+### Discussion
 La fonction **`main`** ne reçoit pas de données, donc la liste des paramètres est vide (**`void`**).
 
 Le programme ne contient pas de variables, donc le bloc de déclarations est vide.
 
 La fonction **`main`** contient 2 instructions détaillées dans ce qui suit.
 
-### 1) L'appel de la fonction **`printf`** avec l'argument **`"hello, world\n"`**
+#### 1) L'appel de la fonction **`printf`** avec l'argument **`"hello, world\n"`**
 
 Affiche la chaîne de caractères **`"hello, world"`** terminée par **`\n`** (retour à la ligne).
 
@@ -76,17 +158,17 @@ La première ligne du programme :
 demande donc au précompilateur d'inclure le fichier en-tête **`stdio.h`** dans le texte du programme.
 Le fichier **`stdio.h`** contient les informations nécessaires pour pouvoir utiliser les fonctions de la bibliothèque standard **`stdio`**.
 
-### 2) L'instruction **`return`** avec la valeur de retour 0 (zéro)
+#### 2) L'instruction **`return`** avec la valeur de retour 0 (zéro)
 Cette instruction met fin à la fonction **`main`** et retourne 0 au programme appelant (ici, le système d'exploitation).
 
-## Exercice 1
+### Exercice 1
 Modifier le programme **`Hello_World`** pour obtenir le même résultat sur l'écran en utilisant plusieurs fois la fonction **`printf`**.
 
 {{< attention >}}
 L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
-## Exercice 2
+### Exercice 2
 À partir des exemples du cours, écrire un programme qui affiche :
 ```
 The result of 37 * 12 = 444
@@ -96,7 +178,7 @@ The result of 37 * 12 = 444
 L'affichage doit se terminer par un retour à la ligne.
 {{< /attention >}}
 
-## Exercice 3
+### Exercice 3
 Modifier le programme suivant de façon à ce qu'il affiche :
 1. la valeur du calcul {{<katex>}}A^B{{</katex>}}. Il faut utiliser la fonction **`pow`**.
 2. l'hypoténuse d'un triangle rectangle de côtés A et B.
@@ -151,7 +233,7 @@ int main(void)
 }
 ```
 
-## Les fonctions arithmétiques standard
+### Les fonctions arithmétiques standard
 Les **[fonctions arithmétiques standard](https://en.cppreference.com/w/c/numeric/math)** sont prédéfinies dans la bibliothèque mathématique.
 Pour pouvoir les utiliser, le programme doit soit contenir la ligne :
 
@@ -163,10 +245,10 @@ pour les fonctions les plus simples ou alors :
 #include <math.h>
 ```
 
-## Type des données
+### Type des données
 Les arguments et les résultats des fonctions arithmétiques sont de type **`double`**.
 
-## Quelques fonctions arithmétiques
+### Quelques fonctions arithmétiques
 
 | FONCTION C | EXPLICATION | LANG. ALGORITHMIQUE |
 | ---------- | ----------- | ------------------- |
@@ -187,7 +269,7 @@ Les arguments et les résultats des fonctions arithmétiques sont de type **`dou
 **Remarque :** la liste des fonctions ne cite que les fonctions les plus courantes. Pour la liste complète et les constantes prédéfinies, voir les **[fonctions arithmétiques standard](https://en.cppreference.com/w/c/numeric/math)**.
 
 {{< notion_avancee >}}
-## Exercice 4
+### Exercice 4
 1. Écrire un programme qui affiche la table de multiplication de 37 selon le format suivant :
 ```
 37 * 0 = 0

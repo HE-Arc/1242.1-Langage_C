@@ -5,35 +5,16 @@ weight: 21
 ---
 # Chapitre 1 : solutions
 
-## Exemples
-### `1242.1_01.01_Hello_World`
-```c
-#include <stdio.h>
-
-int main(void)
-{
-	printf("Hello World\n");
-
-	return 0;
-}
-```
-
-### `1242.1_01.01b_Add`
-```c
-#include <stdio.h>
-
-int main(void)
-{
-	int a = 10;
-	int b = 5;
-	printf(" %d" , a+b);
-	return 0;
-}
-```
-
 ## Solutions exercices
 
 ### `1242.1_01.01_HelloWorld`
+
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exercices_01.01_HelloWorld_main.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
 
 ```c
 #include <stdio.h>
@@ -119,6 +100,7 @@ void chap_01_ex4_multipleTable3(int refNumber)
 	}
 }
 ```
+<!-- SNIPPET:END -->
 
 ## Solutions Auto-évaluations
 
