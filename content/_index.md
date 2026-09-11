@@ -48,6 +48,7 @@ Calendrier à titre informatif et sujet à modifications.
 
 | SEMAINE | À VOIR / À FAIRE |
 |---------|------------------|
+| #1  | CHAPITRE 0 : ORGANISATION DU COURS |
 | #1  | CHAPITRE 1 : INTRODUCTION / Série 1 |
 | #2  | CHAPITRE 2 : TYPES ET VARIABLES / Séries 2.1 et 2.2 |
 | #3  | CHAPITRE 3 : OPÉRATEURS / Série 3.1 |
