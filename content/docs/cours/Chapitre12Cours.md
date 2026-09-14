@@ -1,5 +1,5 @@
 ---
-title: "12 - Structures II"
+title: "12. Structures II"
 weight: 11
 ---
 

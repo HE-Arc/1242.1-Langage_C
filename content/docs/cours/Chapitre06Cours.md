@@ -1,5 +1,5 @@
 ---
-title: "6 - Fonctions I"
+title: "6. Fonctions I"
 weight: 1
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "4 - Entrées-sorties"
+title: "4. Entrées-sorties"
 weight: 1
 ---
 

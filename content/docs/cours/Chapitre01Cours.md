@@ -57,11 +57,11 @@ int main(void)
 **Compilation et exécution**
 
 ```terminal
-$ gcc -Wall -Wextra -std=c17 -o hello.exe hello.c
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o hello.exe hello.c
 $ ./hello.exe
 hello, world
 ```
-<p class="run-info">Compiled and executed on 2026-09-11 12:35 from f65d0e4.</p>
+<p class="run-info">Compiled and executed on 2026-09-14 13:09 from b493ffe.</p>
 <!-- SNIPPET:END -->
 
 ### 01.01b : comment déclarer des variables et afficher le résultat d'un calcul ?
@@ -79,7 +79,7 @@ int main(void)
 {
 	int a = 10;
 	int b = 5;
-	printf("%d", a + b);
+	printf("%d\n", a + b);
 	
 	return 0;
 }
@@ -88,11 +88,11 @@ int main(void)
 **Compilation et exécution**
 
 ```terminal
-$ gcc -Wall -Wextra -std=c17 -o add.exe add.c
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o add.exe add.c
 $ ./add.exe
 15
 ```
-<p class="run-info">Compiled and executed on 2026-09-11 12:35 from f65d0e4.</p>
+<p class="run-info">Compiled and executed on 2026-09-14 18:38 from a060919.</p>
 <!-- SNIPPET:END -->
 
 ## Exercices
@@ -139,7 +139,8 @@ Sous Unix/Linux/macOS, **```\n```** correspond à un seul caractère ASCII : LF 
 
 Sous Windows, **```\n```** est traduit automatiquement en 2 caractères : CR + LF (Carriage Return + Line Feed, codes 13 et 10).
 
-✅ Il faut donc utiliser **```\n```** pour «aller à la ligne» de façon portable. Le compilateur se chargera de traduire en fonction du système.
+✅ Il faut donc utiliser **```\n```** pour «aller à la ligne» de façon portable.
+La bibliothèque standard se chargera de traduire en fonction du système.
 
 {{< /notion_avancee >}}
 
@@ -170,7 +171,7 @@ L'affichage doit se terminer par un retour à la ligne.
 
 ### Exercice 2
 À partir des exemples du cours, écrire un programme qui affiche :
-```
+```terminal
 The result of 37 * 12 = 444
 ```
 
@@ -189,7 +190,6 @@ Modifier le programme suivant de façon à ce qu'il affiche :
 ```c
 #include <stdio.h>
 #include <math.h>   // include math functions and M_PI constant
-#include <stdlib.h>
 
 // SEE FAQ "Pourquoi faut-il définir M_PI nous-même ?"
 #ifndef M_PI
@@ -200,7 +200,7 @@ int main(void)
 {
   double A;
   double B;
-  double res;
+  double res = 0.0;
 
   // Input for A and B
   printf("Input a value for A: ");
@@ -209,24 +209,29 @@ int main(void)
   scanf(" %lf", &B);
 
   // a) a^b
-  res = // TODO
+  // TODO
+  // res = ...
   printf("\n a) %f power %f = %G \n", A, B, res);
 
   // b) Hypothenuse
-  res = // TODO
+  // TODO
+  // res = ...
   printf("\n b) The hypotenuse of the right triangle is %f \n", res);
 
   // c) tangent of A
   // WARNING: trigonometric functions use radians
-  res = // TODO
+  // TODO
+  // res = ...
   printf("\n c) The tangent of A is %f \n", res);
 
   // d) Rounding down A/B
-  res = // TODO
+  // TODO
+  // res = ...
   printf("\n d) The rounded down value of A/B is %f \n", res);
 
   // e) Rounding down A/B with 3 decimals
-  res = // TODO
+  // TODO
+  // res = ...
   printf("\n e) The rounded down value of A/B with 3 decimals is %f \n\n", res);
 
   return 0;
@@ -235,20 +240,22 @@ int main(void)
 
 ### Les fonctions arithmétiques standard
 Les **[fonctions arithmétiques standard](https://en.cppreference.com/w/c/numeric/math)** sont prédéfinies dans la bibliothèque mathématique.
-Pour pouvoir les utiliser, le programme doit soit contenir la ligne :
+Pour pouvoir les utiliser, le programme doit contenir la ligne :
 
 ```c
 #include <stdlib.h>
 ```
-pour les fonctions les plus simples ou alors :
+pour les fonctions les plus simples comme **`abs`**, **`labs`**, **`div`**, **`rand`**.
+
+Sinon, il faut utiliser la ligne :
 ```c
 #include <math.h>
 ```
 
 ### Type des données
-Les arguments et les résultats des fonctions arithmétiques sont de type **`double`**.
+Les arguments et les résultats des fonctions arithmétiques de **`math.h`** sont de type **`double`**.
 
-### Quelques fonctions arithmétiques
+### Quelques fonctions arithmétiques de **`math.h`**
 
 | FONCTION C | EXPLICATION | LANG. ALGORITHMIQUE |
 | ---------- | ----------- | ------------------- |
@@ -256,11 +263,11 @@ Les arguments et les résultats des fonctions arithmétiques sont de type **`dou
 | **`log(X)`** | logarithme naturel | {{<katex>}}ln(X), X>0{{</katex>}}  | 
 | **`log10(X)`** | logarithme à base 10 | {{<katex>}}log_{10}(X), X>0{{</katex>}}  | 
 | **`pow(X,Y)`** | X exposant Y | {{<katex>}}X^{Y}{{</katex>}}  | 
-| **`sqrt(X)`** | racine carrée de X | pour X>0  | 
+| **`sqrt(X)`** | racine carrée de X | {{<katex>}}X \geq 0{{</katex>}}  | 
 | **`fabs(X)`** | valeur absolue de X | {{<katex>}}\lvert X \rvert{{</katex>}}  | 
-| **`floor(X)`** | arrondir en moins | int(X)  | 
-| **`ceil(X)`** | arrondir en plus 	 |  | 
-| **`fmod(X,Y)`** | reste rationnel de X/Y (même signe que X) | pour Y différent de 0 |
+| **`floor(X)`** | arrondir en moins | | 
+| **`ceil(X)`** | arrondir en plus | | 
+| **`fmod(X,Y)`** | reste de la division de X par Y à quotient entier, même signe que X | pour Y différent de 0 |
 | **`fmod(16.5, 4.1)`** | vaut 0.1000 |  | 
 | **`sin(X) cos(X) tan(X)`**  |  sinus, cosinus, tangente de X  |  | 
 | **`asin(X) acos(X) atan(X)`** | arcsin(X), arccos(X), arctan(X)  |  | 
@@ -268,6 +275,7 @@ Les arguments et les résultats des fonctions arithmétiques sont de type **`dou
 
 **Remarque :** la liste des fonctions ne cite que les fonctions les plus courantes. Pour la liste complète et les constantes prédéfinies, voir les **[fonctions arithmétiques standard](https://en.cppreference.com/w/c/numeric/math)**.
 
+<!--
 {{< notion_avancee >}}
 ### Exercice 4
 1. Écrire un programme qui affiche la table de multiplication de 37 selon le format suivant :
@@ -279,3 +287,4 @@ Les arguments et les résultats des fonctions arithmétiques sont de type **`dou
 37 * 12 = 444
 ```
 {{< /notion_avancee >}}
+-->

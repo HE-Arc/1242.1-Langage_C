@@ -1,5 +1,5 @@
 ---
-title: "2 - Types et variables"
+title: "2. Types et variables"
 weight: 1
 ---
 

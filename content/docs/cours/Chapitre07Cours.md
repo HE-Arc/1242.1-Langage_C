@@ -1,5 +1,5 @@
 ---
-title: "7 - Compilation et modularisation"
+title: "7. Compilation et modularisation"
 weight: 1
 ---
 

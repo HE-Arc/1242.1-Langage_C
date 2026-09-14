@@ -34,12 +34,14 @@ Installer TEAMS directement depuis le **portail entreprise** accessible via le m
 ## Contenu
 Durant ce cours, vous verrez les notions suivantes :
 - Variables, types, opérateurs et expressions
-- Structures de contrôle et boucles : if, switch, do, while, for, break, continue, goto
+- Entrées-sorties
+- Structures de contrôle et boucles : if, switch, do, while, for, break, continue, <del>goto</del>
 - Fonctions : paramètres passés par valeur, par adresse, valeur de retour
+- Structure modulaire : fichiers d'en-tête, projets
 - Visibilité, durée de vie, blocs
 - Tableaux
 - Pointeurs et structures
-- Structure modulaire : fichiers d'en-tête, projets
+- Allocation dynamique
 - Listes chaînées
 
 ## Calendrier & dates importantes
@@ -54,7 +56,7 @@ Calendrier à titre informatif et sujet à modifications.
 | #3  | CHAPITRE 3 : OPÉRATEURS / Série 3.1 |
 | #4  | CHAPITRE 4 : ENTRÉES - SORTIES / Série 4.1 |
 | #4' | **Semaine de travail autonome / thématique**  |
-| #5  | CHAPITRE 5 : STRUCTURES DE CONTRÔLE / Séries 5.1, 5.2, 5.3 et 5.4 |
+| #5  | CHAPITRE 5 : STRUCTURES DE CONTRÔLE / **ARGOS** / Séries 5.1, 5.2, 5.3 et 5.4 |
 | #6  | CHAPITRE 6 : FONCTIONS I / Séries 6.1 |
 | #7  | CHAPITRE 7: COMPILATION ET MODULARISATION |
 | #8  | CHAPITRE 8 : TABLEAUX ET STRUCTURES / Séries 8.1, 8.2, 8.3 et 8.4 |
@@ -67,5 +69,12 @@ Calendrier à titre informatif et sujet à modifications.
 | Vacances | - |
 | Vacances | - |
 | #13 | CHAPITRE 13 : LISTES CHAÎNÉES / Séries 13.1 |
-| #14 | **ORAUX 1** |
-| #15 | **ORAUX 2** |
+| #14 | **ORAUX Groupe 1** |
+| #15 | **ORAUX Groupe 2** |
+
+## Évaluation
+- 1 TP durant le semestre (Exercices ARGOS), évalué, mais non noté. Sert de base pour les oraux.
+- Au moins 1 Oral final, noté.
+- (À confirmer) des mini-oraux intermédiaires, notés.
+
+Voir la page [ISC1ab](https://he-arc.github.io/1242.1-Langage_C/docs/cours/isc1ab/#oral) pour les informations spécifiques aux groupes ISC1a et ISC1b.

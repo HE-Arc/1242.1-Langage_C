@@ -1,5 +1,5 @@
 ---
-title: "13 - Listes chaînées"
+title: "13. Listes chaînées"
 weight: 11
 ---
 

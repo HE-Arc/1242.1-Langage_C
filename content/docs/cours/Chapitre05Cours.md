@@ -1,5 +1,5 @@
 ---
-title: "5 - Structures de contrôle"
+title: "5. Structures de contrôle"
 weight: 1
 ---
 

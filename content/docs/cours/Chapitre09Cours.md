@@ -1,5 +1,5 @@
 ---
-title: "9 - Pointeurs"
+title: "9. Pointeurs"
 weight: 1
 ---
 

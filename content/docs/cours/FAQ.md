@@ -5,13 +5,15 @@ title: "FAQ"
 # FAQ
 ## Quelle version du C devons-nous utiliser ?
 
-Durant le cours 1242.1 Langage C, nous utilisons le C99.
+Durant le cours 1242.1 Langage C, nous utiliserons le C23.
 
-En particulier, le compilateur installé par défaut est GCC (version 10.3 minimum). Comme indiqué dans le manuel utilisateur de GCC 10.3, la version par défaut du C utilisée est gnu11 c'est-à-dire le C11 avec les extensions GNU. Cette version ainsi que les extensions ne sont pas nécessaires pour le contenu du cours. Ainsi, la version C99 est suffisante.
+En particulier, le compilateur installé par défaut est GCC (version 15 minimum).
+Comme indiqué dans le manuel utilisateur de GCC 15.2.0, la version par défaut du C utilisée est le gnu23 c'est-à-dire le C23 avec les extensions GNU.
+Les extensions ne sont pas nécessaires pour le contenu du cours.
 
-## Où puis-je trouver la norme C99 ?
+## Où puis-je trouver la norme C23 ?
 Vous pouvez la consulter ci-dessous :
-{{< pdf src="/pdfs/Draft_norme_ISO_C11.pdf" >}}
+{{< pdf src="/pdfs/Draft_Norm_ISO_C23.pdf" >}}
 
 ## Où puis-je trouver la documentation GCC ?
 Vous pouvez la consulter [ici](https://gcc.gnu.org/onlinedocs/gcc-15.2.0/gcc/) ou ci-dessous :
@@ -45,7 +47,7 @@ Vous pouvez les consulter ci-dessous :
 {{< pdf src="/pdfs/Conventions_Codage_C_et_CPP.pdf" >}}
 
 ## Comment déclarer la fonction main() ?
-Les prototypes standards définis par la **norme C99** sont :
+Les prototypes standards définis par la **norme C23** sont :
 
 ```c
 int main(void)
@@ -59,7 +61,7 @@ int main(int argc, char *argv[])
 
 ou équivalent.
 
-En effet, la **norme C99** précise :
+En effet, la **norme C23** précise :
 
 {{< figure src="/images/norme_5.1.2.2.1.png#center" >}}
 
@@ -116,7 +118,7 @@ Un point de séquence en programmation est défini comme :
 
 En d'autres termes, quand votre programme atteint un point de séquence, vous avez la garantie que toutes les modifications des variables sont effectivement prises en compte.
 
-L'annexe C de la **norme C99** donne la liste des points de séquence suivante :
+L'annexe C de la **norme C23** donne la liste des points de séquence suivante :
 
 {{< figure src="/images/norme_annexe_C.png#center" >}}
 
@@ -280,7 +282,7 @@ En particulier, elle reste une variable, et n'est donc pas considérée comme un
 
 Par conséquent, **`arr`** est un ***variable-length array*** (ou ***VLA***) et ne peut donc pas être initialisé de cette manière.
 
-**En particulier, la norme C99 précise :**
+**En particulier, la norme C23 précise :**
 
 {{< figure src="/images/norme_VLA.png#center" >}}
 
@@ -289,7 +291,8 @@ Par conséquent, **`arr`** est un ***variable-length array*** (ou ***VLA***) et 
 Les ***variable-length arrays*** (VLAs) sont supportés différemment selon les compilateurs, et selon les versions.
 Ainsi, comment vérifier dans mon code si les VLAs sont supportés par le compilateur ?
 
-Le support pour les VLAs a été rajouté en C99, puis rendu optionnel en C11. De plus, le compilateur de Microsoft ne les supporte pas du tout.
+Le support pour les VLAs a été rajouté en C99, puis rendu optionnel en C11.
+De plus, le compilateur de Microsoft ne les supporte pas du tout.
 
 Donc il faut :
 1. Vérifier qu'on n'utilise pas le compilateur de Microsoft `MSVC`.
@@ -545,7 +548,7 @@ int main(void)
 ```	
 
 Soustraire 2 pointeurs sur **void** est un comportement indéfini (Undefined Behavior ou UB).
-En effet, la **norme C99** précise :
+En effet, la **norme C23** précise :
 
 {{< figure src="/images/norme_sub_pointers.png#center" >}}
 

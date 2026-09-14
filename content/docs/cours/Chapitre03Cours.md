@@ -1,5 +1,5 @@
 ---
-title: "3 - Opérateurs"
+title: "3. Opérateurs"
 weight: 1
 ---
 

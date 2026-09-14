@@ -1,5 +1,5 @@
 ---
-title: "0. Mise en route"
+title: "0. Organisation du Cours"
 weight: 1
 ---
 
@@ -31,13 +31,13 @@ L'installeur s'affiche mal avec le thème sombre de Windows.
 **Répondez yes / all / default quand c'est demandé**
 {{< /a_faire>}}
 
-6. Ajouter le chemin vers gcc dans les variables d'environnement (**`C:\msys64\ucrt64\bin`** par défaut).
+4. Ajouter le chemin vers gcc dans les variables d'environnement (**`C:\msys64\ucrt64\bin`** par défaut).
    1. Clique droit sur **Ce PC** puis **Propriétés**.
    2. Cliquez sur **Paramètres système avancés**.
    3. Cliquez sur **Variables d'environnement**.
    4. Dans la section **Variables système**, sélectionnez la variable **Path** puis cliquez sur **Modifier**.
    5. Cliquez sur **Nouveau** et ajoutez le chemin vers gcc.
-7. Relancer Visual Studio Code, ouvrir un nouveau terminal exécuter **`gcc --version`**. Si tout est correctement installé, vous devriez voir la version de gcc s'afficher.
+5. Relancer Visual Studio Code, ouvrir un nouveau terminal exécuter **`gcc --version`**. Si tout est correctement installé, vous devriez voir la version de gcc s'afficher.
 
 ## Commandes basiques du Terminal Visual Studio Code
 
@@ -50,14 +50,14 @@ L'installeur s'affiche mal avec le thème sombre de Windows.
 - **`exit`** : ferme le terminal.
 
 {{< attention >}}
-Les fichiers et les dossiers sont placés dans la corbeille lorsqu'ils sont supprimés.
+Les fichiers et les dossiers **ne sont pas** placés dans la corbeille lorsqu'ils sont supprimés.
 
 - **`rm nom_fichier`** : supprime le fichier **`nom_fichier`**.
 - **`rm -r nom_dossier`** : supprime le dossier **`nom_dossier`** et son contenu.
 {{< /attention >}}
 
 {{< attention >}}
-Bien noter les **``.\``** devant le nom de l'exécutable s'il se trouve dans le répertoire courant.
+Bien noter les **``./``** devant le nom de l'exécutable s'il se trouve dans le répertoire courant.
 
 - **`./nom_executable`** : exécute l'exécutable **`nom_executable`**.
 {{< /attention >}}
@@ -73,5 +73,6 @@ Nous irons plus en détail sur l'utilisation de **`gcc`** dans le chapitre dédi
 - **`gcc --version`** : affiche la version de gcc installée.
 - **`gcc nom_fichier.c`** : compile le fichier **`nom_fichier.c`** en un exécutable **`a.exe`** (sous Windows).
 - **`gcc -o nom_executable nom_fichier.c`** : compile le fichier **`nom_fichier.c`** en un exécutable **`nom_executable`**.
-- **`gcc -Wall -o nom_executable nom_fichier.c`** : compile le fichier **`nom_fichier.c`** en un exécutable **`nom_executable`** en affichant tous les warnings.
-- **`gcc -Wall -Werror -o nom_executable nom_fichier.c`** : compile le fichier **`nom_fichier.c`** en un exécutable **`nom_executable`** en affichant tous les warnings et en traitant les warnings comme des erreurs.
+- **`gcc -Wall -Wextra -Wpedantic -o nom_executable nom_fichier.c`** : compile le fichier **`nom_fichier.c`** en un exécutable **`nom_executable`** en affichant les warnings usuels (**`-Wall`**), les warnings supplémentaires (**`-Wextra`**) et ceux liés au respect strict de la norme (**`-Wpedantic`**).
+- **`gcc -Wall -Wextra -Wpedantic -std=c23 -o nom_executable nom_fichier.c`** : idem, en imposant la norme **C23** utilisée dans ce cours.
+- **`gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o nom_executable nom_fichier.c`** : idem, en traitant les warnings comme des erreurs (**`-Werror`**). C'est la commande utilisée pour compiler tous les exemples du cours.

@@ -1,7 +1,7 @@
 ---
 title: "ARGOS"
 weight: 20
-draft: false
+draft: true
 ---
 
 # ARGOS : un système d'auto-Évaluations

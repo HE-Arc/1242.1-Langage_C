@@ -1,5 +1,5 @@
 ---
-title: "11 - Pointeurs et fonctions II"
+title: "11. Pointeurs et fonctions II"
 weight: 11
 ---
 

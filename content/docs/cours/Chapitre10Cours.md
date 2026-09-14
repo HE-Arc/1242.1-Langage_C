@@ -1,5 +1,5 @@
 ---
-title: "10 - Allocation dynamique"
+title: "10. Allocation dynamique"
 weight: 11
 ---
 
