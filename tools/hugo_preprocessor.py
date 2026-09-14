@@ -28,7 +28,7 @@ SNIPPET_ID_RE = re.compile(r'^[A-Za-z0-9_.-]+$')
 
 DIRECTIVE_KEYS = {"source_file", "id", "run", "stdin"}
 
-GCC_FLAGS = ["-Wall", "-Wextra", "-std=c17"]
+GCC_FLAGS = ["-Wall", "-Wextra", "-Wpedantic", "-Werror", "-std=c23"]
 RUN_TIMEOUT_SECONDS = 5
 # Silence on stdout/stderr after which the program is assumed to be waiting for input.
 INPUT_QUIET_SECONDS = 0.3
@@ -36,6 +36,7 @@ RUN_FENCE_LANG = "terminal"
 SOURCE_LABEL_FORMAT = "**Code source : `{source_file}`**"
 RUN_LABEL = "**Compilation et exécution**"
 RUN_INFO_FORMAT = '<p class="run-info">Compiled and executed on {date} from {commit}.</p>'
+RUN_INFO_RE = re.compile(r'^<p class="run-info">.*</p>$')
 
 # Linked next to the example so that stdout is unbuffered even when piped,
 # which lets the runner interleave echoed input with the program's output as
@@ -129,7 +130,7 @@ def scan_markdown_for_includes(content_root: Path):
         lines = text.replace("\r\n", "\n").replace("\r", "\n").split("\n")
 
         for lineno, line in enumerate(lines, start=1):
-            m = INCLUDE_RE.match(line)
+            m = INCLUDE_RE.match(line) or SNIPPET_BLOCK_BEGIN_RE.match(line)
             if not m:
                 continue
 
@@ -226,7 +227,9 @@ def git_head_for_file(path: Path) -> str:
     return commit if head.returncode == 0 and commit else "unknown"
 
 def check_includes_against_snippets(includes, snippets):
+    """Print every invalid include, return (error count, markdown files having one)."""
     errors = 0
+    invalid_md_files = set()
 
     for inc in includes:
         src = inc["source_file"]
@@ -235,26 +238,19 @@ def check_includes_against_snippets(includes, snippets):
         line = inc["line"]
 
         if src not in snippets:
-            print(
-                f"{md_file}:{line}: error: undefined snippet file '{src}'"
-            )
-            errors += 1
+            message = f"undefined snippet file '{src}'"
+        elif sid not in snippets[src]:
+            message = f"undefined snippet '{sid}' in file '{src}'"
+        elif inc["run"] and Path(src).suffix.lower() != ".c":
+            message = f"run=true requires a .c source file, got '{src}'"
+        else:
             continue
 
-        if sid not in snippets[src]:
-            print(
-                f"{md_file}:{line}: error: undefined snippet '{sid}' in file '{src}'"
-            )
-            errors += 1
-            continue
+        print(f"{md_file}:{line}: error: {message}")
+        errors += 1
+        invalid_md_files.add(md_file)
 
-        if inc["run"] and Path(src).suffix.lower() != ".c":
-            print(
-                f"{md_file}:{line}: error: run=true requires a .c source file, got '{src}'"
-            )
-            errors += 1
-
-    return errors
+    return errors, invalid_md_files
 
 
 def normalize_process_output(text) -> str:
@@ -412,23 +408,25 @@ def compile_and_run_snippet(source_file: str, code: str, stdin_text) -> str:
     return "\n".join(transcript)
 
 
+def strip_run_info(block):
+    return [line for line in block if not RUN_INFO_RE.match(line)]
+
+
 def replace_includes_in_markdown(md_path, snippets, snippet_files, run_cache):
     original = md_path.read_text(encoding="utf-8", errors="replace")
     lines = original.replace("\r\n", "\n").replace("\r", "\n").split("\n")
 
-    # Step 1: normalize
-    lines = normalize_generated_blocks_to_includes(lines, md_path)
+    lines, previous_blocks = split_generated_blocks(lines, md_path)
 
     out = []
-    modified = False
 
-    for lineno, line in enumerate(lines, start=1):
+    for index, line in enumerate(lines):
         m = INCLUDE_RE.match(line)
         if not m:
             out.append(line)
             continue
 
-        params = parse_directive_params(m.group(1), f"{md_path}:{lineno}")
+        params = parse_directive_params(m.group(1), f"{md_path}:{index + 1}")
         source_file = params["source_file"]
         snippet_id = params["id"]
 
@@ -448,14 +446,10 @@ def replace_includes_in_markdown(md_path, snippets, snippet_files, run_cache):
         ]
 
         if params["run"]:
-            cache_key = (source_file, snippet_id, params["stdin"])
+            cache_key = (source_file, snippet_id, params["stdin"], content)
             if cache_key not in run_cache:
                 print(f"run: {source_file} ({snippet_id})")
                 run_cache[cache_key] = compile_and_run_snippet(source_file, content, params["stdin"])
-            run_info = RUN_INFO_FORMAT.format(
-                date=datetime.now().strftime("%Y-%m-%d %H:%M"),
-                commit=git_head_for_file(snippet_files[source_file][snippet_id]),
-            )
             block.extend([
                 "",
                 RUN_LABEL,
@@ -463,13 +457,15 @@ def replace_includes_in_markdown(md_path, snippets, snippet_files, run_cache):
                 f"```{RUN_FENCE_LANG}",
                 run_cache[cache_key],
                 "```",
-                run_info,
             ])
+            block.append(previous_run_info(block, previous_blocks.get(index)) or RUN_INFO_FORMAT.format(
+                date=datetime.now().strftime("%Y-%m-%d %H:%M"),
+                commit=git_head_for_file(snippet_files[source_file][snippet_id]),
+            ))
 
         block.append("<!-- SNIPPET:END -->")
 
         out.extend(block)
-        modified = True
 
     new_text = "\n".join(out)
 
@@ -502,8 +498,14 @@ def remove_generated_snippet_blocks(lines):
 
     return out
 
-def normalize_generated_blocks_to_includes(lines, md_path=None):
+def split_generated_blocks(lines, md_path=None):
+    """Turn generated blocks back into placeholders.
+
+    Returns the normalized lines and, keyed by the placeholder's index in
+    them, the lines of the generated block it replaced.
+    """
     out = []
+    previous_blocks = {}
     i = 0
 
     while i < len(lines):
@@ -523,97 +525,123 @@ def normalize_generated_blocks_to_includes(lines, md_path=None):
         if j >= len(lines):
             raise RuntimeError("Unclosed SNIPPET:BEGIN block in markdown (missing SNIPPET:END)")
 
+        previous_blocks[len(out)] = lines[i:j + 1]
         out.append(f"<!-- SNIPPET:INCLUDE {format_directive_params(params)} -->")
         i = j + 1
 
-    return out
+    return out, previous_blocks
+
+
+def normalize_generated_blocks_to_includes(lines, md_path=None):
+    return split_generated_blocks(lines, md_path)[0]
+
+
+def previous_run_info(block, previous_block):
+    """Return the run-info line of the previous block when nothing else changed.
+
+    Keeping it avoids rewriting a timestamp for a snippet whose source and
+    output are identical to what is already on the page.
+    """
+    if previous_block is None:
+        return None
+    previous_run_infos = [line for line in previous_block if RUN_INFO_RE.match(line)]
+    if len(previous_run_infos) != 1:
+        return None
+    if "\n".join(strip_run_info(previous_block[:-1])) != "\n".join(block):
+        return None
+    return previous_run_infos[0]
+
+
+class PreprocessorError(RuntimeError):
+    pass
+
+
+def repo_paths():
+    repo_root = Path(__file__).resolve().parent.parent
+    content_root = repo_root / "content"
+    if not content_root.exists():
+        raise PreprocessorError(f"content/ directory not found at {content_root}")
+    return repo_root, content_root
+
+
+def clean_content(content_root):
+    modified = 0
+    for md_file in content_root.rglob("*.md"):
+        original = md_file.read_text(encoding="utf-8", errors="replace")
+        norm = original.replace("\r\n", "\n").replace("\r", "\n")
+        lines = norm.split("\n")
+
+        new_lines = normalize_generated_blocks_to_includes(lines, md_file)
+        new_text = "\n".join(new_lines)
+
+        if new_text != norm:
+            md_file.write_text(new_text, encoding="utf-8", newline="\n")
+            modified += 1
+
+    print(f"\nMarkdown files cleaned: {modified}")
+
+
+def configured_snippet_paths(repo_root):
+    config_path = repo_root / "tools" / "hugo_preprocessor.toml"
+    return [p.resolve() for p in load_snippet_paths(config_path, repo_root)]
+
+
+def scan_and_load(repo_root, content_root, strict=True):
+    """Index includes and snippets, report invalid includes.
+
+    Returns (includes, snippets, snippet_files, invalid_md_files). With
+    strict=True an invalid include aborts instead.
+    """
+    includes = scan_markdown_for_includes(content_root)
+    snippets, snippet_files = scan_files_for_snippets(configured_snippet_paths(repo_root))
+
+    errors, invalid_md_files = check_includes_against_snippets(includes, snippets)
+    if errors > 0 and strict:
+        raise PreprocessorError(f"\n{errors} error(s) generated.")
+
+    return includes, snippets, snippet_files, invalid_md_files
+
+
+def replace_all(includes, snippets, snippet_files, run_cache, skip=frozenset()):
+    """Regenerate every markdown file having includes, return the files written."""
+    written = []
+    for md in dict.fromkeys(inc["md_file"] for inc in includes):
+        if md in skip:
+            continue
+        if replace_includes_in_markdown(md, snippets, snippet_files, run_cache):
+            written.append(md)
+    return written
 
 
 def main():
-    import argparse
-
-    repo_root = Path(__file__).resolve().parent.parent
-    content_root = repo_root / "content"
-
     parser = argparse.ArgumentParser(prog="hugo_preprocessor.py")
     parser.add_argument(
         "command",
         nargs="?",
         choices=["scan", "clean", "replace"],
-        help="scan | clean | replace (default: clean + scan + replace)",
+        help="scan | clean | replace (default: scan + replace)",
     )
     args = parser.parse_args()
 
-    if not content_root.exists():
-        raise RuntimeError(f"content/ directory not found at {content_root}")
+    try:
+        repo_root, content_root = repo_paths()
 
-    def do_clean():
-        modified = 0
-        for md_file in content_root.rglob("*.md"):
-            original = md_file.read_text(encoding="utf-8", errors="replace")
-            norm = original.replace("\r\n", "\n").replace("\r", "\n")
-            lines = norm.split("\n")
+        if args.command == "clean":
+            clean_content(content_root)
+            return
 
-            new_lines = normalize_generated_blocks_to_includes(lines, md_file)
-            new_text = "\n".join(new_lines)
+        includes, snippets, snippet_files, _ = scan_and_load(repo_root, content_root)
 
-            if new_text != norm:
-                md_file.write_text(new_text, encoding="utf-8", newline="\n")
-                modified += 1
+        if args.command == "scan":
+            print(f"\nIncludes found: {len(includes)}")
+            print(f"Snippet files indexed: {len(snippets)}")
+            return
 
-        print(f"\nMarkdown files cleaned: {modified}")
-
-    def do_scan_and_load():
-        includes = scan_markdown_for_includes(content_root)
-
-        config_path = repo_root / "tools" / "hugo_preprocessor.toml"
-        snippet_paths = load_snippet_paths(config_path, repo_root)
-        snippet_paths = [p.resolve() for p in snippet_paths if p.exists()]
-        c_snippets, c_snippet_files = scan_files_for_snippets(snippet_paths)
-
-        errors = check_includes_against_snippets(includes, c_snippets)
-        if errors > 0:
-            print(f"\n{errors} error(s) generated.")
-            raise SystemExit(1)
-
-        return includes, c_snippets, c_snippet_files
-
-    def do_replace(includes, c_snippets, c_snippet_files):
-        modified = 0
-        seen = set()
-        run_cache = {}
-        for inc in includes:
-            md = inc["md_file"]
-            if md in seen:
-                continue
-            seen.add(md)
-            if replace_includes_in_markdown(md, c_snippets, c_snippet_files, run_cache):
-                modified += 1
-
-        print(f"\nMarkdown files updated: {modified}")
-
-    # ---------- dispatch ----------
-    if args.command is None:
-        # Default: clean -> scan -> replace
-        do_clean()
-        includes, c_snippets, c_snippet_files = do_scan_and_load()
-        do_replace(includes, c_snippets, c_snippet_files)
-        return
-
-    if args.command == "clean":
-        do_clean()
-        return
-
-    if args.command == "scan":
-        includes, c_snippets, _ = do_scan_and_load()
-        print(f"\nIncludes found: {len(includes)}")
-        print(f"Snippet files indexed: {len(c_snippets)}")
-        return
-
-    if args.command == "replace":
-        includes, c_snippets, c_snippet_files = do_scan_and_load()
-        do_replace(includes, c_snippets, c_snippet_files)
-        return
+        written = replace_all(includes, snippets, snippet_files, run_cache={})
+        print(f"\nMarkdown files updated: {len(written)}")
+    except PreprocessorError as e:
+        print(e)
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

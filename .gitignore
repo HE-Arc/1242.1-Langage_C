@@ -20,3 +20,4 @@ hugo.linux
 
 # ADDED By NWE
 node_modules/
+tools/__pycache__/
