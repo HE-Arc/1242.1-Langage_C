@@ -9,6 +9,11 @@ weight: 1
 
 {{< pdf src="/pdfs/1242.1.02_TypesEtVariables.pdf" >}}
 
+### Visualisation : entiers et flottants en mémoire
+Cliquez sur les bits, changez la valeur, ou suivez un scénario pas à pas.
+
+{{<viz "https://he-arc.github.io/1242.1-Langage_C-VIZ/ints-floats/">}}
+
 ## Squelette à remplir
 ```c
 #include <stdio.h>
@@ -273,6 +278,10 @@ int main(void)
   return 0;
 }
 ```
+
+Pour voir ce qui se passe bit par bit, suivez le scénario « 0.1 + 0.2 en double » :
+
+{{<viz "https://he-arc.github.io/1242.1-Langage_C-VIZ/ints-floats/?scenario=double-sum">}}
 
 {{<details "Explications" >}}
 Le programme affiche **`d1 is NOT equal to d2`**.
