@@ -61,7 +61,7 @@ $ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o hello.exe hello.c
 $ ./hello.exe
 hello, world
 ```
-<p class="run-info">Compiled and executed on 2026-09-14 13:09 from b493ffe.</p>
+<p class="run-info">Compiled and executed on 2026-09-18 11:10 from 18f0dd4.</p>
 <!-- SNIPPET:END -->
 
 ### 01.01b : comment déclarer des variables et afficher le résultat d'un calcul ?
@@ -79,6 +79,7 @@ int main(void)
 {
 	int a = 10;
 	int b = 5;
+  
 	printf("%d\n", a + b);
 	
 	return 0;
@@ -92,7 +93,7 @@ $ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o add.exe add.c
 $ ./add.exe
 15
 ```
-<p class="run-info">Compiled and executed on 2026-09-14 18:38 from a060919.</p>
+<p class="run-info">Compiled and executed on 2026-09-15 10:01 from 18f0dd4.</p>
 <!-- SNIPPET:END -->
 
 ## Exercices

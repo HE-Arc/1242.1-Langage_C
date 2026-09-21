@@ -5,9 +5,10 @@ weight: 1
 
 # CHAPITRE 2 : types et variables
 
-## Cours
+## Slides
+{{<slides "https://he-arc.github.io/1242.1-Langage_C-SLIDES/02_TypesEtVariables.html">}}
 
-{{< pdf src="/pdfs/1242.1.02_TypesEtVariables.pdf" >}}
+[Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/02_TypesEtVariables?print-pdf)
 
 ### Visualisation : entiers et flottants en mémoire
 Cliquez sur les bits, changez la valeur, ou suivez un scénario pas à pas.
@@ -15,6 +16,16 @@ Cliquez sur les bits, changez la valeur, ou suivez un scénario pas à pas.
 {{<viz "https://he-arc.github.io/1242.1-Langage_C-VIZ/ints-floats/">}}
 
 ## Squelette à remplir
+{{<a_faire>}}
+Remplir le squelette suivant au fur et à mesure du cours.
+{{</a_faire>}}
+<!-- SNIPPET:BEGIN source_file=chap2.c id=1242.1_Skeletons_02_chap2.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `chap2.c`**
+
 ```c
 #include <stdio.h>
 
@@ -44,13 +55,437 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
 {{< a_noter>}}
  **```%zu```** est le spécificateur de format pour des valeurs de type **```size_t```**.
 {{< /a_noter>}}
 
-## Quiz
-[QUIZ TYPES ET VARIABLES (~15')](https://cyberlearn.hes-so.ch/mod/quiz/view.php?id=761388)
+## Exemples
+
+### 02.01 : quelle est la taille en bits des types de base ?
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.01_Prog_typeSize_main.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int* p;
+	enum vowel{ a, e, i, o, u, y } vow;
+
+	printf("_Bool         : %d bits\n", 8 * (int) sizeof(_Bool));
+	printf("char          : %d bits\n", 8 * (int) sizeof(char));
+	printf("unsigned char : %d bits\n", 8 * (int) sizeof(unsigned char));
+	printf("\n");
+	printf("short (int)   : %d bits\n", 8 * (int) sizeof(short int));
+	printf("short         : %d bits\n", 8 * (int) sizeof(short));
+	printf("unsigned short: %d bits\n", 8 * (int) sizeof(unsigned short));
+	printf("\n");
+	printf("int           : %d bits\n", 8 * (int) sizeof(int));
+	printf("unsigned int  : %d bits\n", 8 * (int) sizeof(unsigned int));
+	printf("\n");
+	printf("long          : %d bits\n", 8 * (int) sizeof(long));
+	printf("unsigned long : %d bits\n", 8 * (int) sizeof(unsigned long));
+	printf("\n");
+	printf("float         : %d bits\n", 8 * (int) sizeof(float));
+	printf("double        : %d bits\n", 8 * (int) sizeof(double));
+	printf("long double   : %d bits\n", 8 * (int) sizeof(long double));
+	printf("\n");
+	printf("enum          : %d bits\n", 8 * (int) sizeof(vow));
+	printf("pointer       : %d bits\n", 8 * (int) sizeof(p));
+	printf("\n");
+
+	return 0;
+}
+```
+
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o main.exe main.c
+$ ./main.exe
+_Bool         : 8 bits
+char          : 8 bits
+unsigned char : 8 bits
+
+short (int)   : 16 bits
+short         : 16 bits
+unsigned short: 16 bits
+
+int           : 32 bits
+unsigned int  : 32 bits
+
+long          : 32 bits
+unsigned long : 32 bits
+
+float         : 32 bits
+double        : 64 bits
+long double   : 128 bits
+
+enum          : 32 bits
+pointer       : 64 bits
+```
+<p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
+<!-- SNIPPET:END -->
+
+### 02.02 : comment échanger le contenu de deux variables ?
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.02_SwapAB_main.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	int a = 10;
+	int b = 5;
+	int temp;
+
+	// Before swapping variables values
+	printf("BEFORE swap\n");
+	printf("Variable a: %d \n", a); //  Variable a: 10
+	printf("Variable b: %d \n", b); //  Variable b: 5
+
+	/// Add here the instructions to SWAP the variables values
+	/// Hint: 2 instructions are executed sequentially (one after the other)
+	temp = a;
+	a = b;
+	b = temp;
+
+	// After swapping varialbes values
+	printf("\nAFTER swap\n");
+	printf("Variable a: %d \n", a); //  Variable a: 5
+	printf("Variable b: %d \n", b); //  Variable b: 10
+
+	return 0;
+}
+```
+
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o main.exe main.c
+$ ./main.exe
+BEFORE swap
+Variable a: 10 
+Variable b: 5 
+
+AFTER swap
+Variable a: 5 
+Variable b: 10
+```
+<p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
+<!-- SNIPPET:END -->
+
+### 02.03 : à quoi ressemblent un entier et un flottant en mémoire, bit à bit ?
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.03_BinaryConversion_main.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+#include <stdio.h>
+
+// Assumes little endian
+void printBits(int size, void *ptr)
+{
+	unsigned char *b = (unsigned char*)ptr;
+
+	for (int i = size - 1; i >= 0; --i)
+	{
+		for (int j = 7; j >= 0; --j)
+		{
+			// Take the i-th byte
+			unsigned char byte = b[i];
+			// Use a mask to keep the (j+1)-th bit.
+			// 10000000 to keep 8th bit (j == 7)
+			// 01000000 to keep 7th bit
+			// ...
+			// 00000001 to keep 1st bit (j == 0)
+			unsigned char mask = 1 << j;
+			byte = byte & mask;
+			// Then offset byte so that the (j+1)-th bit is in the first position.
+			// So the char will always be 0 or 1 depending on the value of the (j+1)-th bit
+			byte >>= j;
+			printf("%u", byte);
+		}
+	}
+
+	puts("");
+}
+
+int main(void)
+{
+	char          c = 1;
+	int           i = 1;
+	float         f = 1.f;
+	double        d = 1.;
+	printf("char   c = 1  : "); printBits(sizeof(c), &c);
+	printf("int    i = 1  : "); printBits(sizeof(i), &i);
+	printf("float  f = 1.f: "); printBits(sizeof(f), &f);
+	printf("double d = 1. : "); printBits(sizeof(d), &d);
+
+	c = -1;
+	i = -1;
+	f = -1.f;
+	d = -1.;
+	printf("char   c = -1  : "); printBits(sizeof(c), &c);
+	printf("int    i = -1  : "); printBits(sizeof(i), &i);
+	printf("float  f = -1.f: "); printBits(sizeof(f), &f);
+	printf("double d = -1. : "); printBits(sizeof(d), &d);
+
+	c = '1';
+	printf("char c = '1' : "); printBits(sizeof(c), &c);
+	c = 49;
+	printf("char c = 49  : "); printBits(sizeof(c), &c);
+
+	printf("\nPrint values 1, 2 and 4 (float):\n");
+	f = 1.f;
+	printBits(sizeof(f), &f); // 0 0111 1111  00000000000000000000000 exp=127 (-127) => e=0 1*2^0 = 1
+	f = 2.f;
+	printBits(sizeof(f), &f); // 0 1000 0000  00000000000000000000000 exp=128 (-127) => e=1 1*2^1 = 2
+	f = 4.f;
+	printBits(sizeof(f), &f); // 0 1000 0001  00000000000000000000000 exp=129 (-127) => e=2 1*2^2 = 4
+
+	return 0;
+}
+```
+
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o main.exe main.c
+$ ./main.exe
+char   c = 1  : 00000001
+int    i = 1  : 00000000000000000000000000000001
+float  f = 1.f: 00111111100000000000000000000000
+double d = 1. : 0011111111110000000000000000000000000000000000000000000000000000
+char   c = -1  : 11111111
+int    i = -1  : 11111111111111111111111111111111
+float  f = -1.f: 10111111100000000000000000000000
+double d = -1. : 1011111111110000000000000000000000000000000000000000000000000000
+char c = '1' : 00110001
+char c = 49  : 00110001
+
+Print values 1, 2 and 4 (float):
+00111111100000000000000000000000
+01000000000000000000000000000000
+01000000100000000000000000000000
+```
+<p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
+<!-- SNIPPET:END -->
+
+### 02.04 : que fait la séquence d'échappement `` ?
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.04_BIIIP_main.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+#include <stdio.h>
+
+// WARNING: \a is interpreted by the terminal.
+// So it might bip, or display a bell, or do nothing.
+// It depends on the terminal.
+
+int main(void)
+{
+	// BIIIP using a char
+	char c = '\7';
+	printf("%c", c);
+
+	c = '\a';
+	printf("%c", c);
+
+	// BIIIP using a string
+	const char* s = "\7";
+	printf("%s", s);
+
+  // BIIIP using an escape sequence
+	c = '\a';
+	printf("%c", c);
+
+	c = '\a';
+	printf("%c", c);
+
+	// BIIIP using a string with an escape sequence
+	s = "\a";
+	printf("%s", s);
+
+	return 0;
+}
+```
+<!-- SNIPPET:END -->
+
+### 02.05 : comment fonctionnent les booléens en C (`_Bool`, `bool`) ?
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.05_Booleans_main.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+#include <stdio.h>
+// To use bool instead of _Bool
+// Added in C99: https://en.wikipedia.org/wiki/C99
+#include <stdbool.h>
+
+int main(void)
+{
+	int oldBool = 42;
+	if (oldBool == 0)
+	{
+		printf("%s", "oldBool is FALSE\n");
+	}
+	// Any other value is considered true
+	else
+	{
+		printf("%s", "oldBool is TRUE\n");
+	}
+
+	// _Bool is a keyword of the language
+	_Bool newBool = 42;
+	if (newBool == 0)
+	{
+		printf("%s", "newBool is FALSE\n");
+	}
+	// Any other value is considered true
+	else
+	{
+		printf("%s", "newBool is TRUE\n");
+	}
+
+	bool betterBool = true;
+	if (betterBool == false)
+	{
+		printf("%s", "betterBool is FALSE\n");
+	}
+	else
+	{
+		printf("%s", "betterBool is TRUE\n");
+	}
+
+	// Test output
+	{
+		_Bool test = 3; //!=0 so considered true
+		printf("%d\n", test);
+		test = (2 * 3) < 7;
+		printf("%d\n", test);
+	}
+	{
+		bool test = true;
+		printf("%d\n", test);
+		test = (2 * 3) < 7;
+		printf("%d\n", test);
+	}
+
+	_Bool x = true;
+	bool y = true;
+	char z = true;
+
+	printf("x = %d\n", x);
+	printf("y = %d\n", y);
+	printf("z = %d\n", z);
+	printf("(x == true) = %d\n", x == true);
+	printf("Memory space: \n");
+	printf("x: %d\n", (int) sizeof(x));
+	printf("y: %d\n", (int) sizeof(y));
+	printf("z: %d\n", (int) sizeof(z));
+	printf("(x == true): %d\n", (int) sizeof(x == true));
+
+	return 0;
+}
+```
+
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o main.exe main.c
+$ ./main.exe
+oldBool is TRUE
+newBool is TRUE
+betterBool is TRUE
+1
+1
+1
+1
+x = 1
+y = 1
+z = 1
+(x == true) = 1
+Memory space: 
+x: 1
+y: 1
+z: 1
+(x == true): 4
+```
+<p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
+<!-- SNIPPET:END -->
+
+### 02.06 : comment comparer deux `double` ?
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.06_DoubleComparison_main.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+#include <stdio.h>
+#include <math.h>
+#include <float.h>
+
+int main(void)
+{
+  double d1 = 0.3;
+  double d2 = 0.1 + 0.1 + 0.1;
+  if (d1 == d2)
+  {
+    printf("d1 is equal to d2\n");
+  }
+  else
+  {
+    printf("d1 is NOT equal to d2\n");
+  }
+
+  if (fabs(d1 - d2) < DBL_EPSILON)
+  {
+    printf("d1 is approximately equal to d2\n");
+  }
+  else
+  {
+    printf("d1 is NOT approximately equal to d2\n");
+  }
+
+  return 0;
+}
+```
+
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o main.exe main.c
+$ ./main.exe
+d1 is NOT equal to d2
+d1 is approximately equal to d2
+```
+<p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
+<!-- SNIPPET:END -->
 
 # EXERCICES
 
@@ -290,6 +725,13 @@ Donc, 0.1 ne peut pas être représentée exactement en binaire.
 Par conséquent, la somme de 3 fois 0.1 n'est pas exactement égale à 0.3.
 La bonne manière de comparer des **`double`** est de vérifier que la différence entre les deux valeurs est inférieure à une petite valeur epsilon (typiquement la plus petite valeur représentable par un **`double`** : **`DBL_EPSILON`**).
 
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.06_DoubleComparison_main.c run=true -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
 ```c
 #include <stdio.h>
 #include <math.h>
@@ -320,6 +762,17 @@ int main(void)
   return 0;
 }
 ```
+
+**Compilation et exécution**
+
+```terminal
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -o main.exe main.c
+$ ./main.exe
+d1 is NOT equal to d2
+d1 is approximately equal to d2
+```
+<p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
+<!-- SNIPPET:END -->
 {{</details>}}
 
 ## Cast de **`double`** en **`char`**

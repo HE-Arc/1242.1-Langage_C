@@ -20,7 +20,11 @@ L'étape 3 est un peu plus complexe, voici les étapes détaillées ci-dessous.
 
 ### Installation de MSYS2 et de GCC
 {{< attention >}}
-L'installeur s'affiche mal avec le thème sombre de Windows. 
+L'installeur peut mal s'afficher avec le thème sombre de Windows. 
+{{< /attention >}}
+
+{{< attention >}}
+Si MSYS2 est déjà installé, et que vous souhaitez le mettre à jour, il faut d'abord le désinstaller.
 {{< /attention >}}
 
 1. Télécharger et installer **[MSYS2 ](https://www.msys2.org/#installation)**.

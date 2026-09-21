@@ -2,6 +2,8 @@
 
     python tools/panoptes.py [hugo server arguments...]
 
+The site opens in the default browser once the server is up.
+
 Snippet sources (tools/hugo_preprocessor.toml) and content/**/*.md are polled;
 a changed source regenerates only the pages including it, a changed page is
 regenerated alone. Compilation results are cached per snippet content, so a
@@ -96,7 +98,7 @@ def main():
         log(f"watching {root}")
     log(f"watching {content_root}")
 
-    server = subprocess.Popen([hugo, "server", *sys.argv[1:]], cwd=repo_root)
+    server = subprocess.Popen([hugo, "server", "--openBrowser", *sys.argv[1:]], cwd=repo_root)
     try:
         while server.poll() is None:
             time.sleep(POLL_SECONDS)
