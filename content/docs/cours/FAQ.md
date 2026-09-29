@@ -592,9 +592,14 @@ Pour des raisons de lisibilité, il est cependant fortement conseillé d'utilise
 Le code suivant cast un **`double`** (128.99) en **`char`**.
 Comme la valeur maximale représentable par un **`char`** est 127, il devrait y avoir débordement (overflow).
 On s'attend donc à avoir -128 au final.
-Mais ce n'est pas toujours le cas. Pourquoi ?
+Mais selon le compilateur utilisé, ce n'est pas toujours le cas. Pourquoi ?
 
-#### Code source
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_03.96_CastAndOverflow_main.c run=false -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
 
 ```c
 #include <stdio.h>
@@ -619,8 +624,12 @@ int main(void)
 	printf("c2 = %d\n", (char) c2);
 
 	// 2) Undefined Behavior
-	// Here, the compiler can see that the constant 128.99 is not representable on a char, even after discarding the fractional part.
-	// So it decides to clamp the value to the maximum value possible, that is 127.
+	// Here, the compiler converts the constant 128.99 itself, at compile time.
+	// 128 is not representable on a char, and the C standard does not say what to do then.
+	// So the result depends on the compiler version:
+	// - gcc <= 14 clamps the value to the maximum value possible, that is 127.
+	// - gcc >= 15 gives the same result as the runtime conversion above, that is -128.
+	// Same source code, different outputs: this is what Undefined Behavior means.
 	double d3 = (char) 128.99;
 	char c3 = (char) d3;
 	printf("d3 = %lf\n", d3);
@@ -630,18 +639,7 @@ int main(void)
 	return 0;
 }
 ```
-
-#### Résultat affiché
-
-```
-c1 = -128
-c1 = -128
-d2 = 128.990000
-c2 = -128
-d3 = 127.000000
-c3 = 127
-c3 = 127
-```
+<!-- SNIPPET:END -->
 
 La norme dit :
 
@@ -651,13 +649,18 @@ Donc, quand un **`double`** est casté en **`char`**, seule la partie entière e
 Si elle ne peut pas être représentée dans le type entier demandé (ici **`char`**), alors c'est une **comportement indéfini**.
 
 Dans l'exemple de code donné, les parties 1) et 2) sont donc des comportements indéfinis.
-Et le compilateur va faire les choses différemment.
+La norme n'imposant rien, chaque compilateur (et chaque version d'un même compilateur) est libre de faire ce qu'il veut.
 
-Dans le cas 1), comme la valeur est stockée dans une variable, le cast se fera à l'exécution.
-Il prend donc la valeur stockée dans la variable (128.99), ne garde que la partie entière (128), et la cast en **`char`**, ce qui donne un débordement et retourne -128.
+Dans le cas 1), comme la valeur est stockée dans une variable, le cast se fait à l'exécution.
+Le processeur prend la valeur stockée dans la variable (128.99), ne garde que la partie entière (128), et la cast en **`char`**, ce qui donne un débordement et retourne -128.
 
-Dans le cas 2), le compilateur voit directement que la partie entière de la constante 128.99 ne pourra pas être représentée sur un **`char`** et prend des mesures, directement à la compilation.
-En particulier, il décide d'utiliser la valeur maximale représentable par un **`char`**, et donc on récupère 127.
+Dans le cas 2), le cast porte directement sur la constante 128.99 : c'est le compilateur qui le calcule, à la compilation.
+Et là, le résultat dépend de la version de gcc :
+- jusqu'à gcc 14, le compilateur remplace la valeur par la valeur maximale représentable par un **`char`**, et on récupère 127 ;
+- à partir de gcc 15, il donne le même résultat que le cast à l'exécution, et on récupère -128.
+
+Le même code source donne donc des résultats différents selon la version du compilateur, sans le moindre avertissement.
+C'est exactement ce que signifie un **comportement indéfini** : il ne faut jamais compter sur le résultat obtenu.
 
 
 ## Pourquoi le Task Manager de Windows ne montre pas la mémoire réellement utilisée par mon programme ?

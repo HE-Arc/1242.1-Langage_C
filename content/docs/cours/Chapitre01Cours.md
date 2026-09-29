@@ -10,7 +10,7 @@ weight: 1
 
 [Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/01_Introduction.html?print-pdf)
 
-## Squelette
+## Squelette à remplir
 {{<a_faire>}}
 Remplir le squelette suivant au fur et à mesure du cours.
 {{</a_faire>}}

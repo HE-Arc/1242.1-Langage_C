@@ -8,7 +8,7 @@ weight: 1
 ## Slides
 {{<slides "https://he-arc.github.io/1242.1-Langage_C-SLIDES/02_TypesEtVariables.html">}}
 
-[Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/02_TypesEtVariables?print-pdf)
+[Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/02_TypesEtVariables.html?print-pdf)
 
 ### Visualisation : entiers et flottants en mémoire
 Cliquez sur les bits, changez la valeur, ou suivez un scénario pas à pas.
@@ -287,7 +287,7 @@ Print values 1, 2 and 4 (float):
 <p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
 <!-- SNIPPET:END -->
 
-### 02.04 : que fait la séquence d'échappement `` ?
+### 02.04 : que fait la séquence d'échappement `\a` ?
 <!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_02.04_BIIIP_main.c -->
 <!--
   GENERATED FILE — DO NOT EDIT.
@@ -487,9 +487,9 @@ d1 is approximately equal to d2
 <p class="run-info">Compiled and executed on 2026-09-21 19:44 from 18f0dd4.</p>
 <!-- SNIPPET:END -->
 
-# EXERCICES
+## Exercices
 
-## Exercice 1 
+### Exercice 1 
 Parmi les noms de variables suivants, indiquer ceux qui sont corrects :
 
 ```
@@ -499,7 +499,7 @@ nombre		Auto			Dollar$			Ligne4
 n			ZoRRo			arbre()			Lumière!
 ```
 
-## Exercice 2
+### Exercice 2
 Vérifier si les déclarations de variables ci-dessous sont conformes aux règles du C.
 
 ```
@@ -514,7 +514,7 @@ Vérifier si les déclarations de variables ci-dessous sont conformes aux règle
 
 Si ce n'est pas le cas, dire pourquoi.
 
-## Exercice 3
+### Exercice 3
 Écrire la définition des variables pour un programme qui utilise les valeurs suivantes :
 - la valeur de {{<katex>}}\pi{{</katex>}}
 - un numéro de téléphone à 10 chiffres
@@ -526,7 +526,7 @@ Si ce n'est pas le cas, dire pourquoi.
  
 Justifier les choix faits.
 
-## Exercice 4
+### Exercice 4
 Écrire la définition des variables pour le programme suivants :
 
 ```c
@@ -547,7 +547,7 @@ int main(void)
 }
 ```
 
-## Exercice 5 
+### Exercice 5 
 Représenter les nombres binaires suivants en notation décimale et hexadécimale.
 
 {{<katex>}}01010001_{2} = {{</katex>}}
@@ -561,7 +561,7 @@ Représenter les nombres binaires suivants en notation décimale et hexadécimal
 {{<katex>}}01111000_{2} = {{</katex>}}
 &nbsp;
 
-## Exercice 6
+### Exercice 6
 Représenter les nombres décimaux suivants en notation binaire et hexadécimale.
 
 {{<katex>}}33_{10} = {{</katex>}}
@@ -573,13 +573,13 @@ Représenter les nombres décimaux suivants en notation binaire et hexadécimale
 {{<katex>}}101_{10} = {{</katex>}}
 &nbsp;
 
-## Exercice 7
+### Exercice 7
 En représentation binaire, comment savoir si un nombre est pair ou impair ?
 
-## Exercice 8  
+### Exercice 8  
 Combien de valeurs peut-on dénombrer avec des mots de 8, 16, 32 et 64 bits ?
 
-## Exercice 9
+### Exercice 9
 Soient 3 octets arrivant sur un bus de 8 bits, quel est leur code ascii associé et quel est le mot formé ? (exercice avec calculatrice et table ascii)
 
 {{<katex>}}00111010_{2} = {{</katex>}}
@@ -591,7 +591,7 @@ Soient 3 octets arrivant sur un bus de 8 bits, quel est leur code ascii associé
 {{<katex>}}00101001_{2} = {{</katex>}}
 &nbsp;
 
-## Exercice 10
+### Exercice 10
 Soient 3 nombres hexadécimaux, quel est leur code ascii associé et quel est le mot formé ? (avec calculatrice)
 
 {{<katex>}}31_{16}{{</katex>}}
@@ -603,7 +603,7 @@ Soient 3 nombres hexadécimaux, quel est leur code ascii associé et quel est le
 {{<katex>}}32_{16}{{</katex>}}
 &nbsp;
 
-## Exercice 11
+### Exercice 11
 
 Compléter le programme suivant pour qu’il échange le contenu des variables {{<katex>}}variable1{{</katex>}} et {{<katex>}}variable2{{</katex>}}.
 
@@ -630,12 +630,12 @@ int main(void)
 ```
 
 {{< notion_avancee >}}
-## Exercice 12
+### Exercice 12
 Écrire le code permettant d’échanger les valeurs contenues dans les deux variables a et b sans utiliser d’autre variable.
 {{< /notion_avancee >}}
 
 {{< notion_avancee >}}
-## Exercice 13
+### Exercice 13
 Quelle est la valeur du nombre de type **`float`** dans la variable **`chouia`** dont le contenu mémoire est représenté ci-dessous ?
 
 ```c
@@ -645,7 +645,7 @@ float chouia    /* = ??? */    ;
 
 {{< figure src="/images/chouia.png#center" >}}
 
-## Exercice 21
+### Exercice 21
 Écrire un programme C qui convertit une température saisie par l’utilisateur en 
 degrés Celsius, en degrés Fahrenheit et l’affiche :
 
@@ -656,7 +656,7 @@ Enter a temperature in Celsius: 12
 
 Indication : {{<katex>}} T_F = 32 + 1.8*T_C {{</katex>}}
 
-## Exercice 22
+### Exercice 22
 Écrire un programme C qui effectue un calcul d'intérêts et de capital pour un compte en banque.
 Il demande à l'utilisateur d'introduire:
 - Le capital initial sur le compte (francs et centimes)
@@ -674,13 +674,13 @@ After 30 years, your assets (with interest) will be     2097.57 SFr
 ```
 
 {{< notion_avancee >}}
-## Exercice 23
+### Exercice 23
 Améliorer l'affichage pour avoir des séparateurs après les milliers, et millions, et 
 arrondir le montant à 5 centimes. La valeur 1876435.264901 affichera par exemple **1'876'435.30 SFr**
 {{< /notion_avancee >}}
 
 {{< notion_avancee >}}
-## Exercice 24
+### Exercice 24
 Implémenter le codage d’un nombre réel donné par l’utilisateur, en virgule flottante selon IEEE754
 - Calcul du bit signe (facile)
 - Calcul de l’exposant (moyen)
@@ -688,9 +688,9 @@ Implémenter le codage d’un nombre réel donné par l’utilisateur, en virgul
 - Vérification avec les bits du nombre mémorisé dans une variable float (difficile)
 {{< /notion_avancee >}}
 
-# Défis
+## Défis
 
-## Comparaison de flottants
+### Comparaison de flottants
 Qu'affiche le programme suivant ? Pourquoi ? Quelle est la bonne manière de comparer des **`double`** ?
 
 ```c
@@ -775,7 +775,7 @@ d1 is approximately equal to d2
 <!-- SNIPPET:END -->
 {{</details>}}
 
-## Cast de **`double`** en **`char`**
+### Cast de **`double`** en **`char`**
 
 Qu'affiche le programme suivant ? Pourquoi ?
 

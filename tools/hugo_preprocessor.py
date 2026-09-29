@@ -26,7 +26,7 @@ DIRECTIVE_PARAM_RE = re.compile(r'\s*([A-Za-z_]+)=(?:"((?:[^"\\]|\\.)*)"|([^\s"]
 
 SNIPPET_ID_RE = re.compile(r'^[A-Za-z0-9_.-]+$')
 
-DIRECTIVE_KEYS = {"source_file", "id", "run", "stdin"}
+DIRECTIVE_KEYS = {"source_file", "id", "run", "stdin", "cflags"}
 
 GCC_FLAGS = ["-Wall", "-Wextra", "-Wpedantic", "-Werror", "-std=c23"]
 RUN_TIMEOUT_SECONDS = 5
@@ -110,6 +110,7 @@ def parse_directive_params(text: str, where: str) -> dict:
         "id": raw["id"],
         "run": run,
         "stdin": raw.get("stdin"),
+        "cflags": raw.get("cflags"),
     }
 
 
@@ -119,6 +120,8 @@ def format_directive_params(params: dict) -> str:
         parts.append(f"run={'true' if params['run'] else 'false'}")
     if params.get("stdin") is not None:
         parts.append(f'stdin="{encode_directive_string(params["stdin"])}"')
+    if params.get("cflags") is not None:
+        parts.append(f'cflags="{encode_directive_string(params["cflags"])}"')
     return " ".join(parts)
 
 
@@ -350,10 +353,11 @@ def run_with_echoed_input(exe_path: Path, cwd: Path, stdin_text, timeout: float)
     return b"".join(transcript).decode("utf-8", errors="replace"), timed_out
 
 
-def compile_and_run_snippet(source_file: str, code: str, stdin_text) -> str:
+def compile_and_run_snippet(source_file: str, code: str, stdin_text, cflags) -> str:
     """Compile and run the snippet in a temporary directory, return the console transcript."""
     exe_name = f"{Path(source_file).stem}.exe"
-    transcript = [f"$ gcc {' '.join(GCC_FLAGS)} -o {exe_name} {source_file}"]
+    flags = GCC_FLAGS + (cflags.split() if cflags else [])
+    transcript = [f"$ gcc {' '.join(flags)} -o {exe_name} {source_file}"]
 
     with tempfile.TemporaryDirectory(prefix="hugo_preprocessor_", ignore_cleanup_errors=True) as tmp:
         tmp_dir = Path(tmp)
@@ -378,7 +382,7 @@ def compile_and_run_snippet(source_file: str, code: str, stdin_text) -> str:
             raise RuntimeError(f"failed to build runner support object:\n{support.stderr}")
 
         compilation = subprocess.run(
-            ["gcc", *GCC_FLAGS, "-fdiagnostics-color=never", "-o", exe_name, source_file, support_o],
+            ["gcc", *flags, "-fdiagnostics-color=never", "-o", exe_name, source_file, support_o],
             cwd=tmp_dir,
             capture_output=True,
             text=True,
@@ -446,10 +450,12 @@ def replace_includes_in_markdown(md_path, snippets, snippet_files, run_cache):
         ]
 
         if params["run"]:
-            cache_key = (source_file, snippet_id, params["stdin"], content)
+            cache_key = (source_file, snippet_id, params["stdin"], params["cflags"], content)
             if cache_key not in run_cache:
                 print(f"run: {source_file} ({snippet_id})")
-                run_cache[cache_key] = compile_and_run_snippet(source_file, content, params["stdin"])
+                run_cache[cache_key] = compile_and_run_snippet(
+                    source_file, content, params["stdin"], params["cflags"]
+                )
             block.extend([
                 "",
                 RUN_LABEL,

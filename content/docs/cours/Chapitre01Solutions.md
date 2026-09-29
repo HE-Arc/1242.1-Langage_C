@@ -102,6 +102,64 @@ void chap_01_ex4_multipleTable3(int refNumber)
 ```
 <!-- SNIPPET:END -->
 
+### `1242.1_01.02_Math`
+
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exercices_01.02_Math_main.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+// FRT/OHU   HE-ARC 2014
+#include <stdio.h>
+#include <math.h>   // include math functions and M_PI constant
+#include <stdlib.h>
+
+// SEE: https://stackoverflow.com/questions/29264462/m-pi-not-available-with-gcc-std-c11-but-with-std-gnu11
+#ifndef M_PI
+#define M_PI           3.14159265358979323846
+#endif
+
+int main(void)
+{
+	double A;
+	double B;
+	double res;
+
+	// Input for A and B
+	printf("Input a value for A: ");
+	scanf(" %lf", &A);
+	printf("input a value for B: ");
+	scanf(" %lf", &B);
+
+	// a) a^b
+	res = pow(A, B);
+	printf("\n a) %f power %f = %G \n", A, B, res);
+
+	// b) Hypothenuse
+	res = sqrt(pow(A, 2) + pow(B, 2));
+	printf("\n b) The hypotenuse of the right triangle is %f \n", res);
+
+	// c) tangent of A
+	res = sin(A) / cos(A);// WARNING: trigonometric functions use radians
+	res = sin(A * M_PI / 180) / cos(A * M_PI / 180); // to use degres instead
+	printf("\n b) The tangent of A is %f \n", res);
+
+	// d) Rounding down A/B
+	res = floor(A / B);
+	printf("\n d) The rounded down value of A/B is %f \n", res);
+
+	// e) Rounding down A/B with 3 decimals
+	res = floor(1000.0 * (A / B)) / 1000.0;
+	printf("\n e) The rounded down value of A/B with 3 decimals is %f \n\n", res);
+
+	return 0;
+}
+```
+<!-- SNIPPET:END -->
+
 ## Solutions Auto-évaluations
 
 ### `ch01_ex01_PrintHelloWorld`
