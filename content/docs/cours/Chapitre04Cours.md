@@ -512,9 +512,15 @@ int main(void)
   fputc('A', f1);
   fputc(0x0A, f1);
   fputc('B', f1);
+  fputc('A', f1);
+  fputc('\n', f1);
+  fputc('B', f1);
   
   fputc('A', f2);
   fputc(0x0A, f2);
+  fputc('B', f2);
+  fputc('A', f2);
+  fputc('\n', f2);
   fputc('B', f2);
 
   fclose(f1);
@@ -921,7 +927,7 @@ L'affichage doit se terminer par un retour à la ligne.
 
 <br>
 
-### Exercice 4 : déplacer un symbole 🌶️
+### 🌶️ Exercice 4 : déplacer un symbole 
 {{< notion_avancee >}}
 Faire un programme qui récupère en continu les caractères saisis au clavier (sans **`<enter>`**) pour déplacer un symbole **`*`** à travers l’écran.
 Si le symbole dépasse un des bords, il réapparait de l’autre coté.

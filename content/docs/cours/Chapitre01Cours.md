@@ -134,14 +134,15 @@ Affiche la chaîne de caractères **`"hello, world"`** terminée par **`\n`** (r
 {{< notion_avancee >}}
 **```\n``` et retour à la ligne**
 
-En C, le caractère spécial **```\n```** sert à aller à la ligne.
+En C, **```\n```** est un seul caractère : LF (Line Feed, code 10), sous Linux, macOS et Windows.
 
-Sous Unix/Linux/macOS, **```\n```** correspond à un seul caractère ASCII : LF (Line Feed, code 10).
+Sous Windows, une fin de ligne s'écrit avec 2 caractères : CR + LF (codes 13 et 10).
+En mode texte (console et fichiers ouverts en mode texte), c'est la bibliothèque standard qui fait la traduction : **```\n```** devient CR + LF à l'écriture, et CR + LF redevient **```\n```** à la lecture.
+En mode binaire, il n'y a aucune traduction (chapitre 4, exemple 04.93).
+Sous Linux et macOS, une fin de ligne est déjà un simple LF : le mode texte et le mode binaire s'y comportent de la même façon.
 
-Sous Windows, **```\n```** est traduit automatiquement en 2 caractères : CR + LF (Carriage Return + Line Feed, codes 13 et 10).
-
-✅ Il faut donc utiliser **```\n```** pour «aller à la ligne» de façon portable.
-La bibliothèque standard se chargera de traduire en fonction du système.
+✅ On écrit donc toujours **```\n```** pour aller à la ligne, jamais **```\r\n```** : la bibliothèque s'adapte au système.
+Sous Windows, en mode texte, **```\r\n```** produirait même CR CR LF.
 
 {{< /notion_avancee >}}
 
