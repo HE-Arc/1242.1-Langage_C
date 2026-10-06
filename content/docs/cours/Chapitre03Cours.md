@@ -95,6 +95,14 @@ int main(void)
 	a = 0 % 10;
 	printf("%d\n", a);
 
+	// With a negative operand, the remainder has the sign of the first operand:
+	// (a / b) * b + a % b == a
+	a = -7 % 3;
+	printf("%d\n", a);
+
+	a = 7 % -3;
+	printf("%d\n", a);
+
 	return 0;
 }
 ```
@@ -109,8 +117,10 @@ $ ./main.exe
 0
 5
 0
+-1
+1
 ```
-<p class="run-info">Compiled and executed on 2026-09-25 09:40 from c153709.</p>
+<p class="run-info">Compiled and executed on 2026-09-29 14:40 from fd5fd40.</p>
 <!-- SNIPPET:END -->
 
 ### 03.02 : dans quel ordre les opérateurs arithmétiques sont-ils évalués ?
@@ -558,7 +568,7 @@ c3 = -128
 <!-- SNIPPET:END -->
 
 ### 03.98 : comment utiliser l'opérateur conditionnel `? :` ?
-<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_03.98_Conditional_main.c run=true cflags="-Wno-unused-variable" -->
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_03.98_Conditional_main.c run=true cflags="-Wno-error=unused-variable" -->
 <!--
   GENERATED FILE — DO NOT EDIT.
   This block is automatically regenerated.
@@ -647,7 +657,14 @@ int main(void)
 **Compilation et exécution**
 
 ```terminal
-$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -Wno-unused-variable -o main.exe main.c
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -Wno-error=unused-variable -o main.exe main.c
+main.c: In function 'main':
+main.c:28:13: warning: unused variable 'quarter2' [-Wunused-variable]
+   28 |         int quarter2 = value > 50 ? value > 75 ? 4 : 3 : value <= 25 ? 1 : 2;
+      |             ^~~~~~~~
+main.c:25:13: warning: unused variable 'quarter' [-Wunused-variable]
+   25 |         int quarter = value > 50 ? (value > 75 ? 4 : 3) : (value <= 25 ? 1 : 2);
+      |             ^~~~~~~
 $ ./main.exe
 Min / max: 3 / 9
 Max: 9
@@ -657,11 +674,11 @@ l2r: 3
 r2l: 1
 Associativity: right-to-left
 ```
-<p class="run-info">Compiled and executed on 2026-09-25 10:52 from c153709.</p>
+<p class="run-info">Compiled and executed on 2026-10-01 12:57 from f00c4b5.</p>
 <!-- SNIPPET:END -->
 
 ### 03.99 : comment fonctionne l'opérateur virgule ?
-<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_03.99_Comma_main.c run=true cflags="-Wno-error=unused-value -Wno-unused-variable" -->
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_03.99_Comma_main.c run=true cflags="-Wno-error=unused-value -Wno-error=unused-variable" -->
 <!--
   GENERATED FILE — DO NOT EDIT.
   This block is automatically regenerated.
@@ -721,7 +738,7 @@ int main(void)
 **Compilation et exécution**
 
 ```terminal
-$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -Wno-error=unused-value -Wno-unused-variable -o main.exe main.c
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -Wno-error=unused-value -Wno-error=unused-variable -o main.exe main.c
 main.c: In function 'main':
 main.c:23:14: warning: right-hand operand of comma expression has no effect [-Wunused-value]
    23 |         a = a, b;
@@ -753,9 +770,12 @@ main.c:44:10: warning: left-hand operand of comma expression has no effect [-Wun
 main.c:44:17: warning: right-hand operand of comma expression has no effect [-Wunused-value]
    44 |         b, a = a, b; // OK, float affected to float.
       |                 ^
+main.c:13:15: warning: unused variable 'a_bis' [-Wunused-variable]
+   13 |         float a_bis = 5.5;
+      |               ^~~~~
 $ ./main.exe
 ```
-<p class="run-info">Compiled and executed on 2026-09-25 10:52 from c153709.</p>
+<p class="run-info">Compiled and executed on 2026-10-01 12:57 from f00c4b5.</p>
 <!-- SNIPPET:END -->
 
 ## Exercices
