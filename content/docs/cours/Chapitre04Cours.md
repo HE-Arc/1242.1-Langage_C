@@ -921,8 +921,8 @@ L'affichage doit se terminer par un retour à la ligne.
 
 <br>
 
+### Exercice 4 : déplacer un symbole 🌶️
 {{< notion_avancee >}}
-### Exercice 4 : déplacer un symbole
 Faire un programme qui récupère en continu les caractères saisis au clavier (sans **`<enter>`**) pour déplacer un symbole **`*`** à travers l’écran.
 Si le symbole dépasse un des bords, il réapparait de l’autre coté.
 Pour effacer l’écran, on peut utiliser une commande système **`cls`** par exemple.
