@@ -743,15 +743,15 @@ int main(void)
 
 	// SCANF
 	// Same formats as for printf but we additionally need to specify whether we are reading a float or a double with 'l' in the format
-	float fa, fb, fc, fd, fe = 0;
+	float fa = 0, fb = 0, fc = 0, fd = 0, fe = 0;
 	printf("SCANF FOR FLOATS\n");
 	scanf(" %f %e %E %g %G", &fa, &fb, &fc, &fd, &fe); // <<== DO NOT FORGET THE '&'
 	printf("\t%f\n\t%e\n\t%E\n\t%g\n\t%G\n", fa, fb, fc, fd, fe);
 
-	double da, db, dc, dd, de = 0;
+	double da = 0, db = 0, dc = 0, dd = 0, de = 0;
 	printf("SCANF FOR DOUBLES\n");
 	scanf(" %lf %le %lE %lg %lG", &da, &db, &dc, &dd, &de); // <<== DO NOT FORGET THE '&'
-	printf("\t%lf\n\t%le\n\t%lE\n\t%lg\n\t%lG\n", da, db, dd, dd, de);
+	printf("\t%lf\n\t%le\n\t%lE\n\t%lg\n\t%lG\n", da, db, dc, dd, de);
 
 	// COMMON MISTAKES
 	// Reading a float into a double
@@ -826,7 +826,7 @@ SCANF FOR DOUBLES
 1.5 2.5 3.5 4.5 5.5
 	1.500000
 	2.500000e+00
-	4.500000E+00
+	3.500000E+00
 	4.5
 	5.5
 MISTAKE: reading a float into a double
@@ -838,7 +838,7 @@ MISTAKE: reading a double into a float
 	0.000000
 	0.000000
 ```
-<p class="run-info">Compiled and executed on 2026-10-01 12:15 from f00c4b5.</p>
+<p class="run-info">Compiled and executed on 2026-10-06 12:37 from 089921c.</p>
 <!-- SNIPPET:END -->
 
 {{< attention >}}
