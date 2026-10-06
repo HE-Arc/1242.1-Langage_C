@@ -90,8 +90,8 @@ int main(void)
 	} while (status != nbExpectedValues);
 
 	surface = radius * radius * M_PI;
-	printf("pi = %f\n", M_PI);
-	printf("Circle surface = %.2f\n", surface);
+	printf("pi = %lf\n", M_PI);
+	printf("Circle surface = %.2lf\n", surface);
 
 	return 0;
 }

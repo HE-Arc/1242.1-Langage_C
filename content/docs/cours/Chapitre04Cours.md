@@ -5,10 +5,34 @@ weight: 1
 
 # CHAPITRE 4 : entrées-sorties
 
+{{< attention >}}
+**`scanf` : pour apprendre, pas pour un vrai programme.**
+
+Dans ce chapitre, nous utilisons **`scanf`** pour des raisons pédagogiques (format, tampon, valeur de retour, etc.). Mais **`scanf`** est déconseillé pour des raisons de sécurité. Dans un vrai programme, on lit la ligne entière avec **`fgets`**, puis on l'analyse avec **`sscanf`**, ou **`strtol`** pour détecter aussi un nombre hors limites.
+
+**`printf`** ne pose cependant pas ce problème.
+{{< /attention >}}
+
 ## Slides
 {{<slides "https://he-arc.github.io/1242.1-Langage_C-SLIDES/04_Entrees-Sorties.html">}}
 
 [Version imprimable (faire CTRL+P)](https://he-arc.github.io/1242.1-Langage_C-SLIDES/04_Entrees-Sorties.html?print-pdf)
+
+{{< a_noter >}}
+Les slides ne présentent que les formats les plus utilisés. Quelques compléments.
+
+**Réels : le cas du `float`**
+- Les slides utilisent **`double`** et **`%lf`** partout. Un **`float`** ne se justifie que dans des cas particuliers (mémoire limitée, calcul graphique, etc.).
+- Avec **`printf`**, **`%f`** et **`%lf`** sont équivalents : un **`float`** passé à **`printf`** est converti en **`double`**.
+- Avec **`scanf`**, il faut **`%f`** pour un **`float`** et **`%lf`** pour un **`double`** : **`scanf`** reçoit une adresse et doit savoir s'il écrit 4 octets (**`float`**) ou 8 (**`double`**). Voir l'exemple 04.98.
+
+**Hexadécimal**
+- **`%X`** affiche les lettres en majuscules : **`printf("%x %X", 255, 255);`** affiche **`ff FF`**.
+- La norme prévoit **`%x`** pour un **`unsigned int`**. Avec un **`int`** positif, le résultat est le même.
+- Avec un **`int`** négatif, c'est en principe un comportement indéfini (UB). En pratique, on obtient la représentation en complément à 2 : **`printf("%x", -1);`** affiche **`ffffffff`**.
+
+Tous les formats : [cppreference → fprintf](https://en.cppreference.com/w/c/io/fprintf).
+{{< /a_noter >}}
 
 ## Squelette à remplir
 {{<a_faire>}}
