@@ -37,6 +37,7 @@ SOURCE_LABEL_FORMAT = "**Code source : `{source_file}`**"
 RUN_LABEL = "**Compilation et exécution**"
 RUN_INFO_FORMAT = '<p class="run-info">Compiled and executed on {date} from {commit}.</p>'
 RUN_INFO_RE = re.compile(r'^<p class="run-info">.*</p>$')
+CONTROL_CHARS_RE = re.compile(r'[\x00-\x08\x0b-\x1f]')
 
 # Linked next to the example so that stdout is unbuffered even when piped,
 # which lets the runner interleave echoed input with the program's output as
@@ -261,7 +262,11 @@ def normalize_process_output(text) -> str:
         return ""
     if isinstance(text, bytes):
         text = text.decode("utf-8", errors="replace")
-    return text.replace("\r\n", "\n").replace("\r", "\n").rstrip()
+    text = text.replace("\r\n", "\n").replace("\r", "\n").rstrip()
+    # A NUL or BEL written by an example (e.g. printf("%c", 0), printf("\a"))
+    # would make the markdown a binary file for git: show it as its Unicode
+    # control picture instead (U+2400 + code, e.g. NUL -> ␀, BEL -> ␇).
+    return CONTROL_CHARS_RE.sub(lambda m: chr(0x2400 + ord(m.group())), text)
 
 
 def run_with_echoed_input(exe_path: Path, cwd: Path, stdin_text, timeout: float) -> tuple[str, bool]:
