@@ -19,8 +19,7 @@ weight: 21
 **Code source : `main.c`**
 
 ```c
-// This is important when using Visual Studio.
-// This is done automagically when using CMake.
+// MSVC only: silences warning C4996 (scanf considered unsafe). No effect with gcc.
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>  // printf, scanf
 

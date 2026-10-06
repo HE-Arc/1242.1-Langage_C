@@ -198,11 +198,13 @@ int main(void)
 	{
 		printf("\nPlease enter hour (h:m:s): ");
 		status = scanf(" %d:%d:%d", &h, &m, &s);
+		if (status == EOF)
+		{
+			return 1; // input closed
+		}
 
-		// IMPORTANT: fflush(stdin) does not always work!
-		// It is strongly advised NOT to use it
-		// fflush(stdin);
-		// Instead, empty the buffer "manually"
+		// Do NOT use fflush(stdin): undefined behavior (fflush is only for output streams).
+		// Empty the buffer "manually" instead.
 		{
 			int c;
 			do
@@ -241,7 +243,7 @@ Please enter hour (h:m:s): 12:12:12
 
 Input hour is: 12:12:12
 ```
-<p class="run-info">Compiled and executed on 2026-10-01 12:52 from f00c4b5.</p>
+<p class="run-info">Compiled and executed on 2026-10-06 14:18 from 5aa5850.</p>
 <!-- SNIPPET:END -->
 
 ### 04.03 : comment lire caractère par caractère et vider le tampon d'entrée ?
@@ -261,18 +263,16 @@ int main(void)
 	char line[80];	// String variable
 
 	printf("Input and output characters with getchar/putchar. Use '.' to quit.\n\n");
-	char ch;
-	do
+	int ch; // int, not char: getchar() may return EOF
+	while ((ch = getchar()) != '.' && ch != EOF)
 	{
-		ch = getchar();
 		putchar(ch);
-	} while (ch != '.');
+	}
 
 	putchar('\n');
 
-	// fflush does not always work.
-	// It is strongly advised NOT to use it
-	// fflush(stdin);
+	// Do NOT use fflush(stdin): undefined behavior (fflush is only for output streams).
+	// Empty the buffer "manually" instead.
 	{
 		int c;
 		do
@@ -300,7 +300,7 @@ int main(void)
 	char *p = strchr(line, '\n');
 	if (p != NULL)
 	{
-		*p = 0; // We found a end of line
+		*p = 0; // We found an end of line
 	}
 	else // If we did not find "\n", then we must flush the stdin buffer
 	{
@@ -312,7 +312,7 @@ int main(void)
 	}
 
 	printf("Print all characters in line after fgets,\n");
-	printf("but after having deleted charactere \\n :\n");
+	printf("but after having deleted character \\n :\n");
 	for (i = 0; i < (int) strlen(line); i++)
 	{
 		printf("  %d : %d\n", i, line[i]);
@@ -329,11 +329,13 @@ int main(void)
 	{
 		printf("\nPlease enter hour (h:m:s): ");
 		status = scanf(" %d:%d:%d", &h, &m, &s);
+		if (status == EOF)
+		{
+			return 1; // input closed
+		}
 
-		// IMPORTANT: fflush(stdin) does not always work!
-		// It is strongly advised NOT to use it
-		// fflush(stdin);
-		// Instead, empty the buffer "manually"
+		// Do NOT use fflush(stdin): undefined behavior (fflush is only for output streams).
+		// Empty the buffer "manually" instead.
 		{
 			int c;
 			do
@@ -363,7 +365,7 @@ $ ./main.exe
 Input and output characters with getchar/putchar. Use '.' to quit.
 
 abc.
-abc.
+abc
 Write a line of text:
 hello
 Print all characters in line after fgets:
@@ -374,7 +376,7 @@ Print all characters in line after fgets:
   4 : 111
   5 : 10
 Print all characters in line after fgets,
-but after having deleted charactere \n :
+but after having deleted character \n :
   0 : 104
   1 : 101
   2 : 108
@@ -387,7 +389,7 @@ Please enter hour (h:m:s): 12:34:56
 
 Input hour is: 12:34:56
 ```
-<p class="run-info">Compiled and executed on 2026-10-01 12:14 from f00c4b5.</p>
+<p class="run-info">Compiled and executed on 2026-10-06 14:18 from 5aa5850.</p>
 <!-- SNIPPET:END -->
 
 ### 04.04 : que se passe-t-il quand le format ne correspond pas au type ?
@@ -501,6 +503,11 @@ int main(void)
 {
   FILE *f1 = fopen("text_mode.txt", "w");
   FILE *f2 = fopen("binary_mode.txt", "wb");
+  if (f1 == NULL || f2 == NULL)
+  {
+    printf("Cannot open the files\n");
+    return 1;
+  }
 
   fputc('A', f1);
   fputc(0x0A, f1);
@@ -512,6 +519,8 @@ int main(void)
 
   fclose(f1);
   fclose(f2);
+
+  return 0;
 }
 ```
 <!-- SNIPPET:END -->
@@ -536,7 +545,7 @@ int main(void)
   scanf("%d", &value);
   printf("Value: %d\n", value);
 
-  // Reads an octal or hexidecimal value
+  // Reads an octal or hexadecimal value
   // Entering 032 will be interpreted as 26
   // Entering 0x32 will be interpreted as 50
   scanf("%i", &value);
@@ -556,7 +565,7 @@ Value: 32
 0x32
 Value: 50
 ```
-<p class="run-info">Compiled and executed on 2026-10-01 12:14 from f00c4b5.</p>
+<p class="run-info">Compiled and executed on 2026-10-06 14:15 from 5aa5850.</p>
 <!-- SNIPPET:END -->
 
 ### 04.95 : comment `getch`, `scanf` et `fgets` consomment-ils le tampon ?
@@ -580,7 +589,7 @@ int main(void)
 	first = getch();
 	scanf("%c", &letter);
 
-	scanf("%s", word);
+	scanf("%31s", word);
 
 	fgets(sentence, 128, stdin);
 
@@ -615,15 +624,15 @@ int main(void)
 	int valueToPrint = 42;
 
 	// From ISO C Standard:
-	//	" If a conversion speciﬁcation is invalid, the behavior is undeﬁned.
+	//	" If a conversion specification is invalid, the behavior is undefined.
 	//    If any argument is not the correct type for the corresponding conversion
-	//		speciﬁcation, the behavior is undeﬁned."
+	//		specification, the behavior is undefined."
 	// => so the following line has an undefined behavior because
 	//    we pass %lf as the conversion specification and valueToPrint is an int
 	// NOTE: printf accepts a variable number of parameters, with variable types.
 	// => so it does not know in advance the type of the parameter and thus
 	//    cannot cast them to the expected type.
-	printf("%lf\n", valueToPrint); // Prints 0.000000 with VS
+	printf("%lf\n", valueToPrint); // Prints 0.000000 with gcc and MSVC on Windows (UB: may differ elsewhere)
 
 	// Here, we still pass an int.
 	// But myPrintingFunction expects a double so the int parameter is first converted
@@ -641,7 +650,7 @@ int main(void)
 $ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 -Wno-error=format -o main.exe main.c
 main.c: In function 'main':
 main.c:21:19: warning: format '%lf' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]
-   21 |         printf("%lf\n", valueToPrint); // Prints 0.000000 with VS
+   21 |         printf("%lf\n", valueToPrint); // Prints 0.000000 with gcc and MSVC on Windows (UB: may differ elsewhere)
       |                 ~~^     ~~~~~~~~~~~~
       |                   |     |
       |                   |     int
@@ -651,7 +660,7 @@ $ ./main.exe
 0.000000
 42.000000
 ```
-<p class="run-info">Compiled and executed on 2026-10-01 12:14 from f00c4b5.</p>
+<p class="run-info">Compiled and executed on 2026-10-06 14:15 from 5aa5850.</p>
 <!-- SNIPPET:END -->
 
 ### 04.97 : quelle différence entre `scanf` et `scanf_s` ?
@@ -710,7 +719,7 @@ Read characters are a, b, c and d.
 <!-- SNIPPET:END -->
 
 ### 04.98 : comment afficher et lire des `float` et des `double` ?
-<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_04.98_IOFloatsAndDoubles_main.c run=true stdin="1.5 2.5 3.5 4.5 5.5\n1.5 2.5 3.5 4.5 5.5\n2.25\n2.25" cflags="-Wno-error=format" -->
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_04.98_IOFloatsAndDoubles_main.c run=true stdin="1.5 2.5 3.5 4.5 5.5\n1.5 2.5 3.5 4.5 5.5\n2.25" cflags="-Wno-error=format" -->
 <!--
   GENERATED FILE — DO NOT EDIT.
   This block is automatically regenerated.
@@ -759,16 +768,8 @@ int main(void)
 	scanf(" %f", &da);
 	printf("\t%f\n", da);
 
-	// Reading a double into a float => writing in wrong memory locations
-	// NOTE: must be ran in Release mode. In Debug mode, VS will add extras "around" the local variables in memory for
-	// run-time checks
-	printf("MISTAKE: reading a double into a float\n");
-	fa = 0, fb = 0, fc = 0;
-	scanf(" %lf", &fb);
-	// Here, fc may be changed too
-	printf("\t%f\n\t%f\n\t%f\n", fa, fb, fc);
+	// Reading a double into a float: see example 04.99
 
-	// In Debug mode, VS says "Run-Time Check Failure #2 - Stack around the variable 'fa' was corrupted. occurred"
 	return 0;
 }
 ```
@@ -785,13 +786,6 @@ main.c:39:18: warning: format '%f' expects argument of type 'float *', but argum
       |                  |   double *
       |                  float *
       |                 %lf
-main.c:47:19: warning: format '%lf' expects argument of type 'double *', but argument 2 has type 'float *' [-Wformat=]
-   47 |         scanf(" %lf", &fb);
-      |                 ~~^   ~~~
-      |                   |   |
-      |                   |   float *
-      |                   double *
-      |                 %f
 $ ./main.exe
 PRINTF FOR FLOATS
 	1.000000
@@ -832,17 +826,41 @@ SCANF FOR DOUBLES
 MISTAKE: reading a float into a double
 2.25
 	1.500000
-MISTAKE: reading a double into a float
-2.25
-	2.031250
-	0.000000
-	0.000000
 ```
-<p class="run-info">Compiled and executed on 2026-10-06 12:37 from 089921c.</p>
+<p class="run-info">Compiled and executed on 2026-10-06 14:29 from 5aa5850.</p>
+<!-- SNIPPET:END -->
+
+### 04.99 : que se passe-t-il si on lit un `double` dans un `float` ?
+<!-- SNIPPET:BEGIN source_file=main.c id=1242.1_Exemples_04.99_ScanfDoubleIntoFloat_main.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `main.c`**
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+	float fa = 0, fb = 0, fc = 0;
+
+	// MISTAKE: reading a double (%lf) into a float
+	// scanf writes 8 bytes where there are only 4 => undefined behavior:
+	// a neighbor variable (fa or fc) may be changed, or the stack may be corrupted.
+	// NOTE (MSVC): must be run in Release mode. In Debug mode, MSVC adds extra bytes "around" the local variables
+	// for run-time checks and reports "Run-Time Check Failure #2 - Stack around the variable 'fa' was corrupted."
+	printf("Enter a real number: ");
+	scanf(" %lf", &fb);
+	printf("\t%f\n\t%f\n\t%f\n", fa, fb, fc);
+
+	return 0;
+}
+```
 <!-- SNIPPET:END -->
 
 {{< attention >}}
-Lire un **`double`** (**`%lf`**) dans un **`float`** écrit 8 octets là où il n'y en a que 4 : c'est un comportement indéfini (UB), qui peut modifier une autre variable ou corrompre la pile.
+Lire un **`double`** (**`%lf`**) dans un **`float`** écrit 8 octets là où il n'y en a que 4 : c'est un comportement indéfini (UB), qui peut modifier une autre variable ou corrompre la pile. Le résultat change d'une exécution à l'autre, selon l'environnement : c'est pourquoi cet exemple n'est pas exécuté ici.
 {{< /attention >}}
 
 ## Exercices
