@@ -5,434 +5,6 @@ weight: 21
 ---
 # Chapitre 5 : solutions
 
-## Exemples
-### `1242.1_05.01_if_else_Divi13`
-```c
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
-#include <stdlib.h>
-
-// A number N is a multiple of M, iff when dividing N by M, the reminder is 0
-int main(void)
-{
-	int number = 0;
-	int reminder = 0;
-	int status = 0;
-	const int nbExpectedValues = 1;
-
-	do
-	{
-		printf("Number: ");
-		status = scanf("%d", &number);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-
-		if (status != nbExpectedValues)
-		{
-			printf("\a");
-		}
-	} while (status != nbExpectedValues);
-
-	if (number < 0)
-	{
-		// If the number is < 0
-		// then we test for its positive counterpart only
-		number = -number;
-	}
-	reminder = number % 13;
-
-	if (reminder == 0)
-	{
-		printf("This number is divisible by 13.\n");
-		printf("Result: %d / 13 = %d\n", number, number / 13);
-	}
-	else
-	{
-		printf("This number is NOT divisible by 13.\n");
-		printf("The closest (lowest) multiple is %d.\n", number - reminder);
-	}
-
-	return 0;
-}
-```
-
-### `1242.1_05.02_if_else_Equalin`
-```c
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h> // for fabs
-
-int main(void)
-{
-	double a11, a12, a21, a22, c1, c2;
-	double det, det1, det2, x, y;
-	int status = 0;
-
-	const int nbExpectedValues = 3;
-
-	printf("This program solves a system of 2 linear equations of the form:\n");
-	printf("    a11x + a12y = c1 \nAND a21x + a22y = c2\n");
-	printf("Please enter equations system coefficients (with commas):\n");
-	do
-	{
-		printf("a11, a12, c1   = ");
-		status = scanf("%lf, %lf, %lf", &a11, &a12, &c1);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-
-		if (status != nbExpectedValues)
-		{
-			printf("\a");
-		}
-	} while (status != nbExpectedValues);
-
-	do
-	{
-		printf("a21, a22, c2   = ");
-		status = scanf("%lf, %lf, %lf", &a21, &a22, &c2);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-
-		if (status != nbExpectedValues)
-		{
-			printf("\a");
-		}
-	} while (status != nbExpectedValues);
-
-	// Determinant
-	det = a11 * a22 - a21 * a12;
-	// There is a solution iff det != 0
-	if (det != 0)
-	{
-		// Codeterminants
-		det1 = c1 * a22 - c2 * a12;
-		det2 = a11 * c2 - a21 * c1;
-
-		// Solutions
-		x = det1 / det;
-		y = det2 / det;
-		const double epsilon = 0.000001;
-		if (fabs(x - y) < epsilon) 
-		{
-			printf("Solutions are equals: ");
-		}
-
-		printf("x = %lf, y = %lf\n", x, y);
-	}
-	else
-	{
-		printf("These equations do NOT have a unique solution.\n");
-	}
-
-	return 0;
-}
-```
-
-### `1242.1_05.03_switch_Operat`
-```c
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-	double par1, par2, result;
-	char operation;
-	int status = 0;
-
-	printf("This programs allows to apply +,-,* and / on numbers.\n");
-
-	const int nbExpectedValues = 3;
-
-	do
-	{
-		printf("Please enter operation: ");
-		status = scanf(" %lf %c %lf", &par1, &operation, &par2);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-
-		if (status != nbExpectedValues)
-		{
-			printf("\a");
-		}
-	} while (status != nbExpectedValues);
-
-	switch (operation)
-	{
-	case '+': result = par1 + par2;
-		break;
-	case '-': result = par1 - par2;
-		break;
-	case '*': result = par1 * par2;
-		break;
-	case '/': result = par1 / par2;
-		break;
-	default: result = 0.;
-	}
-
-	printf("Result: %lf %c %lf = %lf\n", par1, operation, par2, result);
-
-	return 0;
-}
-```
-
-### `1242.1_05.04_while_Sum`
-```c
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-	int sum = 0, counter = 0, N;
-	int status = 0;
-
-	printf("This program compute the sum from 1 to N.\n");
-
-	const int nbExpectedValues = 1;
-	do
-	{
-		printf("Please enter N: ");
-		status = scanf("%d", &N);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-
-		if (status != nbExpectedValues)
-		{
-			printf("\a");
-		}
-	} while (status != nbExpectedValues);
-
-	while (counter <= N)
-	{
-		sum += counter;
-		++counter;
-	}
-	printf("Result: %d\n", sum);
-
-	return 0;
-}
-```
-
-### `1242.1_05.04b_while_loops`
-```c
-#include <stdio.h>
-
-int main(void)
-{
-  // Example 1
-  printf("\nExemple 1\n");
-  {
-    int i = 0;
-
-    while (i++ < 3)
-    {
-      printf(" %d ", i);
-    }
-
-    printf(" et %d ", i);
-  }
-  
-  // Example 2
-  printf("\nExemple 2\n");
-  {
-    int i = 0;
-
-    while (++i < 3)
-    {
-      printf(" %d ", i);
-    }
-    printf(" et %d ", i);
-  }
-
-  // Example 3
-  printf("\nExemple 3\n");
-  {
-    int i = 0;
-    while (i < 3)
-    {
-      printf(" %d ", i++);
-    }
-    printf(" et %d ", i);
-  }
-
-  // Example 4
-  printf("\nExemple 4\n");
-  {
-    int i = 0;
-
-    while (i < 3)
-    {
-      printf(" %d ", ++i);
-    }
-    printf(" et %d ", i);
-  }
-
-  return 0;
-}
-```
-
-### `1242.1_05.05_do_while_Addition`
-```c
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-	double sum = 0;
-	int status = 0;
-
-	printf("This programs compute the sum of list of reals (terminated by 0)\n");
-
-	double value = 0; // Just in case
-	do                                   /* Boucle de saisie */
-	{
-		const int nbExpectedValues = 1;
-		do
-		{
-			printf("add: ");
-			status = scanf("%lf", &value);
-
-			{
-				int c;
-				do
-				{
-					c = getchar();
-				} while (c != '\n' && c != EOF);
-			}
-
-			if (status != nbExpectedValues)
-			{
-				printf("\a");
-			}
-		} while (status != nbExpectedValues);
-
-		sum += value;
-	} while (value != 0);
-
-	printf("Sum = %lf\n", sum);
-
-	return 0;
-}
-```
-
-### `1242.1_05.06_for_Power2`
-```c
-#define _CRT_SECURE_NO_WARNINGS 1
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-	int result, N, exponent = 0;
-	int status = 0;
-
-	printf("This programs displays the list of power of 2 from 1 to N\n");
-
-	const int nbExpectedValues = 1;
-	do
-	{
-		printf("Please enter N: ");
-		status = scanf("%d", &N);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-
-		if (status != nbExpectedValues)
-		{
-			printf("\a");
-		}
-	} while (status != nbExpectedValues);
-
-	for (result = 1; result <= N; result *= 2)
-	{
-		printf("2^%d = %d\n", exponent, result);
-		++exponent;
-	}
-
-	return 0;
-}
-```
-
-### `1242.1_05.07_for_loop_examples`
-```c
-#include <stdio.h>
-
-int main(void)
-{
-	int n;
-	for (n = 0; n < 2; ++n)
-	{
-		printf("Iteration:%d\n", n);
-	}
-
-	printf("Fin:%d", n);
-
-	int i, j, c, k;
-
-	printf("\n");
-	for (i = 0; i < 5; i++)
-		printf("%d,", i);
-
-	printf("\n");
-	for (j = 4; j <= 12; j = j + 2)
-		printf("%d,", j);
-
-	printf("\n");
-	for (c = 'a'; c < 'f'; c += 1)
-		printf("%c,", c);
-
-	printf("\n");
-	for (k = 5; k > 0; k--)
-		printf("%d,", k);
-
-	printf("\n");
-	for (int i = 0, j = 0; i < 10; i++, j = i * i)
-	{
-		printf("x = %2d, x^2 = %2d\n", i, j);
-	}
-
-	return 0;
-}
-```
-
 ## Solutions exercices
 
 {{< pdf src="/pdfs/1242.1.05.01_StructuresDeControle_Correction.pdf" >}}
@@ -443,7 +15,15 @@ int main(void)
 
 {{< pdf src="/pdfs/1242.1.05.04_StructuresDeControle_Correction.pdf" >}}
 
-### `05.01 Exercice1`
+### `1242.1_05.01_FlowControl`
+
+<!-- SNIPPET:BEGIN source_file=Exercice1_Corrections.c id=1242.1_Exercices_05.01_FlowControl_Exercice1_Corrections.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice1_Corrections.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -503,8 +83,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.01 Exercice2`
+<!-- SNIPPET:BEGIN source_file=Exercice2_UpperLower.c id=1242.1_Exercices_05.01_FlowControl_Exercice2_UpperLower.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice2_UpperLower.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -549,8 +136,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.01 Exercice3`
+<!-- SNIPPET:BEGIN source_file=Exercice3_MultiplicationSign.c id=1242.1_Exercices_05.01_FlowControl_Exercice3_MultiplicationSign.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice3_MultiplicationSign.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -596,8 +190,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.01 Exercice4`
+<!-- SNIPPET:BEGIN source_file=Exercice4_DecreasingOutput.c id=1242.1_Exercices_05.01_FlowControl_Exercice4_DecreasingOutput.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice4_DecreasingOutput.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -652,8 +253,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.01 Exercice5`
+<!-- SNIPPET:BEGIN source_file=Exercice5_SumSign.c id=1242.1_Exercices_05.01_FlowControl_Exercice5_SumSign.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice5_SumSign.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <math.h>
@@ -708,8 +316,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.01 Exercice6`
+<!-- SNIPPET:BEGIN source_file=Exercice6_OutputMax3.c id=1242.1_Exercices_05.01_FlowControl_Exercice6_OutputMax3.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice6_OutputMax3.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -718,7 +333,7 @@ int main(void)
 
 int main(void)
 {
-	int a, b, c, max;
+	int a, b, c;
 	int status = 0;
 
 	int nbExpectedValues = 3;
@@ -742,6 +357,7 @@ int main(void)
 	} while (status != nbExpectedValues);
 
 #ifdef VERSION_A
+  int max;
 	if (a > b)
 	{
 		max = a;
@@ -786,8 +402,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.01 Exercice7`
+<!-- SNIPPET:BEGIN source_file=Exercice7_Equation2.c id=1242.1_Exercices_05.01_FlowControl_Exercice7_Equation2.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice7_Equation2.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -857,8 +480,17 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.02 Exercice1`
+### `1242.1_05.02_FlowControl`
+
+<!-- SNIPPET:BEGIN source_file=Exercice1_If2Switch.c id=1242.1_Exercices_05.02_FlowControl_Exercice1_If2Switch.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice1_If2Switch.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -897,8 +529,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.02 Exercice2`
+<!-- SNIPPET:BEGIN source_file=Exercice2_Exchange.c id=1242.1_Exercices_05.02_FlowControl_Exercice2_Exchange.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice2_Exchange.c`**
+
 ```c
 // Convert to Swiss Francs from:
 //  - won (W)
@@ -925,9 +564,9 @@ int main(void)
 	char currency;
 	do
 	{
-		printf("USAGE: positive value [W | $ | Y | P]\n");
+		printf("USAGE: non-negative value [W | $ | Y | P]\n");
 		printf("Won = W  Dollar = $  Yen = Y  Pound = P\n");
-		printf("Please enter the amount (in CHF) to convert: ");
+		printf("Please enter the amount to convert: ");
 		status = scanf(" %lg %c", &amount, &currency);
 
 		{
@@ -961,13 +600,6 @@ int main(void)
 
 			inputIsValid = (status == nbExpectedValues && currencyIsSupported == true && amountIsPositive == true);
 		}
-
-		// BIIIP to let user know when there is a problem
-		if (inputIsValid == false)
-		{
-			// printf("\a");
-			printf("USAGE : positive value [W | $ | Y | L]\n");
-		}
 	} while (inputIsValid == false);
 
 	currency = toupper(currency);
@@ -991,8 +623,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.02 Exercice3`
+<!-- SNIPPET:BEGIN source_file=Exercice3_numberOfDays.c id=1242.1_Exercices_05.02_FlowControl_Exercice3_numberOfDays.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice3_numberOfDays.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -1041,8 +680,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.02 Exercice4_RGB`
+<!-- SNIPPET:BEGIN source_file=Exercice4_RGB.c id=1242.1_Exercices_05.02_FlowControl_Exercice4_RGB.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice4_RGB.c`**
+
 ```c
 #include <stdio.h>
 #include <ctype.h>
@@ -1066,8 +712,17 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.03 Exercice1`
+### `1242.1_05.03_FlowControl`
+
+<!-- SNIPPET:BEGIN source_file=Exercice1_Loops.c id=1242.1_Exercices_05.03_FlowControl_Exercice1_Loops.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice1_Loops.c`**
+
 ```c
 #include <stdio.h>
 
@@ -1113,8 +768,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.03 Exercice2`
+<!-- SNIPPET:BEGIN source_file=Exercice2_SumProductMean.c id=1242.1_Exercices_05.03_FlowControl_Exercice2_SumProductMean.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice2_SumProductMean.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -1182,8 +844,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.03 Exercice3`
+<!-- SNIPPET:BEGIN source_file=Exercice3_Factorial.c id=1242.1_Exercices_05.03_FlowControl_Exercice3_Factorial.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice3_Factorial.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -1224,8 +893,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.03 Exercice4`
+<!-- SNIPPET:BEGIN source_file=Exercice4_SquareRoot.c id=1242.1_Exercices_05.03_FlowControl_Exercice4_SquareRoot.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice4_SquareRoot.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <math.h>
@@ -1294,8 +970,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.03 Exercice5`
+<!-- SNIPPET:BEGIN source_file=Exercice5_Pyramid.c id=1242.1_Exercices_05.03_FlowControl_Exercice5_Pyramid.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice5_Pyramid.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -1390,8 +1073,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.03 Exercice6`
+<!-- SNIPPET:BEGIN source_file=Exercice6_MultiplicationTable.c id=1242.1_Exercices_05.03_FlowControl_Exercice6_MultiplicationTable.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice6_MultiplicationTable.c`**
+
 ```c
 #include <stdio.h>
 
@@ -1426,8 +1116,15 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.03 Exercice7`
+<!-- SNIPPET:BEGIN source_file=Exercice7_FizzBuzz.c id=1242.1_Exercices_05.03_FlowControl_Exercice7_FizzBuzz.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice7_FizzBuzz.c`**
+
 ```c
 #include <stdio.h>
 
@@ -1458,15 +1155,24 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.04 Exercice1`
+### `1242.1_05.04_FlowControl`
+
+<!-- SNIPPET:BEGIN source_file=Exercice1.c id=1242.1_Exercices_05.04_FlowControl_Exercice1.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice1.c`**
+
 ```c
 #include <stdio.h>
 
 int main(void)
 {
 	int i, j, x = 0;
-	printf("Serie 5.4 exercice 1");
+	printf("Serie 5.4 exercice 1\n");
 	for (i = 0; i < 5; ++i)
 		for (j = 0; j < i; ++j)
 		{
@@ -1492,15 +1198,22 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `05.04 Exercice2`
+<!-- SNIPPET:BEGIN source_file=Exercice2.c id=1242.1_Exercices_05.04_FlowControl_Exercice2.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice2.c`**
+
 ```c
 #include <stdio.h>
 
 int main(void)
 {
 	int i, j, x = 0;
-	printf("Serie 5.4 exercice 2");
+	printf("Serie 5.4 exercice 2\n");
 	for (i = 0; i < 5; ++i)
 		for (j = 0; j < i; ++j)
 		{
@@ -1514,6 +1227,7 @@ int main(void)
 			case  2:
 			case  3:
 				x += 2;
+				// warning: this statement may fall through
 			default:
 				x += 3;
 			}
@@ -1525,6 +1239,7 @@ int main(void)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
 ## Solutions Auto-évaluations
 ### `ch05_ex02_LowercaseUppercase`
