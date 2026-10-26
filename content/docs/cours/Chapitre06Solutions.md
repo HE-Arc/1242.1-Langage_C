@@ -5,199 +5,19 @@ weight: 21
 ---
 # Chapitre 6 : solutions
 
-## Exemples
-### `1242.1_06.01_Function`
-```c
-#include <stdio.h>
+## Solutions exercices
 
-// Prototype
-void prn_message(int k);
-
-int main(void)
-{
-	printf("%s compiled on %s at %s\n", __FILE__, __DATE__, __TIME__);
-
-	int N;
-	int status = 0;
-	const int nbExpectedValues = 1;
-	do
-	{
-		printf("Please enter an integer: ");
-		status = scanf("%d", &N);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-
-		if (status != nbExpectedValues)
-		{
-			printf("\a");
-		}
-	} while (status != nbExpectedValues);
-
-	// Function call like a procedure
-	prn_message(N);
-
-	return 0;
-}
-
-void prn_message(int k)
-{
-	printf("\nYou entered the value %d\n\n", k);
-}
-```
-
-### `1242.1_06.02_Sum2`
-```c
-#include <stdio.h>
-
-// Prototype/Declaration
-int sum(int lowerBound, int upperBound);	// With a comma!!!
-double mean(int lowerBound, int upperBound);
-
-int main(void)
-{
-	int lower, upper, status;
-	int total;
-	const int nbExpectedValues = 2;
-	do
-	{
-		printf("Please enter lower bound and upper bound (in that order): ");
-		status = scanf("%d %d", &lower, &upper);
-
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-	} while (status != 2);
-
-	// Call sum function
-	// NOTE that effective/actual parameters and formal parameters may have different names
-	total = sum(lower, upper);
-	printf("The sum from %d to %d = %d\n", lower, upper, total);
-	// We can even make the call of a function in the call of another function
-	printf("The mean value is = %lf\n", mean(lower, upper));
-
-	return 0;
-}
-
-// Definition
-int sum(int lowerBound, int upperBound) // Header
-{ // Body
-	int sum = 0;
-
-	for (int n = lowerBound; n <= upperBound; ++n)
-	{
-		sum += n;
-	}
-
-	return sum;
-}
-
-// Definition
-double mean(int lowerBound, int upperBound)
-{
-	// Check for errors
-	if (lowerBound > upperBound)
-	{
-		return 0; // 0.0 will be identified as an error
-	}
-
-	// NOTE the cast
-	double mean = sum(lowerBound, upperBound) / ((double)upperBound - lowerBound + 1);
-	
-	return mean;
-}
-```
-
-### `1242.1_06.99_FunctionDefaultInt`
-```c
-#include <stdio.h>
-
-// Prototype/Declaration
-int func1(int);
-int func2(int);
-int func3(void);
-int func4();
-func5(void);
-
-int main(void)
-{
-	// OK
-	int res = func1(42);
-	printf("RESULT: %d\n", res);
-	// UB: func2 has no return statement
-	res = func2(42);
-	printf("RESULT: %d\n", res);
-	// WARNING
-	res = func3(42);
-	printf("RESULT: %d\n", res);
-	// OK ^^'
-	res = func4(42);
-	printf("RESULT: %d\n", res);
-	// OK. Default return type is int
-	res = func5();
-	printf("RESULT: %d\n", res);
-}
-
-// Definition
-int func1(int a)
-{
-	printf("CALLING: ");
-	printf(__func__);
-	printf("\n");
-
-	return 42;
-}
-
-int func2(int a)
-{
-	printf("CALLING: ");
-	printf(__func__);
-	printf("\n");
-
-	// OUPS
-}
-
-int func3(void)
-{
-	printf("CALLING: ");
-	printf(__func__);
-	printf("\n");
-
-	return 42;
-}
-
-int func4()
-{
-	printf("CALLING: ");
-	printf(__func__);
-	printf("\n");
-
-	return 42;
-}
-
-func5()
-{
-	printf("CALLING: ");
-	printf(__func__);
-	printf("\n");
-
-	return 42;
-}
-```
-
-## Solutions
 {{< pdf src="/pdfs/1242.1.06_Fonctions_I_Correction.pdf" >}}
 
-### `1242.1_06.01_FonctionsI Exercice1`
+### `1242.1_06.01_FonctionsI`
+
+<!-- SNIPPET:BEGIN source_file=Exercice1.c id=1242.1_Exercices_06.01_FonctionsI_Exercice1.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice1.c`**
+
 ```c
 #include <stdio.h>
 
@@ -217,8 +37,15 @@ int fct(int r)
 	return 2 * r;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `1242.1_06.01_FonctionsI Exercice2_Hello`
+<!-- SNIPPET:BEGIN source_file=Exercice2_Hello.c id=1242.1_Exercices_06.01_FonctionsI_Exercice2_Hello.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice2_Hello.c`**
+
 ```c
 #include <stdio.h>
 
@@ -235,6 +62,7 @@ int main(void)
 	f2(3);
 	printf("\nf3 :\n");
 	int j = f3(3);
+	printf("f3 returned: %d\n", j);
 
 	return 0;
 }
@@ -259,8 +87,15 @@ int f3(int n)
 	return 0;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `1242.1_06.01_FonctionsI Exercice3_ReverseEngineering`
+<!-- SNIPPET:BEGIN source_file=Exercice3_ReverseEngineering.c id=1242.1_Exercices_06.01_FonctionsI_Exercice3_ReverseEngineering.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice3_ReverseEngineering.c`**
+
 ```c
 #include <stdio.h>
 
@@ -268,7 +103,6 @@ int n = 10, q = 2; // Global variables!
 int fct(int);
 void f(void);
 
-// NOTE: keep French to stick to instructions
 int main(void)
 {
 	int n = 0, p = 5;
@@ -294,8 +128,15 @@ void f(void)
 	printf("C : dans f, n = %d, p = %d, q = %d\n", n, p, q);
 }
 ```
+<!-- SNIPPET:END -->
 
-### `1242.1_06.01_FonctionsI Exercice4_Squares`
+<!-- SNIPPET:BEGIN source_file=Exercice4_Squares.c id=1242.1_Exercices_06.01_FonctionsI_Exercice4_Squares.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice4_Squares.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -304,58 +145,65 @@ int squares(int n);
 
 int main(void)
 {
-	const int nbExpectedValues = 1;
-	int status = 0;
-	int userLimitValue = 1000;
+  const int nbExpectedValues = 1;
+  int status = 0;
+  int userLimitValue = 1000;
 
-// #define OPTION
+#define OPTION
 
-	do
-	{
-		printf("Please enter a positive integer in [1..1000]: ");
-		status = scanf(" %d", &userLimitValue);
+  do
+  {
+    printf("Please enter a positive integer in [1..1000]: ");
+    status = scanf(" %d", &userLimitValue);
 
-		{
-			int c;
-			do
-			{
-				c = getchar();
-			} while (c != '\n' && c != EOF);
-		}
-		if (status != nbExpectedValues || userLimitValue < 1 || userLimitValue > 1000)
-		{
-			// printf("\a");
-		}
+    {
+      int c;
+      do
+      {
+        c = getchar();
+      } while (c != '\n' && c != EOF);
+    }
+    if (status != nbExpectedValues || userLimitValue < 1 || userLimitValue > 1000)
+    {
+      // printf("\a");
+    }
 
-	} while (status != 1 || userLimitValue < 1 || userLimitValue > 1000);
+  } while (status != 1 || userLimitValue < 1 || userLimitValue > 1000);
 
 #ifndef OPTION
-	for (int number = 1; number <= userLimitValue; number += 1)
-	{
-		printf("%d^2 = %d\n", number, squares(number));
-	}
+  for (int number = 1; number <= userLimitValue; number += 1)
+  {
+    printf("%d^2 = %d\n", numbesr, squares(number));
+  }
 #else
-	int currentValue = 1;
-	int currentSquare = 1;
-	while (currentSquare <= userLimitValue)
-	{
-		printf("%d^2 = %d\n", currentValue, currentSquare);
-		currentSquare = squares(++currentValue);
-	}
+  int currentValue = 1;
+  int currentSquare = 1;
+  while (currentSquare <= userLimitValue)
+  {
+    printf("%d^2 = %d\n", currentValue, currentSquare);
+    currentSquare = squares(++currentValue);
+  }
 #endif
 
-	printf("\n");
+  printf("\n");
 
-	return 0;
+  return 0;
 }
 
 int squares(int n)
 {
-	return n * n;
+  return n * n;
 }
 ```
+<!-- SNIPPET:END -->
 
-### `1242.1_06.01_FonctionsI Exercice5_MultiplicationsTable`
+<!-- SNIPPET:BEGIN source_file=Exercice5_MultiplicationsTable.c id=1242.1_Exercices_06.01_FonctionsI_Exercice5_MultiplicationsTable.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice5_MultiplicationsTable.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -412,8 +260,15 @@ void multiplicationTable(int n)
 	}
 }
 ```
+<!-- SNIPPET:END -->
 
-### `1242.1_06.01_FonctionsI Exercice6_Calculator`
+<!-- SNIPPET:BEGIN source_file=Exercice6_Calculator.c id=1242.1_Exercices_06.01_FonctionsI_Exercice6_Calculator.c -->
+<!--
+  GENERATED FILE — DO NOT EDIT.
+  This block is automatically regenerated.
+-->
+**Code source : `Exercice6_Calculator.c`**
+
 ```c
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
@@ -471,6 +326,7 @@ double compute(double n1, double n2, char op)
 	}
 }
 ```
+<!-- SNIPPET:END -->
 
 ## Solutions Auto-évaluations
 ### `ch06_ex04_Squares`

@@ -689,6 +689,21 @@ Il faut donc la définir de manière portable de la manière suivante :
 #define M_PI 3.14159265358979323846
 #endif
 ```
+## Pourquoi **`undefined reference to 'sin'`** sous Linux ?
+
+Sous Linux, les fonctions de **`<math.h>`** (**`sin`**, **`sqrt`**, **`pow`**…) sont dans une bibliothèque séparée, **`libm`**.
+Il faut l'ajouter à l'édition de liens avec l'option **`-lm`**, placée **après** les fichiers sources :
+
+```terminal
+$ gcc -Wall -Wextra -Wpedantic -Werror -std=c23 main.c -o main -lm
+```
+
+Sans **`-lm`**, la compilation réussit mais l'édition de liens échoue avec **`undefined reference to 'sin'`**.
+
+Sous Windows (MSYS2 / MinGW-w64) et sous macOS, ces fonctions sont liées automatiquement : **`-lm`** est inutile, mais accepté.
+
+Remarque : si l'argument est une constante (**`sin(0.5)`**), **`gcc`** peut calculer le résultat à la compilation, et l'erreur n'apparaît pas.
+
 ## Comment faut-il vider le buffer **`stdin`** ?
 
 Lorsque **`scanf()`** essaie de lire des données en entrée, et échoue, il laisse le buffer **`stdin`** inchangé.
