@@ -85,7 +85,7 @@ int main(void)
 
 		if (status != nbExpectedValues)
 		{
-			printf("\a");
+			printf("Please enter an integer.\n");
 		}
 	} while (status != nbExpectedValues);
 
@@ -110,7 +110,7 @@ Please enter an integer: 42
 
 You entered the value 42
 ```
-<p class="run-info">Compiled and executed on 2026-10-26 15:39 from 81a5010.</p>
+<p class="run-info">Compiled and executed on 2026-10-26 17:01 from 1ecc9c2.</p>
 <!-- SNIPPET:END -->
 
 ### 06.02 : comment déclarer une fonction avant `main` et la définir après ?
@@ -125,7 +125,7 @@ You entered the value 42
 #include <stdio.h>
 
 // Prototype/Declaration
-int sum(int lowerBound, int upperBound);	// With a comma!!!
+int sum(int lowerBound, int upperBound);
 double mean(int lowerBound, int upperBound);
 
 int main(void)
@@ -160,14 +160,14 @@ int main(void)
 // Definition
 int sum(int lowerBound, int upperBound) // Header
 { // Body
-	int sum = 0;
+	int total = 0;
 
 	for (int n = lowerBound; n <= upperBound; ++n)
 	{
-		sum += n;
+		total += n;
 	}
 
-	return sum;
+	return total;
 }
 
 // Definition
@@ -180,9 +180,9 @@ double mean(int lowerBound, int upperBound)
 	}
 
 	// NOTE the cast
-	double mean = sum(lowerBound, upperBound) / ((double)upperBound - lowerBound + 1);
+	double result = sum(lowerBound, upperBound) / ((double)upperBound - lowerBound + 1);
 	
-	return mean;
+	return result;
 }
 ```
 
@@ -195,94 +195,8 @@ Please enter lower bound and upper bound (in that order): 1 10
 The sum from 1 to 10 = 55
 The mean value is = 5.500000
 ```
-<p class="run-info">Compiled and executed on 2026-10-26 15:39 from 81a5010.</p>
+<p class="run-info">Compiled and executed on 2026-10-26 16:56 from 1ecc9c2.</p>
 <!-- SNIPPET:END -->
-
-### 06.03 : où sont rangées en mémoire les variables globales, locales et dynamiques ?
-<!-- SNIPPET:BEGIN source_file=AllocationHeapStack.c id=1242.1_Exemples_06.03_AllocationHeapStack_AllocationHeapStack.c -->
-<!--
-  GENERATED FILE — DO NOT EDIT.
-  This block is automatically regenerated.
--->
-**Code source : `AllocationHeapStack.c`**
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-char g1;
-char g2;
-char g1i = 9;
-char g2i = 10;
-
-void f1(char p1)
-{
-	printf("p1f1: %p\n", (void *) &p1);
-	char l1f1;
-	printf("l1f1: %p\n", (void *) &l1f1);
-	char l2f1;
-	printf("l2f1: %p\n", (void *) &l2f1);
-	char l3f1;
-	printf("l3f1: %p\n", (void *) &l3f1);
-	char l4f1;
-	printf("l4f1: %p\n", (void *) &l4f1);
-}
-
-void f2(void)
-{
-	char l1f2;
-	printf("l1f2: %p\n", (void *) &l1f2);
-	char l2f2;
-	printf("l2f2: %p\n", (void *) &l2f2);
-	char l3f2;
-	printf("l3f2: %p\n", (void *) &l3f2);
-	char l4f2;
-	printf("l4f2: %p\n", (void *) &l4f2);
-}
-
-int main(void)
-{
-	printf("g1:  %p\n", (void *) &g1);
-	printf("g2:  %p\n", (void *) &g2);
-	printf("g1i: %p\n", (void *) &g1i);
-	printf("g2i: %p\n", (void *) &g2i);
-
-	char l1m;
-	printf("l1m: %p\n", (void *) &l1m);
-	char l2m;
-	printf("l2m: %p\n", (void *) &l2m);
-	char l3m;
-	printf("l3m: %p\n", (void *) &l3m);
-	char l4m;
-	printf("l4m: %p\n", (void *) &l4m);
-
-	f1('x');
-
-	char *px;
-	printf("px: %p\n", (void *) &px);
-
-	px = malloc(1);
-	printf("dyn1: %p\n", (void *) px);
-	px = malloc(1);
-	printf("dyn2: %p\n", (void *) px);
-	px = malloc(1);
-	printf("dyn3: %p\n", (void *) px);
-	px = malloc(1);
-	printf("dyn4: %p\n", (void *) px);
-	px = malloc(1);
-	printf("dyn5: %p\n", (void *) px);
-
-	f2();
-
-	return 0;
-}
-```
-<!-- SNIPPET:END -->
-
-{{< a_noter >}}
-Les adresses affichées changent d'une exécution à l'autre : l'exemple n'est donc pas exécuté ici.
-Comparer les adresses des variables globales, locales (`main`, `f1`, `f2`) et allouées avec `malloc` (voir chapitre 10) avec le schéma des slides.
-{{< /a_noter >}}
 
 ## Exercices
 
