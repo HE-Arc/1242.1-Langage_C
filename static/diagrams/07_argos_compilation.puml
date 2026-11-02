@@ -1,0 +1,61 @@
+@startuml 07_argos_compilation
+' Chapter 7 ARGOS case study. Single source: also loaded by the chapter 7 slides (1242.1-Langage_C-SLIDES/07_Compilation.html).
+' Rendered by the PlantUML server, from the site shortcode and from the slides.
+
+top to bottom direction
+skinparam defaultFontName Arial
+skinparam defaultFontSize 20
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam ArrowColor #0000FF
+skinparam ArrowFontColor #000000
+skinparam ArrowFontSize 18
+skinparam ArrowThickness 2
+skinparam FileBackgroundColor #FFFFFF
+skinparam FileBorderColor #888888
+skinparam ArtifactBackgroundColor #C5D9F1
+skinparam ArtifactBorderColor #385D8A
+skinparam PackageBorderColor #385D8A
+skinparam PackageFontSize 20
+
+package "Student-specific" as student #FFF2CC {
+  file "main.c" as main_c
+}
+
+package "Manual build (gcc)" {
+  artifact "main.o" as main_o
+  artifact "ex_0017_Factorial.o" as fact_o
+  artifact "main.exe" as main_exe
+}
+
+rectangle "Module ex_0017_Factorial (reused)" as fact_module #E2F0D9;line:548235;line.bold {
+  file "ex_0017_Factorial.h" as fact_h
+  file "ex_0017_Factorial.c" as fact_c
+}
+
+package "argos check (provided)" {
+  file "ex_0017_TEST.cpp" as test_cpp
+  artifact "ex_0017_TEST.o" as test_o
+  artifact "ex_0017_Factorial.o" as test_fact_o
+  artifact "libargos_common.a" as common_a #FFDADA
+  artifact "libgtest_main.a\nlibgtest.a" as gtest_a #FFDADA
+  artifact "ex_0017_TEST.exe" as test_exe
+}
+
+' Three columns: student-specific (left), reused module (centre), ARGOS (right).
+main_c .right.> fact_h : <U+0023>include
+test_cpp .left.> fact_h : <U+0023>include
+fact_c .up.> fact_h : <U+0023>include
+
+main_c -down-> main_o : compile
+fact_c -down-> fact_o : compile
+main_o -down-> main_exe : link
+fact_o -down-> main_exe
+
+test_cpp -down-> test_o : compile
+fact_c -down-> test_fact_o : compile
+test_o -down-> test_exe : link
+test_fact_o -down-> test_exe
+common_a -down-> test_exe
+gtest_a -down-> test_exe : provides main()
+@enduml
