@@ -1,13 +1,14 @@
 """Regenerate snippet blocks on change and run `hugo server`.
 
-    python tools/panoptes.py [hugo server arguments...]
+    python tools/panoptes.py [--fresh] [hugo server arguments...]
 
 The site opens in the default browser once the server is up.
 
 Snippet sources (tools/hugo_preprocessor.toml) and content/**/*.md are polled;
 a changed source regenerates only the pages including it, a changed page is
-regenerated alone. Compilation results are cached per snippet content, so a
-page edit never recompiles an unchanged example.
+regenerated alone. Run results are stored in tools/.run_cache.json, so an
+unchanged example is not compiled again, even after a restart. --fresh
+ignores the stored results and runs every example again.
 """
 import shutil
 import subprocess
@@ -78,6 +79,7 @@ def regenerate(repo_root, content_root, run_cache, changed=None):
                 log(f"updated {md.relative_to(repo_root)}")
         except Exception as e:
             log(f"error: {md.relative_to(repo_root)}: {e}")
+    run_cache.save()
     return written
 
 
@@ -89,7 +91,9 @@ def main():
 
     repo_root, content_root = hp.repo_paths()
     source_roots = hp.configured_snippet_paths(repo_root)
-    run_cache = {}
+    hugo_arguments = [argument for argument in sys.argv[1:] if argument != "--fresh"]
+    fresh = len(hugo_arguments) != len(sys.argv[1:])
+    run_cache = hp.RunCache(hp.run_cache_path(repo_root), fresh=fresh)
 
     log("initial pass")
     regenerate(repo_root, content_root, run_cache)
@@ -98,7 +102,7 @@ def main():
         log(f"watching {root}")
     log(f"watching {content_root}")
 
-    server = subprocess.Popen([hugo, "server", "--openBrowser", *sys.argv[1:]], cwd=repo_root)
+    server = subprocess.Popen([hugo, "server", "--openBrowser", *hugo_arguments], cwd=repo_root)
     try:
         while server.poll() is None:
             time.sleep(POLL_SECONDS)

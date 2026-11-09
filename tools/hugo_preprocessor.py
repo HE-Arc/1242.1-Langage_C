@@ -1,5 +1,7 @@
 from datetime import datetime
 from pathlib import Path
+import hashlib
+import json
 import queue
 import re
 import subprocess
@@ -417,6 +419,71 @@ def compile_and_run_snippet(source_file: str, code: str, stdin_text, cflags) -> 
     return "\n".join(transcript)
 
 
+class RunCache:
+    """Console transcripts of run=true snippets, kept on disk between launches.
+
+    A transcript is reused only while everything it depends on is unchanged:
+    the snippet, its stdin and cflags, the gcc version and the runner settings.
+    """
+
+    def __init__(self, path: Path, fresh: bool = False):
+        self.path = path
+        self.transcripts = {}
+        self.used = set()
+        self.dirty = False
+        self._toolchain = None
+        if fresh or not path.exists():
+            return
+        try:
+            stored = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return
+        if isinstance(stored, dict):
+            self.transcripts = {k: v for k, v in stored.items() if isinstance(v, str)}
+
+    def toolchain(self) -> str:
+        if self._toolchain is None:
+            try:
+                version = subprocess.run(
+                    ["gcc", "--version"], capture_output=True, text=True, encoding="utf-8", errors="replace"
+                )
+            except FileNotFoundError:
+                raise RuntimeError("gcc not found in PATH: required for run=true directives")
+            self._toolchain = json.dumps([
+                version.stdout.splitlines()[:1],
+                GCC_FLAGS,
+                UNBUFFERED_STDOUT_C,
+                RUN_TIMEOUT_SECONDS,
+                INPUT_QUIET_SECONDS,
+            ])
+        return self._toolchain
+
+    def transcript(self, source_file, snippet_id, stdin_text, cflags, code) -> str:
+        key = hashlib.sha256(json.dumps(
+            [self.toolchain(), source_file, snippet_id, stdin_text, cflags, code]
+        ).encode("utf-8")).hexdigest()
+        if key not in self.transcripts:
+            print(f"run: {source_file} ({snippet_id})")
+            self.transcripts[key] = compile_and_run_snippet(source_file, code, stdin_text, cflags)
+            self.dirty = True
+        self.used.add(key)
+        return self.transcripts[key]
+
+    def save(self):
+        """Write the transcripts used by this process; older ones are dropped."""
+        kept = {key: self.transcripts[key] for key in sorted(self.used)}
+        if not self.dirty and len(kept) == len(self.transcripts):
+            return
+        temporary = self.path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(kept, ensure_ascii=False, indent=0), encoding="utf-8", newline="\n")
+        temporary.replace(self.path)
+        self.dirty = False
+
+
+def run_cache_path(repo_root: Path) -> Path:
+    return repo_root / "tools" / ".run_cache.json"
+
+
 def strip_run_info(block):
     return [line for line in block if not RUN_INFO_RE.match(line)]
 
@@ -455,18 +522,15 @@ def replace_includes_in_markdown(md_path, snippets, snippet_files, run_cache):
         ]
 
         if params["run"]:
-            cache_key = (source_file, snippet_id, params["stdin"], params["cflags"], content)
-            if cache_key not in run_cache:
-                print(f"run: {source_file} ({snippet_id})")
-                run_cache[cache_key] = compile_and_run_snippet(
-                    source_file, content, params["stdin"], params["cflags"]
-                )
+            transcript = run_cache.transcript(
+                source_file, snippet_id, params["stdin"], params["cflags"], content
+            )
             block.extend([
                 "",
                 RUN_LABEL,
                 "",
                 f"```{RUN_FENCE_LANG}",
-                run_cache[cache_key],
+                transcript,
                 "```",
             ])
             block.append(previous_run_info(block, previous_blocks.get(index)) or RUN_INFO_FORMAT.format(
@@ -632,6 +696,11 @@ def main():
         choices=["scan", "clean", "replace"],
         help="scan | clean | replace (default: scan + replace)",
     )
+    parser.add_argument(
+        "--fresh",
+        action="store_true",
+        help="ignore the stored run results, compile and run every example again",
+    )
     args = parser.parse_args()
 
     try:
@@ -648,7 +717,11 @@ def main():
             print(f"Snippet files indexed: {len(snippets)}")
             return
 
-        written = replace_all(includes, snippets, snippet_files, run_cache={})
+        run_cache = RunCache(run_cache_path(repo_root), fresh=args.fresh)
+        try:
+            written = replace_all(includes, snippets, snippet_files, run_cache)
+        finally:
+            run_cache.save()
         print(f"\nMarkdown files updated: {len(written)}")
     except PreprocessorError as e:
         print(e)
